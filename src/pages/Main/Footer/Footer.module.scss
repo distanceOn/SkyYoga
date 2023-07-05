@@ -1,0 +1,25 @@
+.footer {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  &__btn {
+    cursor: pointer;
+    padding: 7px 24px 9px 24px;
+    border-color: transparent;
+    border-radius: 46px;
+    background: #c7e957;
+    color: #000;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.1px;
+    transition: all 0.2s;
+    &:hover {
+      background: #daf289;
+    }
+    &:active {
+      background: #ebffab;
+    }
+  }
+}
