@@ -1,10 +1,10 @@
 import img from "../../imgs/logo.svg";
-import "./Logo.scss";
+import s from "./Logo.module.scss";
 
 const Logo = () => {
   return (
     <div>
-      <img src={img} alt="СкайФитнесПро" className="logo" />
+      <img src={img} alt="СкайФитнесПро" className={s.logo} />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import stratching from "../../../imgs/card__stratching.png";
 import step from "../../../imgs/card__step.png";
 import dance from "../../../imgs/card__dance.png";
 import bodyflex from "../../../imgs/card__bodyflex.png";
-import "./Card.scss";
+import s from "./Card.module.scss";
 
 const Card = (props) => {
   const getImg = () => {
@@ -42,7 +42,7 @@ const Card = (props) => {
   const { src, alt } = getImg();
   return (
     <div>
-      <img className="card" src={src} alt={alt} />
+      <img className={s.card} src={src} alt={alt} />
     </div>
   );
 };

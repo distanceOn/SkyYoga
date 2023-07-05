@@ -1,11 +1,11 @@
 import Logo from "../../components/Logo/Logo";
-import "./Header.scss";
+import s from "./Header.module.scss";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className={s.header}>
       <Logo />
-      <button className="entry">Войти</button>
+      <button className={s.entry}>Войти</button>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import Header from "./Header/Header";
-import "./Main.scss";
+import s from "./Main.module.scss";
 import Inscription from "./Inscription/Inscription";
 import Cards from "./Cards/Cards";
 import Footer from "./Footer/Footer";
 
 const Main = () => {
   return (
-    <div className="main">
-      <div className="container">
+    <div className={s.main}>
+      <div className={s.container}>
         <Header />
         <Inscription />
         <Cards />

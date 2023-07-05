@@ -1,8 +1,8 @@
-import "./Footer.scss";
+import s from "./Footer.module.scss";
 const Footer = () => {
   return (
-    <div className="footer">
-      <button className="footer__btn">Наверх ↑</button>
+    <div className={s.footer}>
+      <button className={s.footer__btn}>Наверх ↑</button>
     </div>
   );
 };
