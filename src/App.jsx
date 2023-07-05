@@ -1,10 +1,10 @@
 import s from './App.module.scss';
-import { UnauthorizedСourse } from './pages/unauthorizedСourse';
+import { ModalProgress } from './components/modalProgress/ModalProgress';
 
 function App() {
 	return (
 		<div className={s.App}>
-			<UnauthorizedСourse />
+			<ModalProgress />
 		</div>
 	);
 }
