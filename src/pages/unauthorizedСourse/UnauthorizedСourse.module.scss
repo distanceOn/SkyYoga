@@ -1,0 +1,158 @@
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 5.2vw;
+
+	margin-top: 94px;
+	margin-bottom: 94px;
+}
+
+.title {
+	background-image: url('/assets/img/yoga_background.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 21.5vw;
+	max-width: 100%;
+
+	&__text {
+		font-size: 64px;
+		font-weight: 400;
+		line-height: 72px;
+		letter-spacing: -0.8px;
+
+		margin: 30px;
+	}
+}
+
+.description {
+	&__heading {
+		font-size: 40px;
+		font-weight: 400;
+		line-height: 48px;
+		margin-bottom: 40px;
+	}
+
+	&__ul {
+		display: grid;
+		column-gap: 6.1vw;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	&__li {
+		display: flex;
+		gap: 24px;
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 32px;
+		list-style-type: none;
+	}
+
+	&__number {
+		min-width: 67px;
+		height: 67px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		font-size: 32px;
+		font-weight: 400;
+		line-height: 40px;
+
+		border-radius: 50px;
+		background: #c7e957;
+	}
+}
+
+.directions {
+	&__heading {
+		font-size: 40px;
+		font-weight: 400;
+		line-height: 48px;
+
+		margin-bottom: 22px;
+	}
+	&__ul {
+		padding-left: 20px;
+
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 4px;
+		column-gap: 12vw;
+	}
+
+	&__li {
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 32px;
+
+		padding-left: 10px;
+
+		&::marker {
+			font-size: 18px;
+		}
+	}
+}
+
+.summary {
+	&__text {
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 32px;
+	}
+}
+
+.enrolling {
+	width: 100%;
+	height: 100%;
+
+	padding-left: 52px;
+	padding-top: 46px;
+	padding-bottom: 48px;
+
+	background-color: #f9ebff;
+	background-image: url('/assets/img/enrolling_phone.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: right;
+
+	border-radius: 30px;
+
+	&__text {
+		width: 71%;
+
+		font-size: 32px;
+		font-weight: 400;
+		line-height: 40px;
+	}
+
+	&__btn {
+		width: 275px;
+		height: 52px;
+		margin-top: 44px;
+
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 24px;
+		letter-spacing: -0.05px;
+		color: #ffffff;
+
+		background-color: #580ea2;
+
+		border: none;
+		border-radius: 46px;
+
+		cursor: pointer;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: #3f007d;
+		}
+
+		&:active {
+			background-color: #271a58;
+		}
+	}
+}

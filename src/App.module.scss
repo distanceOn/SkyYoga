@@ -1,0 +1,23 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: StratosSkyeng, sans-serif;
+	font-style: normal;
+}
+
+.App {
+	padding-left: 9.7vw;
+	padding-right: 9.7vw;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: 'StratosSkyeng';
+	src: local('StratosSkyeng'), local('StratosSkyeng'),
+		url('./assets/fonts/StratosSkyeng/Stratos-Regular.woff2')
+			format('woff2'),
+		url('./assets/fonts/StratosSkyeng/Stratos-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
