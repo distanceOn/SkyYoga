@@ -1,5 +1,5 @@
 import s from "./Inscription.module.scss";
-import Union from "../../imgs/Union.svg";
+import Union from "../../../assets/imgs/Union.svg";
 const Inscription = () => {
   return (
     <div className={s.inscription}>

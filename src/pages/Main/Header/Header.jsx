@@ -1,4 +1,4 @@
-import Logo from "../../components/Logo/Logo";
+import Logo from "../../../components/Logo/Logo";
 import s from "./Header.module.scss";
 
 const Header = () => {

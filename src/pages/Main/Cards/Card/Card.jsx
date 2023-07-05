@@ -1,8 +1,8 @@
-import yoga from "../../../imgs/card_yoga.png";
-import stratching from "../../../imgs/card__stratching.png";
-import step from "../../../imgs/card__step.png";
-import dance from "../../../imgs/card__dance.png";
-import bodyflex from "../../../imgs/card__bodyflex.png";
+import yoga from "../../../../assets/imgs/card_yoga.png";
+import stratching from "../../../../assets/imgs/card__stratching.png";
+import step from "../../../../assets/imgs/card__step.png";
+import dance from "../../../../assets/imgs/card__dance.png";
+import bodyflex from "../../../../assets/imgs/card__bodyflex.png";
 import s from "./Card.module.scss";
 
 const Card = (props) => {

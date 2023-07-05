@@ -1,4 +1,4 @@
-import img from "../../imgs/logo.svg";
+import img from "../../assets/imgs/logo.svg";
 import s from "./Logo.module.scss";
 
 const Logo = () => {

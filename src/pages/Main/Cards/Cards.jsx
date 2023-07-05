@@ -2,11 +2,13 @@ import Card from "./Card/Card";
 import s from "./Cards.module.scss";
 
 const Cards = () => {
+  const cardNames = ["yoga", "stratching", "dance", "step", "bodyflex"];
+
   return (
     <div className={s.cards}>
-      <Card card="yoga" /> <Card card="stratching" /> <Card card="dance" />
-      <Card card="step" />
-      <Card card="bodyflex" />
+      {cardNames.map((name) => (
+        <Card card={name} />
+      ))}
     </div>
   );
 };
