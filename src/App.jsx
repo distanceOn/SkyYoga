@@ -1,12 +1,12 @@
 import s from "./App.module.scss";
 import Main from "./pages/Main/Main";
-import { UnauthorizedСourse } from "./pages/unauthorizedСourse";
+import { UnauthorizedCourse } from "./pages/unauthorizedCourse";
 
 function App() {
   return (
     <div className={s.App}>
-      <Main />
-      <UnauthorizedСourse />
+      {/* <Main /> */}
+      <UnauthorizedCourse />
     </div>
   );
 }
