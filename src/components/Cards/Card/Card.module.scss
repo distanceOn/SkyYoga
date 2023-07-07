@@ -1,0 +1,14 @@
+.card {
+  width: 360px;
+  height: 480px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 30px;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &__profile {
+    box-shadow: -10px 10px 15.998822212219238px 0px rgba(0, 0, 0, 0.1),
+      10px -10px 16px 0px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,6 +1,8 @@
+import s from "./Logo.module.scss";
+
 const Logo = (props) => {
   return (
-    <div>
+    <div className={s.logo}>
       <svg
         width="223"
         height="36"
