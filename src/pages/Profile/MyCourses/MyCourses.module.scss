@@ -1,0 +1,12 @@
+.courses {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  &__h2 {
+    color: #000;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 56px;
+  }
+}

@@ -1,5 +1,6 @@
 import Header from "./Header/Header";
 import Info from "./Info/Info";
+import MyCourses from "./MyCourses/MyCourses";
 import s from "./Profile.module.scss";
 
 const Profile = () => {
@@ -7,6 +8,7 @@ const Profile = () => {
     <div className={s.profile}>
       <Header />
       <Info />
+      <MyCourses />
     </div>
   );
 };
