@@ -1,6 +1,9 @@
 import s from './ModalSelectWorkout.module.scss';
+import { useState } from 'react';
 
 export const ModalSelectWorkout = () => {
+	const [isClose, setIsClose] = useState(true);
+
 	//заглушка
 	const workouts = [
 		{
@@ -74,9 +77,17 @@ export const ModalSelectWorkout = () => {
 		},
 	];
 
-	return (
-		<div className={s.modal}>
-			<div className={s.select__workout}>
+	return isClose ? null : (
+		<div
+			className={s.modal}
+			onClick={() => {
+				setIsClose(!isClose);
+			}}
+		>
+			<div
+				className={s.select__workout}
+				onClick={(e) => e.stopPropagation()}
+			>
 				<h2 className={s.heading}>Выберите тренировку</h2>
 				<ul className={s.ul}>
 					{workouts.map((item, i) => {

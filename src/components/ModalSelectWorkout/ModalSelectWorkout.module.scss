@@ -16,6 +16,8 @@ body:has(.modal) {
 	left: 0;
 	right: 0;
 	bottom: 0;
+
+	cursor: pointer;
 }
 
 .select__workout {
@@ -34,6 +36,8 @@ body:has(.modal) {
 	align-items: center;
 	justify-content: center;
 	gap: 40px;
+
+	cursor: auto;
 }
 
 .heading {
