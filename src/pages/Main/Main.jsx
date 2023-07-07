@@ -1,7 +1,7 @@
 import Header from "./Header/Header";
 import s from "./Main.module.scss";
 import Inscription from "./Inscription/Inscription";
-import Cards from "./Cards/Cards";
+import Cards from "../../components/Cards/Cards";
 import Footer from "./Footer/Footer";
 
 const Main = () => {
@@ -10,7 +10,7 @@ const Main = () => {
       <div className={s.container}>
         <Header />
         <Inscription />
-        <Cards />
+        <Cards page="main" />
         <Footer />
       </div>
     </div>
