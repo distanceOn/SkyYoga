@@ -2,7 +2,7 @@ import s from './App.module.scss';
 import Main from './pages/Main/Main';
 // import { UnauthorizedCourse } from './pages/unauthorizedCourse';
 import { ModalSelectWorkout } from './components/ModalSelectWorkout/ModalSelectWorkout';
-import { ModalSubmittedProgress } from './components/ModalSubmittedProgress/ModalSubmittedProgress';
+import { ModalProgress } from './components/modalProgress/ModalProgress';
 
 function App() {
 	return (
@@ -10,7 +10,7 @@ function App() {
 			<Main />
 			{/* <UnauthorizedCourse /> */}
 			{/* <ModalSelectWorkout /> */}
-			<ModalSubmittedProgress />
+			<ModalProgress />
 		</div>
 	);
 }
