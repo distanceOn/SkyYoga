@@ -58,12 +58,11 @@ const Card = (props) => {
 				src={src}
 				alt={alt}
 			/>
-			{isModalOpen && (
-				<ModalSelectWorkout
-					isOpen={isModalOpen}
-					setIsOpen={setIsModalOpen}
-				/>
-			)}
+
+			<ModalSelectWorkout
+				isOpen={isModalOpen}
+				setIsOpen={setIsModalOpen}
+			/>
 		</div>
 	);
 };

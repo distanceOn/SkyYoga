@@ -1,4 +1,6 @@
 import s from './ModalSelectWorkout.module.scss';
+import { CSSTransition } from 'react-transition-group';
+import { Workout } from './Workout/Workout';
 
 export const ModalSelectWorkout = ({ isOpen, setIsOpen }) => {
 	//заглушка
@@ -75,42 +77,34 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen }) => {
 	];
 
 	return (
-		isOpen && (
+		<CSSTransition
+			in={isOpen}
+			timeout={300}
+			classNames={{
+				enter: s['alert-enter'],
+				enterActive: s['alert-enter-active'],
+				exit: s['alert-exit'],
+				exitActive: s['alert-exit-active'],
+			}}
+			unmountOnExit
+		>
 			<div
-				className={s.modal}
+				className={s.wrapper}
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
 			>
-				<div
-					className={s.select__workout}
-					onClick={(e) => e.stopPropagation()}
-				>
+				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					<h2 className={s.heading}>Выберите тренировку</h2>
 					<ul className={s.ul}>
 						{workouts.map((item, i) => {
-							const itemClass = item.completed
-								? `${s.item} ${s['item-completed']}`
-								: s.item;
-
 							const number = i + 1;
 
-							return (
-								<li key={number} className={s.li}>
-									<a href="/" className={itemClass}>
-										<h3 className={s.item__name}>
-											{item.name}
-										</h3>
-										<p className={s.item__text}>
-											{item.course} / {item.day}
-										</p>
-									</a>
-								</li>
-							);
+							return <Workout item={item} number={number} />;
 						})}
 					</ul>
 				</div>
 			</div>
-		)
+		</CSSTransition>
 	);
 };
