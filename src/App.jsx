@@ -10,7 +10,7 @@ function App() {
 			<Main />
 			{/* <UnauthorizedCourse /> */}
 			{/* <ModalSelectWorkout /> */}
-			< ModalSubmittedProgress />
+			<ModalSubmittedProgress />
 		</div>
 	);
 }
