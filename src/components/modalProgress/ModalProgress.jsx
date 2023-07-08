@@ -9,7 +9,7 @@ export const ModalProgress = () => {
 	];
 
 	return (
-		<form className={s.progress__form}>
+		<form className={s.modal}>
 			<h2 className={s.heading}>Мой прогресс</h2>
 			{questions.map((question) => {
 				return (
