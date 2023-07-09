@@ -9,10 +9,10 @@ const AppRoutes = () => {
 		<Routes>
 			<Route path="/" element={<Main />} />
 			{/* Приблизительные названия роутов. Когда будут готовы все страницы, изменить! */}
-			
+
 			{/* <Route path="/login" element={<Login />} /> */}
 			{/* <Route path="/registration" element={<SiqnUp />} /> */}
-			<Route path="/course" element={<UnauthorizedCourse />} />
+			<Route path="/course/:name" element={<UnauthorizedCourse />} />
 
 			<Route element={<ProtectedRoute />}>
 				<Route path="/profile" element={<Profile />} />
