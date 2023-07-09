@@ -6,7 +6,7 @@ import { ModalSelectWorkout } from './components/ModalSelectWorkout/ModalSelectW
 import { ModalProgress } from './components/modalProgress/ModalProgress';
 
 import Profile from './pages/Profile/Profile';
-
+import AppRoutes from './routes';
 
 function App() {
 	return (
@@ -15,10 +15,10 @@ function App() {
 			{/* <UnauthorizedCourse /> */}
 			{/* <ModalSelectWorkout /> */}
 
-			<ModalProgress />
+			{/* <ModalProgress /> */}
 
-		<Profile />
-
+			{/* <Profile /> */}
+			<AppRoutes />
 		</div>
 	);
 }
