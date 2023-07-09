@@ -1,4 +1,8 @@
-.modal {
+body:has(.modal) {
+	overflow: hidden;
+}
+
+.wrapper {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
@@ -12,10 +16,11 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
+	
 	cursor: pointer;
 }
 
-.content {
+.modal {
 	width: 444px;
 	height: 360px;
 	background-color: #ffffff;
