@@ -12,7 +12,7 @@ export const Progress = () => {
     <section className={s.progress__container}>
       {workoutNumb.map((item, i) => {
         return (
-          <h2 key={i} className={s.heading}>
+          <h2 key={i} className={s.progress__heading}>
             Мой прогресс по тренировке {item}:
           </h2>
         );

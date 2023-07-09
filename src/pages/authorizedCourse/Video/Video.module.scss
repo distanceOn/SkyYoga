@@ -3,6 +3,11 @@
   min-height: 639px;
   background-color: aliceblue;
   position: relative;
+  &__container {
+    position: relative;
+
+    margin-top: 40px;
+  }
 }
 .play__button {
   width: 156px;
@@ -12,11 +17,7 @@
   left: 35vw;
   top: 17vw;
 }
-.video__container {
-  position: relative;
 
-  margin-top: 40px;
-}
 .title__text {
   color: #000;
   font-size: 64px;
