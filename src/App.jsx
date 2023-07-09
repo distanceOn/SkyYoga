@@ -1,26 +1,18 @@
-import s from './App.module.scss';
-import Main from './pages/Main/Main';
-// import { UnauthorizedCourse } from './pages/unauthorizedCourse';
-import { ModalSelectWorkout } from './components/ModalSelectWorkout/ModalSelectWorkout';
 
-import { ModalProgress } from './components/modalProgress/ModalProgress';
-
-import Profile from './pages/Profile/Profile';
+import s from "./App.module.scss";
+import Main from "./pages/Main/Main";
+import { AuthorizedCourse } from "./pages/authorizedCourse/AuthorizedCourse";
+import { UnauthorizedCourse } from "./pages/unauthorizedCourse/index";
 
 
 function App() {
-	return (
-		<div className={s.app}>
-			{/* <Main /> */}
-			{/* <UnauthorizedCourse /> */}
-			{/* <ModalSelectWorkout /> */}
-
-			<ModalProgress />
-
-		<Profile />
-
-		</div>
-	);
+  return (
+    <div className={s.App}>
+      <Main />
+      <UnauthorizedCourse/>
+      <AuthorizedCourse/>
+    </div>
+  );
 }
 
 export default App;
