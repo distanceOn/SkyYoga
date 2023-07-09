@@ -1,0 +1,16 @@
+.selections{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+.li{
+    color: #000;
+font-size: 32px;
+line-height: 40px;
+padding-left: 5px;
+padding-right: 5px;
+list-style-type: none;
+}
+.li+li ::before{
+    content: " / ";
+    }

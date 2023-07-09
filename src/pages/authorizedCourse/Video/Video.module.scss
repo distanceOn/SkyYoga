@@ -1,0 +1,23 @@
+.video{
+width: 100%;
+min-height: 639px;
+background-color: aliceblue;
+position: relative;
+
+
+}
+.play__button{
+   
+   width: 156px;
+   height: 156px;
+   position: absolute;
+   z-index: 1;
+   left: 35vw;
+   top: 17vw;
+}
+.video__container{
+   position: relative;
+   
+   margin-top: 40px;
+   
+}

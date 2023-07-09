@@ -1,0 +1,66 @@
+.heading{
+   padding-top: 36px;
+font-size: 32px;
+		font-weight: 400;
+		line-height: 40px;
+}
+.progress__workouts_name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.progress__workouts_title{
+    font-size: 24px;
+    font-weight: 400;
+line-height: 32px;
+
+text-align: start;
+}
+.progress__workouts{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 40px;
+    padding-left: 44px;
+    padding-right: 55px;
+    padding-bottom: 30px;
+    max-width: 45vw;
+}
+.progress__container{
+    border-radius: 30px;
+background: #F2F2F2;
+width: 50vw;
+text-align: center;
+margin-top: 75px;
+
+}
+.wrapper{
+border-radius: 22px;
+border: 2px solid #565EEF;
+background: #EDECFF;
+
+min-width: 20vw;
+max-height: 36px;
+
+}
+.barCompleted{
+    background: #565EEF;
+    border-radius: 22px ;
+   
+   max-width: 45%;
+}
+
+.label{
+    color: #FFF;
+font-size: 24px;
+font-weight: 400;
+line-height: 32px;
+
+}
+.container{
+    border-radius: 22px;
+background: #EDECFF;
+
+
+}
