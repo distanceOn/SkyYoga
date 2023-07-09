@@ -6,7 +6,7 @@ import { ModalSelectWorkout } from './components/ModalSelectWorkout/ModalSelectW
 import { ModalProgress } from './components/modalProgress/ModalProgress';
 
 import Profile from './pages/Profile/Profile';
-import AppRoutes from './routes';
+import AppRoutes from './routes/routes';
 
 function App() {
 	return (
