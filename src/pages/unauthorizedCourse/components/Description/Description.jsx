@@ -15,7 +15,7 @@ export const Description = () => {
 				{description.map((item, i) => {
 					const number = i + 1;
 					return (
-						<li className={s.li}>
+						<li key={i} className={s.li}>
 							<span className={s.number}>{number}</span>
 							<span>{item}</span>
 						</li>

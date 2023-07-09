@@ -1,53 +1,26 @@
 .enrolling {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 
-	padding-left: 52px;
-	padding-top: 46px;
-	padding-bottom: 48px;
+  padding-left: 52px;
+  padding-top: 46px;
+  padding-bottom: 48px;
 
-	background-color: #f9ebff;
-	background-image: url('/assets/imgs/enrolling_phone.svg');
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: right;
+  background-color: #f9ebff;
+  background-image: url("/assets/imgs/enrolling_phone.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
 
-	border-radius: 30px;
+  border-radius: 30px;
 }
 
 .text {
-	width: 71%;
+  width: 71%;
 
-	font-size: 32px;
-	font-weight: 400;
-	line-height: 40px;
-}
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
 
-.btn {
-	width: 275px;
-	height: 52px;
-	margin-top: 44px;
-
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 24px;
-	letter-spacing: -0.05px;
-	color: #ffffff;
-
-	background-color: #580ea2;
-
-	border: none;
-	border-radius: 46px;
-
-	cursor: pointer;
-	transition: background-color 0.2s;
-
-	&:hover {
-		background-color: #3f007d;
-	}
-
-	&:active {
-		background-color: #271a58;
-	}
+  margin-bottom: 44px;
 }

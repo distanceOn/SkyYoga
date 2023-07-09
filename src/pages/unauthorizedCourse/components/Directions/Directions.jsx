@@ -16,7 +16,7 @@ export const Directions = () => {
 			<ul className={s.ul}>
 				{directions.map((item, i) => {
 					return (
-						<li className={s.li}>
+						<li key={i} className={s.li}>
 							<span>{item}</span>
 						</li>
 					);

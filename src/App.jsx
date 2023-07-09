@@ -1,3 +1,4 @@
+
 import s from "./App.module.scss";
 import Main from "./pages/Main/Main";
 import { AuthorizedCourse } from "./pages/authorizedCourse/AuthorizedCourse";
