@@ -1,0 +1,17 @@
+.input {
+  width: 279px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #d0cece;
+  padding: 20px 1px;
+
+  ::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+  }
+}

@@ -1,9 +1,9 @@
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import s from "./Login.module.scss";
+import s from "../Login/Login.module.scss";
 import Logo from "../../components/Logo/Logo";
 
-export const Login = () => {
+export const SignIn = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
@@ -13,12 +13,12 @@ export const Login = () => {
             <div className={s.login__margin_top}>
               <Input placeholderText="Логин" />
               <Input placeholderText="Пароль" />
+              <Input placeholderText="Повторите пароль" />
             </div>
 
             <div className={s.login__margin}>
-              <Button buttonText="Войти" />
+              <Button buttonText="Зарегистрироваться" />
             </div>
-            <button className={s.btn__register}>Зарегистрироваться</button>
           </div>
         </div>
       </div>

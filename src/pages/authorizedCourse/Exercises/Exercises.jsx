@@ -1,3 +1,4 @@
+import Button from "../../../components/Button/Button";
 import s from "./Exercises.module.scss";
 
 export const Exercises = () => {
@@ -18,7 +19,7 @@ export const Exercises = () => {
           );
         })}
       </ul>
-      <button className={s.button}>Заполнить свой прогресс</button>
+      <Button buttonText="Заполнить свой прогресс" />
     </section>
   );
 };
