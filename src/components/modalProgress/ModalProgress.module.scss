@@ -98,3 +98,37 @@ body:has(.modal) {
 		background-color: #271a58;
 	}
 }
+
+.alert {
+	&-enter {
+		opacity: 0;
+		& .modal {
+			transform: scale(0.9);
+		}
+		&-active {
+			opacity: 1;
+			transition: opacity 300ms;
+
+			& .modal {
+				transform: translateX(0);
+				transition: transform 300ms;
+			}
+		}
+	}
+
+	&-exit {
+		opacity: 1;
+
+		&-active {
+			opacity: 0;
+
+			transition: opacity 300ms;
+
+			& .modal {
+				transform: scale(0.9);
+
+				transition: transform 300ms;
+			}
+		}
+	}
+}
