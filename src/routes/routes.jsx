@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Main from '../pages/Main/Main';
 import Profile from '../pages/Profile/Profile';
 import UnauthorizedCourse from '../pages/unauthorizedCourse/UnauthorizedCourse';
+import { AuthorizedCourse } from '../pages/authorizedCourse/AuthorizedCourse';
 import ProtectedRoute from './ProtectedRoute';
 
 const AppRoutes = () => {
@@ -16,7 +17,7 @@ const AppRoutes = () => {
 
 			<Route element={<ProtectedRoute />}>
 				<Route path="/profile" element={<Profile />} />
-				{/* <Route path="/course" element={<AuthorizedCourse />} /> */}
+				<Route path="/workout/:id" element={<AuthorizedCourse />} />
 			</Route>
 		</Routes>
 	);

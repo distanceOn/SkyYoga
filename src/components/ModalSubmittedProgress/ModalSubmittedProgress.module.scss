@@ -16,7 +16,7 @@ body:has(.modal) {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	
+
 	cursor: pointer;
 }
 
@@ -41,4 +41,38 @@ body:has(.modal) {
 	text-align: center;
 
 	padding: 41px 88px;
+}
+
+.alert {
+	&-enter {
+		opacity: 0;
+		& .modal {
+			transform: scale(0.9);
+		}
+		&-active {
+			opacity: 1;
+			transition: opacity 800ms;
+
+			& .modal {
+				transform: translateX(0);
+				transition: transform 500ms;
+			}
+		}
+	}
+
+	&-exit {
+		opacity: 1;
+
+		&-active {
+			opacity: 0;
+
+			transition: opacity 600ms;
+
+			& .modal {
+				transform: scale(0.9);
+
+				transition: transform 500ms;
+			}
+		}
+	}
 }
