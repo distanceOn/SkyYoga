@@ -1,6 +1,6 @@
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import s from "./Login.module.scss";
+import s from "./login.module.scss";
 import Logo from "../../components/Logo/Logo";
 
 export const Login = () => {
