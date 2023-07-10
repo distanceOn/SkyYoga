@@ -1,6 +1,6 @@
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import s from "./ModalNewPassword.module.scss";
+import s from "./ModalNewLoginPassword.module.scss";
 
 import Logo from "../../components/Logo/Logo";
 

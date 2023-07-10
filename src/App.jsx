@@ -1,5 +1,6 @@
 import s from "./App.module.scss";
 import { ModalNewLogin } from "./components/ModalNewPassword/ModalNewLogin";
+
 import { ModalNewPassword } from "./components/ModalNewPassword/ModalNewPassword";
 import { Login } from "./pages/Login/Login";
 import { SignIn } from "./pages/Signin/SignIn";
