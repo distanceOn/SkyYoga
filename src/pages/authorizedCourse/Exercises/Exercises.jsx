@@ -25,12 +25,12 @@ export const Exercises = () => {
 					);
 				})}
 			</ul>
-			<Button
+			<button
 				onClick={() => setIsModalOpen(!isModalOpen)}
 				className={s.button}
 			>
 				Заполнить свой прогресс
-			</Button>
+			</button>
 
 			<ModalProgress
 				isOpen={isModalOpen}
