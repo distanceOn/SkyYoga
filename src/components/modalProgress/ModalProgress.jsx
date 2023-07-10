@@ -1,5 +1,6 @@
 import s from './ModalProgress.module.scss';
 import { CSSTransition } from 'react-transition-group';
+import Button from '../Button/Button';
 
 export const ModalProgress = ({ isOpen, setIsOpen }) => {
 	const questions = [
@@ -42,7 +43,7 @@ export const ModalProgress = ({ isOpen, setIsOpen }) => {
 							</div>
 						);
 					})}
-					<button className={s.btn}>Отправить</button>
+					<Button buttonText="Отправить" />
 				</div>
 			</div>
 		</CSSTransition>
