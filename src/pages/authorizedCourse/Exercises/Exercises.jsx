@@ -1,9 +1,12 @@
 import s from './Exercises.module.scss';
 import { useState } from 'react';
 import { ModalProgress } from '../../../components/modalProgress/ModalProgress';
+import { ModalSubmittedProgress } from '../../../components/ModalSubmittedProgress/ModalSubmittedProgress';
+import Button from '../../../components/Button/Button';
 
 export const Exercises = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const exercisesTypes = [
 		'Наклон вперед (10 повторений)',
@@ -22,14 +25,23 @@ export const Exercises = () => {
 					);
 				})}
 			</ul>
-			<button
+			<Button
 				onClick={() => setIsModalOpen(!isModalOpen)}
 				className={s.button}
 			>
 				Заполнить свой прогресс
-			</button>
+			</Button>
 
-			<ModalProgress isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+			<ModalProgress
+				isOpen={isModalOpen}
+				setIsOpen={setIsModalOpen}
+				// isSubmitted={isSubmitted}
+				setIsSubmitted={setIsSubmitted}
+			/>
+			<ModalSubmittedProgress
+				isOpen={isSubmitted}
+				setIsOpen={setIsSubmitted}
+			/>
 		</section>
 	);
 };

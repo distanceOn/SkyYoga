@@ -2,7 +2,7 @@ import s from './ModalProgress.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Button from '../Button/Button';
 
-export const ModalProgress = ({ isOpen, setIsOpen }) => {
+export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
 	const questions = [
 		'Сколько раз вы сделали наклоны вперед?',
 		'Сколько раз вы сделали наклоны вперед?',
@@ -43,7 +43,13 @@ export const ModalProgress = ({ isOpen, setIsOpen }) => {
 							</div>
 						);
 					})}
-					<Button buttonText="Отправить" />
+					<Button
+						onClick={() => {
+							setIsOpen(false);
+							setIsSubmitted(true);
+						}}
+						buttonText="Отправить"
+					/>
 				</div>
 			</div>
 		</CSSTransition>

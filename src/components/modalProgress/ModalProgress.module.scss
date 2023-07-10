@@ -71,33 +71,6 @@ body:has(.modal) {
 		color: #d0cece;
 	}
 }
-.btn {
-	width: 278px;
-	height: 52px;
-
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 24px;
-	letter-spacing: -0.05px;
-	color: #ffffff;
-
-	background-color: #580ea2;
-
-	border: none;
-	border-radius: 46px;
-
-	cursor: pointer;
-	transition: background-color 0.2s;
-
-	&:hover {
-		background-color: #3f007d;
-	}
-
-	&:active {
-		background-color: #271a58;
-	}
-}
 
 .alert {
 	&-enter {
