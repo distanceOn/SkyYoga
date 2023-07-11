@@ -1,26 +1,24 @@
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import s from "./login.module.scss";
+import s from "./ModalNewLoginPassword.module.scss";
+
 import Logo from "../../components/Logo/Logo";
 
-export const Login = () => {
+export const ModalNewPassword = (props) => {
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
         <div className={s.modal}>
           <div className={s.login}>
             <Logo />
-            <div className={s.login__margin_top}>
-              <Input placeholderText="Логин" />
-              <Input placeholderText="Пароль" />
-            </div>
+            <h1 className={s.title}>{props.title}</h1>
+
+            <Input placeholderText="Пароль" />
+            <Input placeholderText="Повторите пароль" />
 
             <div className={s.login__margin}>
-              <Button buttonText="Войти" />
+              <Button buttonText="Сохранить" />
             </div>
-            <button className={s.btn__register} type="submit">
-              Зарегистрироваться
-            </button>
           </div>
         </div>
       </div>

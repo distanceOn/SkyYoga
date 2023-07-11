@@ -1,3 +1,6 @@
+
+
+
 import s from './App.module.scss';
 
 import AppRoutes from './routes/routes';
@@ -8,6 +11,7 @@ function App() {
 			<AppRoutes />
 		</div>
 	);
+
 }
 
 export default App;

@@ -1,3 +1,4 @@
+
 import s from './Exercises.module.scss';
 import { useState } from 'react';
 import { ModalProgress } from '../../../components/modalProgress/ModalProgress';
@@ -42,4 +43,5 @@ export const Exercises = () => {
 			/>
 		</section>
 	);
+
 };
