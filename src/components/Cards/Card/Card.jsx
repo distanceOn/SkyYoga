@@ -7,8 +7,15 @@ import { ModalSelectWorkout } from '../../ModalSelectWorkout/ModalSelectWorkout'
 import s from './Card.module.scss';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Card = (props) => {
+	let isProfile = false;
+	const navigate = useNavigate();
+
+	if (props.page === 'profile') {
+		isProfile = true;
+	}
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const getImg = () => {
@@ -46,23 +53,23 @@ const Card = (props) => {
 
 	const { src, alt } = getImg();
 	return (
-		<div>
+		<div
+			onClick={() => {
+				isProfile ? setIsModalOpen(!isModalOpen) : navigate(`/course/${props.card}`);
+			}}
+		>
 			<img
-				onClick={() => {
-					console.log(isModalOpen);
-					setIsModalOpen(!isModalOpen);
-				}}
-				className={`${s.card} ${
-					props.page === 'profile' ? s.card__profile : ''
-				}`}
+				className={`${s.card} ${isProfile ? s.card__profile : ''}`}
 				src={src}
 				alt={alt}
 			/>
 
-			<ModalSelectWorkout
-				isOpen={isModalOpen}
-				setIsOpen={setIsModalOpen}
-			/>
+			{isProfile && (
+				<ModalSelectWorkout
+					isOpen={isModalOpen}
+					setIsOpen={setIsModalOpen}
+				/>
+			)}
 		</div>
 	);
 };
