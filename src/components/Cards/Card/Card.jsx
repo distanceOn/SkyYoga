@@ -1,7 +1,7 @@
 import yoga from '../../../assets/imgs/card_yoga.png';
-import stratching from '../../../assets/imgs/card__stratching.png';
-import step from '../../../assets/imgs/card__step.png';
-import dance from '../../../assets/imgs/card__dance.png';
+import stretching from '../../../assets/imgs/card__stretching.png';
+import step_aerobics from '../../../assets/imgs/card__step_aerobics.png';
+import dance_fitness from '../../../assets/imgs/card__dance_fitness.png';
 import bodyflex from '../../../assets/imgs/card__bodyflex.png';
 import { ModalSelectWorkout } from '../../ModalSelectWorkout/ModalSelectWorkout';
 import s from './Card.module.scss';
@@ -25,19 +25,19 @@ const Card = (props) => {
 					src: yoga,
 					alt: 'Йога',
 				};
-			case 'stratching':
+			case 'stretching':
 				return {
-					src: stratching,
+					src: stretching,
 					alt: 'Стретчинг',
 				};
-			case 'step':
+			case 'step_aerobics':
 				return {
-					src: step,
+					src: step_aerobics,
 					alt: 'Степ-аэробика',
 				};
-			case 'dance':
+			case 'dance_fitness':
 				return {
-					src: dance,
+					src: dance_fitness,
 					alt: 'Танцевальный фитнес',
 				};
 			case 'bodyflex':
@@ -55,7 +55,9 @@ const Card = (props) => {
 	return (
 		<div
 			onClick={() => {
-				isProfile ? setIsModalOpen(!isModalOpen) : navigate(`/course/${props.card}`);
+				isProfile
+					? setIsModalOpen(!isModalOpen)
+					: navigate(`/course/${props.card}`);
 			}}
 		>
 			<img
