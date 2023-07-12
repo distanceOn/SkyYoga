@@ -6,6 +6,7 @@ const initialState = {
 	id: null,
 	access: null,
 	refresh: null,
+    courses: null,
 };
 
 const userSlice = createSlice({
