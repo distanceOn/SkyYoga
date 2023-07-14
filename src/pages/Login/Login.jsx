@@ -18,9 +18,7 @@ export const Login = () => {
             <div className={s.login__margin}>
               <Button buttonText="Войти" />
             </div>
-            <button className={s.btn__register} type="submit">
-              Зарегистрироваться
-            </button>
+            <Button class={s.btn__register} buttonText="Зарегистрироваться" />
           </div>
         </div>
       </div>
