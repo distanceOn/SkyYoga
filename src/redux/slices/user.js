@@ -6,7 +6,9 @@ const initialState = {
 	id: null,
 	access: null,
 	refresh: null,
-    courses: null,
+	courses: null,
+	name: null,
+	exercises: null,
 };
 
 const userSlice = createSlice({
@@ -30,7 +32,17 @@ const userSlice = createSlice({
 			...state,
 			access: payload.access,
 		}),
+		setName: (state, { payload }) => ({
+			...state,
+			name: payload.name,
+		}),
+		setExercises: (state, { payload }) => ({
+			...state,
+			exercises: payload.exercises,
+		}),
 	},
 });
+export const { setLogout, setLogin, setAccess, setRefresh, setName, setExercises } =
+	userSlice.actions;
 
 export default userSlice.reducer;
