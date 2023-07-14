@@ -4,7 +4,7 @@ export const Input = (props) => {
   return (
     <div className={s.input__form}>
       <input
-        className={s.input}
+        className={props.class ? props.class : s.input}
         type="text"
         placeholder={props.placeholderText}
       />
