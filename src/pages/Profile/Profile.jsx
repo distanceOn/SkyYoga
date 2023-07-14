@@ -1,4 +1,4 @@
-import Header from "./Header/Header";
+import Header from "../../components/Header/Header";
 import Info from "./Info/Info";
 import MyCourses from "./MyCourses/MyCourses";
 import s from "./Profile.module.scss";
