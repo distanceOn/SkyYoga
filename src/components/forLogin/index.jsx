@@ -93,7 +93,6 @@ export const BtnExample = () => {
 
 	const newProgress = {
 		name: userName,
-		id: 'userId3', //это айди после аутентификации, он будет из стейта
 		courseName: 'bodyflex', //либо любо1 другой из существующих курсов в бд
 		workoutId: 'bf2', //айди занятия
 

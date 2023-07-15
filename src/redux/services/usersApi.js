@@ -22,9 +22,16 @@ export const usersApi = createApi({
 		}),
 		setUserProgress: build.mutation({
 			query: (body) => ({
-				url: `users/${body.name}/${body.id}/${body.courseName}/${body.workoutId}/exercises.json`,
+				url: `users/${body.name}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
 				method: 'PATCH',
 				body: body.progress,
+			}),
+		}),
+		setUserWorkoutCompleted: build.mutation({
+			query: (body) => ({
+				url: `users/${body.name}/courses/${body.courseName}/${body.workoutId}.json`,
+				method: 'PATCH',
+				body: body.completed,
 			}),
 		}),
 	}),
@@ -35,4 +42,5 @@ export const {
 	useGetUserByNameQuery,
 	useAddNewUserMutation,
 	useSetUserProgressMutation,
+	useSetUserWorkoutCompletedMutation,
 } = usersApi;

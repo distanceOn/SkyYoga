@@ -1,8 +1,10 @@
 import s from './ModalSelectWorkout.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import { Workout } from './Workout/Workout';
+import { useSelector } from 'react-redux';
+import { selectUserCourses } from '../../redux/selectors';
 
-export const ModalSelectWorkout = ({ isOpen, setIsOpen }) => {
+export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 	//заглушка
 	const workouts = [
 		{
@@ -75,6 +77,11 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen }) => {
 			author: 'Алексей Казубский',
 		},
 	];
+	const arr = useSelector(selectUserCourses);
+	if (!arr) return console.log('Загрузка');
+	console.log(arr[course]);
+	const newArr = Object.values(arr[course]);
+	console.log(newArr);
 
 	return (
 		<CSSTransition
