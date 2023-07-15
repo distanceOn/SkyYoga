@@ -36,13 +36,24 @@ const userSlice = createSlice({
 			...state,
 			name: payload.name,
 		}),
+		setCourses: (state, { payload }) => ({
+			...state,
+			courses: payload.courses,
+		}),
 		setExercises: (state, { payload }) => ({
 			...state,
 			exercises: payload.exercises,
 		}),
 	},
 });
-export const { setLogout, setLogin, setAccess, setRefresh, setName, setExercises } =
-	userSlice.actions;
+export const {
+	setLogout,
+	setLogin,
+	setAccess,
+	setRefresh,
+	setName,
+	setExercises,
+	setCourses,
+} = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,17 +1,12 @@
 import Card from './Card/Card';
 import s from './Cards.module.scss';
 
-const Cards = (props) => {
-	const cardNames =
-		props.page === 'main'
-			? ['yoga', 'stretching', 'dance_fitness', 'step_aerobics', 'bodyflex']
-			: ['yoga', 'stretching', 'bodyflex'];
-
+const Cards = ({ page, coursesName }) => {
 	return (
 		<div className={s.cards}>
-			{cardNames.map((name) => (
+			{coursesName.map((name) => (
 				<Card
-					page={props.page === 'profile' ? 'profile' : 'main'}
+					page={page === 'profile' ? 'profile' : 'main'}
 					card={name}
 				/>
 			))}

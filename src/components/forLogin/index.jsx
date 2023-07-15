@@ -13,7 +13,8 @@ export const BtnExample = () => {
 	const dispatch = useDispatch();
 
 	const user = {
-		userId3: {
+		userId: 'айди авторизации',
+		courses: {
 			bodyflex: {
 				bf1: {
 					name: 'Техника дыхания',
@@ -85,7 +86,7 @@ export const BtnExample = () => {
 	// const userName = useSelector(selectUserName);
 
 	//пока заглушка в виде существующего name в бд
-	const userName = '-N_LT8s_GpZKPbvY-J_o';
+	const userName = '-N_LgTAMzmqLfHuIMd2N';
 	const { isSuccess, data } = useGetUserByNameQuery(userName);
 
 	//пример объекта, который нужно отправлять в запрос на обновление прогресса
