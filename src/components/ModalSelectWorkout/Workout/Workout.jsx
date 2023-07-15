@@ -13,6 +13,7 @@ export const Workout = ({ number, item }) => {
 			<NavLink to={`/workout/${workout_id}`} className={itemClass}>
 				<h3 className={s.item__name}>{item.name}</h3>
 				<p className={s.item__text}>
+					{/* нужно подумать, что убрать, а что добавить в бд */}
 					{item.course} / {item.day}
 				</p>
 			</NavLink>

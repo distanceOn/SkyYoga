@@ -77,11 +77,12 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 			author: 'Алексей Казубский',
 		},
 	];
-	const arr = useSelector(selectUserCourses);
-	if (!arr) return console.log('Загрузка');
-	console.log(arr[course]);
-	const newArr = Object.values(arr[course]);
-	console.log(newArr);
+	//нужно 
+	const userCourses = useSelector(selectUserCourses);
+	if (!userCourses) return console.log('Загрузка');
+	// console.log(userCourses[course]);
+	const userWorkouts = Object.values(userCourses[course]);
+	// console.log(userWorkouts);
 
 	return (
 		<CSSTransition
