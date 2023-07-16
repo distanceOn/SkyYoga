@@ -15,9 +15,9 @@ export const usersApi = createApi({
 		}),
 		addNewUser: build.mutation({
 			query: (body) => ({
-				url: 'users.json',
-				method: 'POST',
-				body,
+				url: `users/${body.id}.json`,
+				method: 'PUT',
+				body: body.courses,
 			}),
 		}),
 		setUserProgress: build.mutation({

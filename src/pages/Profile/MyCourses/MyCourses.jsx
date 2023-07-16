@@ -7,7 +7,6 @@ const MyCourses = () => {
 	const courses = useSelector(selectUserCourses);
 
 	if (!courses) return console.log('Загрузка');
-
 	const coursesName = Object.keys(courses);
 
 	return (

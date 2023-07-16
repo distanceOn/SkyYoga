@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	isAuthenticated: false,
 	username: null,
-	id: null,
+	id: null, //после регистрации
 	access: null,
 	refresh: null,
 	courses: null,
-	name: null,
+	name: null, //c бд
 	exercises: null,
 };
 

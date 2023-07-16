@@ -68,6 +68,7 @@ export const BtnExample = () => {
 				},
 			},
 		},
+		id: 'id user'
 	};
 
 	const [addNewUser] = useAddNewUserMutation();
