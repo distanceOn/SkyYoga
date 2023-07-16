@@ -4,9 +4,10 @@ export const Input = (props) => {
   return (
     <div className={s.input__form}>
       <input
-        className={props.class ? props.class : s.input}
-        type="text"
+        type={props.type}
         placeholder={props.placeholderText}
+        onChange={props.onChange}
+        className={props.class ? props.class : s.input}
       />
     </div>
   );
