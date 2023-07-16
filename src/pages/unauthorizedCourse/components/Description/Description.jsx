@@ -1,27 +1,30 @@
 import s from './Description.module.scss';
 
-export const Description = () => {
-	//заглушка
-	const description = [
-		'Давно хотели попробовать йогу, но не решались начать.',
-		'Хотите укрепить позвоночник, избавиться от болей в спине и суставах.',
-		'Ищете активность, полезную для тела и души.',
-	];
-
+export const Description = ({ content }) => {
 	return (
-		<section className="description">
-			<h2 className={s.heading}>Подойдет для вас, если:</h2>
-			<ul className={s.ul}>
-				{description.map((item, i) => {
-					const number = i + 1;
-					return (
-						<li key={i} className={s.li}>
-							<span className={s.number}>{number}</span>
-							<span>{item}</span>
-						</li>
+		<section className={s.description}>
+			{typeof content === 'object' ? (
+				content.map((item, i) => {
+					return typeof item !== 'object' ? (
+						<p className={s.text} key={i}>
+							{item}
+						</p>
+					) : (
+						<ul className={s.ul}>
+							<h2 className={s.heading}>{item.heading}</h2>
+							{item.content.map((item, i) => {
+								return (
+									<li className={s.li} key={i}>
+										{item}
+									</li>
+								);
+							})}
+						</ul>
 					);
-				})}
-			</ul>
+				})
+			) : (
+				<p className={s.text}>{content}</p>
+			)}
 		</section>
 	);
 };

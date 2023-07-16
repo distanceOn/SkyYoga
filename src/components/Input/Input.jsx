@@ -1,13 +1,13 @@
 import s from "./Input.module.scss";
 
-export const Input = ({ placeholderText, onChange, type }) => {
+export const Input = (props) => {
   return (
     <div className={s.input__form}>
       <input
-        className={s.input}
-        type={type}
-        placeholder={placeholderText}
-        onChange={onChange}
+        type={props.type}
+        placeholder={props.placeholderText}
+        onChange={props.onChange}
+        className={props.class ? props.class : s.input}
       />
     </div>
   );
