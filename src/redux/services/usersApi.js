@@ -10,26 +10,26 @@ export const usersApi = createApi({
 		getUsers: build.query({
 			query: () => `users.json`,
 		}),
-		getUserByName: build.query({
-			query: (name) => `users/${name}.json`,
+		getUserById: build.query({
+			query: (userId) => `users/${userId}.json`,
 		}),
 		addNewUser: build.mutation({
 			query: (body) => ({
-				url: `users/${body.id}.json`,
+				url: `users/${body.userId}.json`,
 				method: 'PUT',
-				body: body.courses,
+				body: body.data,
 			}),
 		}),
 		setUserProgress: build.mutation({
 			query: (body) => ({
-				url: `users/${body.name}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
 				method: 'PATCH',
 				body: body.progress,
 			}),
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
-				url: `users/${body.name}/courses/${body.courseName}/${body.workoutId}.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}.json`,
 				method: 'PATCH',
 				body: body.completed,
 			}),
@@ -39,7 +39,7 @@ export const usersApi = createApi({
 
 export const {
 	useGetUsersQuery,
-	useGetUserByNameQuery,
+	useGetUserByIdQuery,
 	useAddNewUserMutation,
 	useSetUserProgressMutation,
 	useSetUserWorkoutCompletedMutation,
