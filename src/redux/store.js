@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { coursesApi } from './services/coursesApi';
-import { workoutsApi } from './services/workoutsApi';
-import userReducer from './slices/user';
+import { configureStore } from "@reduxjs/toolkit";
+import { coursesApi } from "./services/coursesApi";
+import { workoutsApi } from "./services/workoutsApi";
+import userReducer from "./slices/user";
 
 export const store = configureStore({
 	reducer: {
@@ -11,8 +11,5 @@ export const store = configureStore({
 	},
 
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat([
-			coursesApi.middleware,
-			workoutsApi.middleware,
-		]),
+		getDefaultMiddleware().concat([coursesApi.middleware, workoutsApi.middleware]),
 });

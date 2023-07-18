@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ redirectPath = '/' }) => {
+const ProtectedRoute = ({ redirectPath = "/" }) => {
 	const isAuthenticated = true;
 
 	if (!isAuthenticated) {

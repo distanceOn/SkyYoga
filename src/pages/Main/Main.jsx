@@ -6,17 +6,17 @@ import Footer from "./Footer/Footer";
 import { User } from "../../firebase/getUser";
 
 const Main = () => {
-  return (
-    <div className={s.main}>
-      <div className={s.container}>
-        <Header />
-        <Inscription />
-        <Cards page="main" />
-        <Footer />
-        <User />
-      </div>
-    </div>
-  );
+	return (
+		<div className={s.main}>
+			<div className={s.container}>
+				<Header />
+				<Inscription />
+				<Cards page="main" />
+				<Footer />
+				<User />
+			</div>
+		</div>
+	);
 };
 
 export default Main;

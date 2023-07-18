@@ -1,11 +1,11 @@
-import s from './Description.module.scss';
+import s from "./Description.module.scss";
 
 export const Description = ({ content }) => {
 	return (
 		<section className={s.description}>
-			{typeof content === 'object' ? (
+			{typeof content === "object" ? (
 				content.map((item, i) => {
-					return typeof item !== 'object' ? (
+					return typeof item !== "object" ? (
 						<p className={s.text} key={i}>
 							{item}
 						</p>

@@ -8,25 +8,25 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 
 export const AuthorizedCourse = () => {
-  //все данные будут с бэка
-  const params = useParams();
-  const id = +params.id;
+	//все данные будут с бэка
+	const params = useParams();
+	const id = +params.id;
 
-  //тут будет запрос за данными на бэк по name или id (нужно решить)
-  //потом эти данные пойдут во все компоненты
+	//тут будет запрос за данными на бэк по name или id (нужно решить)
+	//потом эти данные пойдут во все компоненты
 
-  if (id !== 2) {
-    return <h1>Здесь будет что-то кроме йоги</h1>;
-  }
+	if (id !== 2) {
+		return <h1>Здесь будет что-то кроме йоги</h1>;
+	}
 
-  return (
-    <div className={s.main}>
-      <Header />
-      <Video />
-      <div className={s.workout}>
-        <Exercises />
-        <Progress />
-      </div>
-    </div>
-  );
+	return (
+		<div className={s.main}>
+			<Header />
+			<Video />
+			<div className={s.workout}>
+				<Exercises />
+				<Progress />
+			</div>
+		</div>
+	);
 };

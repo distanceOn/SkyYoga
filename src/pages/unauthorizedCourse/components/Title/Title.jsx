@@ -1,4 +1,4 @@
-import s from './Title.module.scss';
+import s from "./Title.module.scss";
 
 export const Title = ({ content }) => {
 	return (

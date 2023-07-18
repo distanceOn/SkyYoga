@@ -1,6 +1,6 @@
-import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
-import { auth } from './firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { auth } from "./firebase";
 
 export const User = () => {
 	useEffect(() => {
@@ -10,7 +10,7 @@ export const User = () => {
 
 				console.log(userID);
 			} else {
-				console.log('user is logged out');
+				console.log("user is logged out");
 			}
 		});
 	}, []);
