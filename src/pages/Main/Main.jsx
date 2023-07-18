@@ -1,4 +1,4 @@
-import Header from './Header/Header';
+import Header from '../../components/Header/Header';
 import s from './Main.module.scss';
 import Inscription from './Inscription/Inscription';
 import Cards from '../../components/Cards/Cards';
