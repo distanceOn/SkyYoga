@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAddNewUserMutation } from '../../redux/services/usersApi';
 import { userData } from './userData/userData';
 import { useDispatch } from 'react-redux';
@@ -25,6 +25,13 @@ export const Auth = (props) => {
 		await addNewUser(userData(uid, email));
 	};
 
+	useEffect(() => {
+		const storageId = localStorage.getItem('userID');
+		if (!storageId) return;
+		dispatch(setLogin({ userId: storageId }));
+		navigate('/profile');
+	});
+
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
@@ -34,9 +41,9 @@ export const Auth = (props) => {
 				dispatch(
 					setLogin({
 						userId: user.uid,
-						email: user.email,
 					})
 				);
+				localStorage.setItem('userID', user.uid);
 				navigate('/profile');
 			})
 			.catch((error) => {

@@ -19,7 +19,6 @@ const userSlice = createSlice({
 		setLogin: (state, { payload }) => {
 			return {
 				...state,
-				email: payload?.email,
 				userId: payload.userId,
 				isAuthenticated: true,
 			};
