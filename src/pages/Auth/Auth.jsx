@@ -13,12 +13,14 @@ export const Auth = (props) => {
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [passRep, setPassRep] = useState(null);
 
   const onSubmit = async (event) => {
     event.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userData) => {
         const user = userData.user;
+
         console.log(user);
         navigate("/profile");
       })
@@ -33,6 +35,10 @@ export const Auth = (props) => {
   };
   const onLogin = (e) => {
     e.preventDefault();
+    if (password !== passRep) {
+      console.error("пароль не совпадает");
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userData) => {
         const user = userData.user;
@@ -108,7 +114,11 @@ export const Auth = (props) => {
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <Input placeholderText="Повторите пароль" type="password" />
+                  <Input
+                    placeholderText="Повторите пароль"
+                    type="password"
+                    onChange={(e) => setPassRep(e.target.value)}
+                  />
                 </div>
 
                 <div className={s.login__margin}>

@@ -3,10 +3,22 @@ import Logo from "../Logo/Logo";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import s from "./Header.module.scss";
 import Button from "../Button/Button";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 const Header = () => {
   const location = useLocation();
   const path = location.pathname;
+  const navigate = useNavigate();
+  const onLogout = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("error");
+      });
+  };
 
   const navigate = useNavigate();
 
@@ -17,7 +29,12 @@ const Header = () => {
   const showContent = () => {
     // пока что отображение контента зависит от того, где мы находимся, потом от факта авторизации
     if (path === "/profile" || path === "/workout/2") {
-      return <ProfileIcon />;
+      return (
+        <div>
+          <ProfileIcon />
+          <Button buttonText="Выйти" class={s.entry} onClick={onLogout} />
+        </div>
+      );
     } else {
       return (
         <Button
