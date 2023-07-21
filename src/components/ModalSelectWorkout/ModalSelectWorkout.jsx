@@ -2,87 +2,11 @@ import s from "./ModalSelectWorkout.module.scss";
 import { CSSTransition } from "react-transition-group";
 import { Workout } from "./Workout/Workout";
 import { useSelector } from "react-redux";
-import { selectUserCourses } from "../../redux/selectors";
 
 export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
-	//заглушка
-	const workouts = [
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Растягиваем мышцы бедра",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-			completed: true,
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-			completed: true,
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-			completed: false,
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-		{
-			name: "Утренняя практика",
-			course: "Йога на каждый день",
-			day: "1 день ",
-			author: "Алексей Казубский",
-		},
-	];
-	//нужно
-	const userCourses = useSelector(selectUserCourses);
-	if (!userCourses) return console.log("Загрузка");
-	console.log(userCourses[course]);
-	// const userWorkouts = Object.values(userCourses[course]);
-	// console.log(userWorkouts);
+	const userCourse = useSelector((state) => state.user.courses[course]);
+	if (!userCourse) return console.log("Загрузка");
+	const { workouts, courseNameRu } = userCourse;
 
 	return (
 		<CSSTransition
@@ -105,10 +29,20 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					<h2 className={s.heading}>Выберите тренировку</h2>
 					<ul className={s.ul}>
-						{workouts.map((item, i) => {
+						{Object.entries(workouts).map((item, i) => {
 							const number = i + 1;
-
-							return <Workout key={i} item={item} number={number} />;
+							const workoutId = item[0];
+							const workoutInfo = item[1];
+							return (
+								<Workout
+									courseName={courseNameRu}
+									key={i}
+									item={workoutInfo}
+									workoutId={workoutId}
+									workoutName={workoutInfo.name}
+									number={number}
+								/>
+							);
 						})}
 					</ul>
 				</div>
