@@ -1,12 +1,12 @@
-import Cards from '../../../components/Cards/Cards';
-import s from './MyCourses.module.scss';
-import { useSelector } from 'react-redux';
-import { selectUserCourses } from '../../../redux/selectors';
+import Cards from "../../../components/Cards/Cards";
+import s from "./MyCourses.module.scss";
+import { useSelector } from "react-redux";
+import { selectUserCourses } from "../../../redux/selectors";
 
 const MyCourses = () => {
 	const courses = useSelector(selectUserCourses);
 
-	if (!courses) return console.log('Загрузка');
+	if (!courses) return console.log("Загрузка");
 	const coursesName = Object.keys(courses);
 
 	return (

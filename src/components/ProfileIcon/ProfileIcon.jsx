@@ -1,18 +1,15 @@
-import s from './ProfileIcon.module.scss';
-import { useNavigate } from 'react-router-dom';
+import s from "./ProfileIcon.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const ProfileIcon = () => {
 	const navigate = useNavigate();
-	const handleProfile = () => navigate('/profile');
+	const handleProfile = () => navigate("/profile");
 	return (
 		<div className={s.profileIcon} onClick={handleProfile}>
 			<div className={s.icon}></div>
 			<div className={s.info}>
 				<p className={s.info__name}>Сергей</p>
-				<div
-					className={s.info__arrow}
-					onClick={(e) => e.stopPropagation()}
-				>
+				<div className={s.info__arrow} onClick={(e) => e.stopPropagation()}>
 					<svg
 						width="14"
 						height="9"
@@ -23,7 +20,7 @@ const ProfileIcon = () => {
 						<path
 							d="M12.3552 1.03308L6.67761 6.7107L0.999999 1.03308"
 							stroke="black"
-							stroke-width="2"
+							strokeWidth="2"
 						/>
 					</svg>
 				</div>

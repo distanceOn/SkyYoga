@@ -1,5 +1,5 @@
-import s from './ModalSubmittedProgress.module.scss';
-import { CSSTransition } from 'react-transition-group';
+import s from "./ModalSubmittedProgress.module.scss";
+import { CSSTransition } from "react-transition-group";
 
 export const ModalSubmittedProgress = ({ isOpen, setIsOpen }) => {
 	return (
@@ -7,10 +7,10 @@ export const ModalSubmittedProgress = ({ isOpen, setIsOpen }) => {
 			in={isOpen}
 			timeout={500}
 			classNames={{
-				enter: s['alert-enter'],
-				enterActive: s['alert-enter-active'],
-				exit: s['alert-exit'],
-				exitActive: s['alert-exit-active'],
+				enter: s["alert-enter"],
+				enterActive: s["alert-enter-active"],
+				exit: s["alert-exit"],
+				exitActive: s["alert-exit-active"],
 			}}
 			unmountOnExit
 		>

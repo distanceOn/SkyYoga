@@ -1,11 +1,11 @@
-import { Exercises } from './Exercises/Exercises';
-import { Progress } from './Progress/Progress';
+import { Exercises } from "./Exercises/Exercises";
+import { Progress } from "./Progress/Progress";
 
-import { Video } from './Video/Video';
+import { Video } from "./Video/Video";
 
-import s from './Workout.module.scss';
-import { useParams } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import s from "./Workout.module.scss";
+import { useParams } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 export const Workout = () => {
 	//все данные будут с бэка

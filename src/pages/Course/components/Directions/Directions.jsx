@@ -1,4 +1,4 @@
-import s from './Directions.module.scss';
+import s from "./Directions.module.scss";
 
 export const Directions = ({ content }) => {
 	return (

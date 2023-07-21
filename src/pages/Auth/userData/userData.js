@@ -5,10 +5,10 @@ export const userData = (uid, email) => {
 			login: email,
 			courses: {
 				bodyflex: {
-					courseNameRu: 'Бодифлекс', //нужно bf1 bf2 и тд добавить в поле workouts
+					courseNameRu: "Бодифлекс", //нужно bf1 bf2 и тд добавить в поле workouts
 					workouts: {
 						bf1: {
-							name: 'Техника дыхания',
+							name: "Техника дыхания",
 							exercises: {
 								bf1e1: 100,
 								bf1e2: 70,
@@ -16,7 +16,7 @@ export const userData = (uid, email) => {
 							},
 						},
 						bf2: {
-							name: 'Тренировка мышц бедер',
+							name: "Тренировка мышц бедер",
 							exercises: {
 								bf2e1: 0,
 								bf2e2: 0,
@@ -24,7 +24,7 @@ export const userData = (uid, email) => {
 							},
 						},
 						bf3: {
-							name: 'Тренировка мышц ягодиц',
+							name: "Тренировка мышц ягодиц",
 							exercises: {
 								bf3e1: 0,
 								bf3e2: 0,
@@ -34,10 +34,10 @@ export const userData = (uid, email) => {
 					},
 				},
 				stretching: {
-					courseNameRu: 'Стретчинг',
+					courseNameRu: "Стретчинг",
 					workouts: {
 						str1: {
-							name: 'Основы стретчинга',
+							name: "Основы стретчинга",
 							exercises: {
 								str1e1: 100,
 								str1e2: 70,
@@ -45,7 +45,7 @@ export const userData = (uid, email) => {
 							},
 						},
 						str2: {
-							name: 'Разогрев мышц',
+							name: "Разогрев мышц",
 							exercises: {
 								str2e1: 0,
 								str2e2: 0,
@@ -53,7 +53,7 @@ export const userData = (uid, email) => {
 							},
 						},
 						str3: {
-							name: 'Разогрев мышц 2.0',
+							name: "Разогрев мышц 2.0",
 							exercises: {
 								str3e1: 0,
 								str3e2: 0,
