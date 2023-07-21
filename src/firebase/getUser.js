@@ -1,27 +1,24 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from 'firebase/auth';
 
-import { auth } from "./firebase";
-import { useDispatch } from "react-redux";
-import { setLogin } from "../redux/slices/user";
+import { auth } from './firebase';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../redux/slices/user';
 
 export const User = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const userID = user.uid;
-      localStorage.setItem(userID);
-      dispatch(
-        setLogin({
-          email: user.email,
-          id: user.uid,
-
-          isAuthenticated: true,
-        })
-      );
-      console.log(userID);
-    } else {
-      console.log("user is logged out");
-    }
-  });
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			const userID = user.uid;
+			localStorage.setItem(userID);
+			dispatch(
+				setLogin({
+					userId: user.uid,
+				})
+			);
+			console.log(userID);
+		} else {
+			console.log('user is logged out');
+		}
+	});
 };
