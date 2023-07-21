@@ -1,17 +1,27 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
+
 import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../redux/slices/user";
 
 export const User = () => {
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const userID = user.uid;
+  const dispatch = useDispatch();
 
-        console.log(userID);
-      } else {
-        console.log("user is logged out");
-      }
-    });
-  }, []);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const userID = user.uid;
+      localStorage.setItem(userID);
+      dispatch(
+        setLogin({
+          email: user.email,
+          id: user.uid,
+
+          isAuthenticated: true,
+        })
+      );
+      console.log(userID);
+    } else {
+      console.log("user is logged out");
+    }
+  });
 };

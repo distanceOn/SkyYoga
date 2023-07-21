@@ -20,6 +20,7 @@ export const Auth = (props) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userData) => {
         const user = userData.user;
+
         console.log(user);
         navigate("/profile");
       })

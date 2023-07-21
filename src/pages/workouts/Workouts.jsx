@@ -22,10 +22,10 @@ export const Workouts = () => {
   return (
     <div className={s.main}>
       <Header />
-      <Video data={name} />
+      <Video content={name} />
       <div className={s.workout}>
-        <Exercises data={exercises} />
-        <Progress data={exercises} />
+        <Exercises content={exercises} />
+        <Progress content={exercises} />
       </div>
     </div>
   );
