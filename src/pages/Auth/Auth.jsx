@@ -30,10 +30,9 @@ export const Auth = (props) => {
 		if (!storageId) return;
 		dispatch(setLogin({ userId: storageId }));
 		navigate('/profile');
-	});
+	}, [dispatch, navigate]);
 
-
-	const onSubmit = async (event) => {
+	async function onSubmit(event) {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
 			.then((userData) => {
@@ -52,7 +51,7 @@ export const Auth = (props) => {
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
-	};
+	}
 	const handleRegistrationButtonClick = () => {
 		navigate('/registration');
 	};

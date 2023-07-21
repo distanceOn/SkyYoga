@@ -15,7 +15,7 @@ const Main = () => {
 		const storageId = localStorage.getItem('userID');
 		if (!storageId) return;
 		dispatch(setLogin({ userId: storageId }));
-	});
+	}, [dispatch]);
 
 	const { data, isLoading } = useGetCoursesQuery();
 

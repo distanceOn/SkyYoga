@@ -5,22 +5,27 @@ import s from './Header.module.scss';
 import Button from '../Button/Button';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/firebase';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectIsAuthenticated } from '../../redux/selectors';
+import { setLogout } from '../../redux/slices/user';
 
 const Header = () => {
 	const location = useLocation();
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const onLogout = () => {
 		signOut(auth)
 			.then(() => {
 				localStorage.clear();
+				console.log('Logged out');
+				dispatch(setLogout());
 				navigate('/');
 			})
 			.catch((error) => {
 				localStorage.clear();
+				dispatch(setLogout());
 				console.log('error');
 			});
 	};
@@ -35,11 +40,11 @@ const Header = () => {
 		<div className={s.header}>
 			<Logo fill={location.pathname === '/' ? 'white' : 'black'} />
 			{isAuthenticated ? (
-				<div>
+				<div className={s.profile}>
 					<ProfileIcon />
 					<Button
 						buttonText="Выйти"
-						class={s.entry}
+						uniqueClass={s.entry}
 						onClick={onLogout}
 					/>
 				</div>
