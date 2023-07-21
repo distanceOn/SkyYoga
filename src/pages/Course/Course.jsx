@@ -20,7 +20,7 @@ const Course = () => {
 		const storageId = localStorage.getItem('userID');
 		if (!storageId) return;
 		dispatch(setLogin({ userId: storageId }));
-	});
+	}, [dispatch]);
 
 	const params = useParams();
 	const courseName = params.name;
