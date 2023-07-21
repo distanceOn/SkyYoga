@@ -1,12 +1,12 @@
 import s from "./Video.module.scss";
 import image from "../../../assets/imgs/playBtn.svg";
 
-export const Video = () => {
+export const Video = ({ content }) => {
   const selections = [" Красота и здоровье", "Йога на каждый день", " 2 день"];
   return (
     <div className={s.wrapper}>
       <div className={s.title}>
-        <h1 className={s.title__text}>Йога</h1>
+        <h1 className={s.title__text}>{content}</h1>
       </div>
       <ul className={s.selections}>
         {selections.map((item, i) => {
