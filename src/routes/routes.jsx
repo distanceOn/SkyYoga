@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Main from "../pages/Main/Main";
 import Profile from "../pages/Profile/Profile";
-import UnauthorizedCourse from "../pages/unauthorizedCourse/UnauthorizedCourse";
-import { Workouts } from "../pages/workouts/Workouts";
+import Course from "../pages/Course/Course";
+import { Workout } from "../pages/Workout/Workout";
 import ProtectedRoute from "./ProtectedRoute";
 import { Auth } from "../pages/Auth/Auth";
 
@@ -15,11 +15,11 @@ const AppRoutes = () => {
       <Route path="/login" element={<Auth loginPage="true" />} />
       <Route path="/registration" element={<Auth />} />
 
-      <Route path="/course/:name" element={<UnauthorizedCourse />} />
+      <Route path="/course/:name" element={<Course />} />
 
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Profile />} />
-        <Route path="/workout/:id" element={<Workouts />} />
+        <Route path="/workout/:id" element={<Workout />} />
       </Route>
     </Routes>
   );

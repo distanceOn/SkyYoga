@@ -20,6 +20,12 @@ const Header = () => {
       });
   };
 
+  const navigate = useNavigate();
+
+  const handleEntry = () => {
+    navigate("/login");
+  };
+
   const showContent = () => {
     // пока что отображение контента зависит от того, где мы находимся, потом от факта авторизации
     if (path === "/profile" || path === "/workout/2") {
@@ -30,7 +36,13 @@ const Header = () => {
         </div>
       );
     } else {
-      return <Button class={s.entry} buttonText="Войти" />;
+      return (
+        <Button
+          uniqueClass={s.entry}
+          buttonText="Войти"
+          onClick={handleEntry}
+        />
+      );
     }
   };
 

@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isAuthenticated: false,
   username: null,
-  id: null,
+  userId: null, //после регистрации и авторизации
   access: null,
   refresh: null,
   courses: null,
+  exercises: null,
 };
 
 const userSlice = createSlice({
@@ -30,8 +31,29 @@ const userSlice = createSlice({
       ...state,
       access: payload.access,
     }),
+    setUserId: (state, { payload }) => ({
+      ...state,
+      name: payload.userId,
+    }),
+    setCourses: (state, { payload }) => ({
+      ...state,
+      courses: payload.courses,
+    }),
+    setExercises: (state, { payload }) => ({
+      ...state,
+      exercises: payload.exercises,
+    }),
   },
 });
+export const {
+  setLogout,
+  setLogin,
+  setAccess,
+  setRefresh,
+  setUserId,
+  setExercises,
+  setCourses,
+} = userSlice.actions;
 
 export default userSlice.reducer;
 export const { setLogin } = userSlice.actions;

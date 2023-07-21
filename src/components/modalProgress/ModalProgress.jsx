@@ -37,7 +37,7 @@ export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
                 <label className={s.label}>
                   {question}
 
-                  <Input class={s.input} placeholder="Введите значение" />
+                  <Input uniqueClass={s.input} placeholder="Введите значение" />
                 </label>
               </div>
             );
