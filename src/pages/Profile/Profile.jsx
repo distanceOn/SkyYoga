@@ -5,6 +5,7 @@ import s from './Profile.module.scss';
 import { useGetUserByIdQuery } from '../../redux/services/usersApi';
 import { useDispatch } from 'react-redux';
 import { setCourses } from '../../redux/slices/user';
+import { BtnExample } from '../../components/forLogin';
 
 const Profile = () => {
 	//так должно быть
@@ -19,6 +20,7 @@ const Profile = () => {
 
 	return (
 		<div className={s.profile}>
+			<BtnExample />
 			<Header />
 			<Info />
 			<MyCourses />

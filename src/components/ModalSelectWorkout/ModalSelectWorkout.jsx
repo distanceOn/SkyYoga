@@ -1,8 +1,8 @@
 import s from './ModalSelectWorkout.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import { Workout } from './Workout/Workout';
-// import { useSelector } from 'react-redux';
-// import { selectUserCourses } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
+import { selectUserCourses } from '../../redux/selectors';
 
 export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 	//заглушка
@@ -78,9 +78,9 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 		},
 	];
 	//нужно 
-	// const userCourses = useSelector(selectUserCourses);
-	// if (!userCourses) return console.log('Загрузка');
-	// console.log(userCourses[course]);
+	const userCourses = useSelector(selectUserCourses);
+	if (!userCourses) return console.log('Загрузка');
+	console.log(userCourses[course]);
 	// const userWorkouts = Object.values(userCourses[course]);
 	// console.log(userWorkouts);
 
