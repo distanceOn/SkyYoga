@@ -9,19 +9,34 @@ import { auth } from '../../firebase/firebase';
 import { useState } from 'react';
 import { useAddNewUserMutation } from '../../redux/services/usersApi';
 import { userData } from './userData/userData';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../redux/slices/user';
 
 export const Auth = (props) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
+
+	const [addNewUser] = useAddNewUserMutation();
+
+	const createUser = async (uid, email) => {
+		await addNewUser(userData(uid, email));
+	};
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
 			.then((userData) => {
 				const user = userData.user;
-				console.log(user);
+				// console.log(user);
+				dispatch(
+					setLogin({
+						userId: user.uid,
+						email: user.email,
+					})
+				);
 				navigate('/profile');
 			})
 			.catch((error) => {
@@ -39,7 +54,7 @@ export const Auth = (props) => {
 			.then((userData) => {
 				const user = userData.user;
 				console.log(user);
-				submitUser(user.uid, email);
+				createUser(user.uid, email);
 				navigate('/login');
 			})
 			.catch((error) => {
@@ -47,11 +62,6 @@ export const Auth = (props) => {
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
-	};
-	const [addNewUser] = useAddNewUserMutation();
-
-	const submitUser = async (uid, email) => {
-		await addNewUser(userData(uid, email));
 	};
 
 	const showContent = () => {

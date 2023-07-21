@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	isAuthenticated: false,
 	username: null,
+	email: null,
 	userId: null, //после регистрации и авторизации
 	access: null,
 	refresh: null,
@@ -18,8 +19,8 @@ const userSlice = createSlice({
 		setLogin: (state, { payload }) => {
 			return {
 				...state,
-				username: payload?.username,
-				id: payload.id,
+				email: payload?.email,
+				userId: payload.userId,
 				isAuthenticated: true,
 			};
 		},
