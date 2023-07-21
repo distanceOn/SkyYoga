@@ -4,7 +4,7 @@ import MyCourses from './MyCourses/MyCourses';
 import s from './Profile.module.scss';
 import { useGetUserByIdQuery } from '../../redux/services/usersApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCourses } from '../../redux/slices/user';
+import { setUserInfo } from '../../redux/slices/user';
 import { selectUserId } from '../../redux/selectors';
 
 const Profile = () => {
@@ -13,7 +13,7 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
-	isSuccess && dispatch(setCourses(data));
+	isSuccess && dispatch(setUserInfo(data));
 
 	return (
 		<div className={s.profile}>
