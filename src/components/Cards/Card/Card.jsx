@@ -9,17 +9,17 @@ import s from './Card.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Card = (props) => {
+const Card = ({card, page}) => {
 	let isProfile = false;
 	const navigate = useNavigate();
 
-	if (props.page === 'profile') {
+	if (page === 'profile') {
 		isProfile = true;
 	}
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const getImg = () => {
-		switch (props.card) {
+		switch (card) {
 			case 'yoga':
 				return {
 					src: yoga,
@@ -57,7 +57,7 @@ const Card = (props) => {
 			onClick={() => {
 				isProfile
 					? setIsModalOpen(!isModalOpen)
-					: navigate(`/course/${props.card}`);
+					: navigate(`/course/${card}`);
 			}}
 		>
 			<img
@@ -68,6 +68,7 @@ const Card = (props) => {
 
 			{isProfile && (
 				<ModalSelectWorkout
+					course={card}
 					isOpen={isModalOpen}
 					setIsOpen={setIsModalOpen}
 				/>
