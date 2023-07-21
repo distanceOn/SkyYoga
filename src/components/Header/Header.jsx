@@ -5,6 +5,8 @@ import s from "./Header.module.scss";
 import Button from "../Button/Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { useSelector, UseSelector } from 'react-redux/es/hooks/useSelector';
+import { selectIsAuthenticated } from '../../redux/selectors';
 
 const Header = () => {
   const location = useLocation();
@@ -20,38 +22,28 @@ const Header = () => {
       });
   };
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const handleEntry = () => {
-    navigate("/login");
-  };
+	const handleEntry = () => {
+		navigate('/login');
+	};
 
-  const showContent = () => {
-    // пока что отображение контента зависит от того, где мы находимся, потом от факта авторизации
-    if (path === "/profile" || path === "/workout/2") {
-      return (
-        <div>
-          <ProfileIcon />
-          <Button buttonText="Выйти" class={s.entry} onClick={onLogout} />
-        </div>
-      );
-    } else {
-      return (
-        <Button
-          uniqueClass={s.entry}
-          buttonText="Войти"
-          onClick={handleEntry}
-        />
-      );
-    }
-  };
+	const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  return (
-    <div className={s.header}>
-      <Logo fill={location.pathname === "/" ? "white" : "black"} />
-      {showContent()}
-    </div>
-  );
+	return (
+		<div className={s.header}>
+			<Logo fill={location.pathname === '/' ? 'white' : 'black'} />
+			{isAuthenticated ? (
+				<ProfileIcon />
+			) : (
+				<Button
+					uniqueClass={s.entry}
+					buttonText="Войти"
+					onClick={handleEntry}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default Header;

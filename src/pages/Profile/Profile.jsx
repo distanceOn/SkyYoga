@@ -3,19 +3,17 @@ import Info from './Info/Info';
 import MyCourses from './MyCourses/MyCourses';
 import s from './Profile.module.scss';
 import { useGetUserByIdQuery } from '../../redux/services/usersApi';
-import { useDispatch } from 'react-redux';
-import { setCourses } from '../../redux/slices/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserInfo } from '../../redux/slices/user';
+import { selectUserId } from '../../redux/selectors';
 
 const Profile = () => {
-	//так должно быть
-	// const userId = useSelector(selectUserName);
+	const userId = useSelector(selectUserId);
 
 	const dispatch = useDispatch();
-	//пока заглушка в виде существующего name в бд
-	const userId = 'userIdFromAuth';
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
-	isSuccess && dispatch(setCourses(data));
+	isSuccess && dispatch(setUserInfo(data));
 
 	return (
 		<div className={s.profile}>
