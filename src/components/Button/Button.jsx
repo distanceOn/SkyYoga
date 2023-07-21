@@ -1,14 +1,14 @@
 import s from "./Button.module.scss";
 
-const Button = (props) => {
+const Button = ({ uniqueClass, buttonText, onClick }) => {
   return (
     <div>
       <button
-        onClick={props.onClick}
+        onClick={onClick}
         // если нет пропса class то дефолт класс
-        className={props.class ? props.class : s.btn}
+        className={uniqueClass ? uniqueClass : s.btn}
       >
-        {props.buttonText}
+        {buttonText}
       </button>
     </div>
   );

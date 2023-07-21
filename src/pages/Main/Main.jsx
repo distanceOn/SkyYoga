@@ -1,3 +1,4 @@
+
 import Header from '../../components/Header/Header';
 import s from './Main.module.scss';
 import Inscription from './Inscription/Inscription';
@@ -21,6 +22,7 @@ const Main = () => {
 			</div>
 		</div>
 	);
+
 };
 
 export default Main;
