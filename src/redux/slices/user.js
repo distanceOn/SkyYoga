@@ -61,4 +61,3 @@ export const {
 } = userSlice.actions;
 
 export default userSlice.reducer;
-export const { setLogin } = userSlice.actions;
