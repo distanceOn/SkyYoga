@@ -1,11 +1,11 @@
-import Header from '../../components/Header/Header';
-import Info from './Info/Info';
-import MyCourses from './MyCourses/MyCourses';
-import s from './Profile.module.scss';
-import { useGetUserByIdQuery } from '../../redux/services/usersApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserInfo } from '../../redux/slices/user';
-import { selectUserId } from '../../redux/selectors';
+import Header from "../../components/Header/Header";
+import Info from "./Info/Info";
+import MyCourses from "./MyCourses/MyCourses";
+import s from "./Profile.module.scss";
+import { useGetUserByIdQuery } from "../../redux/services/usersApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "../../redux/slices/user";
+import { selectUserId } from "../../redux/selectors";
 
 const Profile = () => {
 	const userId = useSelector(selectUserId);

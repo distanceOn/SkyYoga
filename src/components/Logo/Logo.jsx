@@ -1,10 +1,10 @@
-import s from './Logo.module.scss';
+import s from "./Logo.module.scss";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 const Logo = (props) => {
 	return (
-		<NavLink className={s.logo} to={'/'}>
+		<NavLink className={s.logo} to={"/"}>
 			<svg
 				width="223"
 				height="36"
@@ -16,7 +16,7 @@ const Logo = (props) => {
 					<g
 						id="SkyFitnessPro"
 						style={{
-							fill: props.fill === 'white' ? 'white' : 'black',
+							fill: props.fill === "white" ? "white" : "black",
 						}}
 					>
 						<path d="M39.4001 12.012C39.4001 14.784 40.8281 16.436 42.6761 17.752L45.0561 19.46C46.3161 20.356 47.2401 21.392 47.2401 22.96C47.2401 24.36 46.3161 25.2 44.8601 25.2C43.4321 25.2 42.4801 24.164 42.4801 22.484V21H39.1201V22.68C39.1201 26.292 41.6961 28.28 44.8601 28.28C48.0241 28.28 50.6001 26.376 50.6001 22.54C50.6001 19.852 49.1161 18.2 47.2961 16.884L44.8321 15.12C43.6561 14.28 42.7601 13.412 42.7601 12.012C42.7601 10.584 43.6001 9.79997 44.8321 9.79997C46.1481 9.79997 46.9601 10.612 46.9601 12.404V13.72H50.3201V12.32C50.3201 8.53997 47.8841 6.71997 44.8321 6.71997C41.8361 6.71997 39.4001 8.23197 39.4001 12.012Z" />
@@ -49,7 +49,7 @@ const Logo = (props) => {
 							</g>
 							<mask
 								id="mask0_26_1313"
-								style={{ maskType: 'alpha' }}
+								style={{ maskType: "alpha" }}
 								maskUnits="userSpaceOnUse"
 								x="11"
 								y="9"
@@ -81,12 +81,9 @@ const Logo = (props) => {
 						width="20.9825"
 						height="22.9216"
 						filterUnits="userSpaceOnUse"
-						color-interpolation-filters="sRGB"
+						colorInterpolationFilters="sRGB"
 					>
-						<feFlood
-							flood-opacity="0"
-							result="BackgroundImageFix"
-						/>
+						<feFlood floodOpacity="0" result="BackgroundImageFix" />
 						<feBlend
 							mode="normal"
 							in="SourceGraphic"

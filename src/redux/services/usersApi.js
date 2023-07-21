@@ -1,14 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const usersApi = createApi({
-	reducerPath: 'usersApi',
+	reducerPath: "usersApi",
 	baseQuery: fetchBaseQuery({
 		baseUrl:
-			'https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/',
+			"https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/",
 	}),
 	endpoints: (build) => ({
 		getUsers: build.query({
-			query: () => `users.json`,
+			query: () => "users.json",
 		}),
 		getUserById: build.query({
 			query: (userId) => `users/${userId}.json`,
@@ -16,21 +16,21 @@ export const usersApi = createApi({
 		addNewUser: build.mutation({
 			query: (body) => ({
 				url: `users/${body.userId}.json`,
-				method: 'PUT',
+				method: "PUT",
 				body: body.data,
 			}),
 		}),
 		setUserProgress: build.mutation({
 			query: (body) => ({
 				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
-				method: 'PATCH',
+				method: "PATCH",
 				body: body.progress,
 			}),
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
 				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}.json`,
-				method: 'PATCH',
+				method: "PATCH",
 				body: body.completed,
 			}),
 		}),

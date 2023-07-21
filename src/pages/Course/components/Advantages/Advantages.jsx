@@ -1,4 +1,4 @@
-import s from './Advantages.module.scss';
+import s from "./Advantages.module.scss";
 
 export const Advantages = ({ content }) => {
 	//заглушка

@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { coursesApi } from './services/coursesApi';
-import { usersApi } from './services/usersApi';
-import { workoutsApi } from './services/workoutsApi';
-import userReducer from './slices/user';
+import { configureStore } from "@reduxjs/toolkit";
+import { coursesApi } from "./services/coursesApi";
+import { usersApi } from "./services/usersApi";
+import { workoutsApi } from "./services/workoutsApi";
+import userReducer from "./slices/user";
 
 export const store = configureStore({
 	reducer: {

@@ -1,16 +1,16 @@
-import Button from '../../components/Button/Button';
-import { Input } from '../../components/Input/Input';
-import s from './Auth.module.scss';
-import Logo from '../../components/Logo/Logo';
-import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebase';
-import { useState, useEffect } from 'react';
-import { useAddNewUserMutation } from '../../redux/services/usersApi';
-import { userData } from './userData/userData';
-import { useDispatch } from 'react-redux';
-import { setLogin } from '../../redux/slices/user';
+import Button from "../../components/Button/Button";
+import { Input } from "../../components/Input/Input";
+import s from "./Auth.module.scss";
+import Logo from "../../components/Logo/Logo";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { useState, useEffect } from "react";
+import { useAddNewUserMutation } from "../../redux/services/usersApi";
+import { userData } from "./userData/userData";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../redux/slices/user";
 
 export const Auth = (props) => {
 	const navigate = useNavigate();
@@ -26,10 +26,10 @@ export const Auth = (props) => {
 	};
 
 	useEffect(() => {
-		const storageId = localStorage.getItem('userID');
+		const storageId = localStorage.getItem("userID");
 		if (!storageId) return;
 		dispatch(setLogin({ userId: storageId }));
-		navigate('/profile');
+		navigate("/profile");
 	}, [dispatch, navigate]);
 
 	async function onSubmit(event) {
@@ -43,8 +43,8 @@ export const Auth = (props) => {
 						userId: user.uid,
 					})
 				);
-				localStorage.setItem('userID', user.uid);
-				navigate('/profile');
+				localStorage.setItem("userID", user.uid);
+				navigate("/profile");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -53,7 +53,7 @@ export const Auth = (props) => {
 			});
 	}
 	const handleRegistrationButtonClick = () => {
-		navigate('/registration');
+		navigate("/registration");
 	};
 	const onLogin = (e) => {
 		e.preventDefault();
@@ -62,7 +62,7 @@ export const Auth = (props) => {
 				const user = userData.user;
 				console.log(user);
 				createUser(user.uid, email);
-				navigate('/login');
+				navigate("/login");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -85,27 +85,19 @@ export const Auth = (props) => {
 										id="email-address"
 										name="email"
 										type="email"
-										onChange={(e) =>
-											setEmail(e.target.value)
-										}
+										onChange={(e) => setEmail(e.target.value)}
 									/>
 									<Input
 										placeholderText="Пароль"
 										id="password"
 										name="password"
 										type="password"
-										onChange={(e) =>
-											setPassword(e.target.value)
-										}
+										onChange={(e) => setPassword(e.target.value)}
 									/>
 								</div>
 
 								<div className={s.login__margin}>
-									<Button
-										buttonText="Войти"
-										type="submit"
-										onClick={onSubmit}
-									/>
+									<Button buttonText="Войти" type="submit" onClick={onSubmit} />
 								</div>
 								<button
 									className={s.btn__register}
@@ -132,30 +124,20 @@ export const Auth = (props) => {
 										id="email-address"
 										name="email"
 										type="email"
-										onChange={(e) =>
-											setEmail(e.target.value)
-										}
+										onChange={(e) => setEmail(e.target.value)}
 									/>
 									<Input
 										placeholderText="Пароль"
 										id="password"
 										name="password"
 										type="password"
-										onChange={(e) =>
-											setPassword(e.target.value)
-										}
+										onChange={(e) => setPassword(e.target.value)}
 									/>
-									<Input
-										placeholderText="Повторите пароль"
-										type="password"
-									/>
+									<Input placeholderText="Повторите пароль" type="password" />
 								</div>
 
 								<div className={s.login__margin}>
-									<Button
-										buttonText="Зарегистрироваться"
-										onClick={onLogin}
-									/>
+									<Button buttonText="Зарегистрироваться" onClick={onLogin} />
 								</div>
 							</div>
 						</div>

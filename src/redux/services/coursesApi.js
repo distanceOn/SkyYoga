@@ -1,14 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const coursesApi = createApi({
-	reducerPath: 'coursesApi',
+	reducerPath: "coursesApi",
 	baseQuery: fetchBaseQuery({
 		baseUrl:
-			'https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/',
+			"https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/",
 	}),
 	endpoints: (build) => ({
 		getCourses: build.query({
-			query: () => 'courses.json',
+			query: () => "courses.json",
 		}),
 		getCourseByName: build.query({
 			query: (name) => `courses/${name}.json`,
