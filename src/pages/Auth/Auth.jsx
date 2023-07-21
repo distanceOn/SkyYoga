@@ -32,6 +32,7 @@ export const Auth = (props) => {
 		navigate('/profile');
 	});
 
+
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
