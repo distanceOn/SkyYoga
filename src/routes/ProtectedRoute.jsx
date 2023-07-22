@@ -1,8 +1,8 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectIsAuthenticated } from '../redux/selectors';
+import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsAuthenticated } from "../redux/selectors";
 
-const ProtectedRoute = ({ redirectPath = '/login' }) => {
+const ProtectedRoute = ({ redirectPath = "/login" }) => {
 	const isAuthenticated = useSelector(selectIsAuthenticated);
 
 	if (!isAuthenticated) {
