@@ -149,6 +149,12 @@ export const Auth = (props) => {
 		}
 	}, [isError]);
 
+	// Функция обратного вызова, которая получает информацию о компоненте
+	const handleInputRef = (componentInfo) => {
+		console.log("Значение инпута:", componentInfo.value);
+		// Вы можете сделать что-то еще с этой информацией
+	};
+
 	const showContent = () => {
 		if (props.loginPage) {
 			return (
@@ -169,6 +175,7 @@ export const Auth = (props) => {
 										}
 									}}
 									ref={targetPopup}
+									onComponentRef={handleInputRef}
 								/>
 								<Input
 									placeholderText="Пароль"
@@ -182,6 +189,7 @@ export const Auth = (props) => {
 										}
 									}}
 									ref={targetPassword}
+									onComponentRef={handleInputRef}
 								/>
 							</div>
 
@@ -225,6 +233,7 @@ export const Auth = (props) => {
 										}
 									}}
 									ref={targetPopup}
+									onComponentRef={handleInputRef}
 								/>
 								<Input
 									placeholderText="Пароль"
@@ -238,6 +247,7 @@ export const Auth = (props) => {
 										}
 									}}
 									ref={targetPassword}
+									onComponentRef={handleInputRef}
 								/>
 								<Input
 									placeholderText="Повторите пароль"
@@ -248,6 +258,7 @@ export const Auth = (props) => {
 										}
 									}}
 									ref={targetRepeat}
+									onComponentRef={handleInputRef}
 								/>
 							</div>
 
