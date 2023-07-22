@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import s from "./Auth.module.scss";
@@ -33,6 +34,9 @@ export const Auth = (props) => {
 		navigate("/profile");
 	}, [dispatch, navigate]);
 
+	// отслеживание состояния ошибки для попап
+	const [isError, setIsError] = useState(false);
+
 	async function onSubmit(event) {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
@@ -48,14 +52,18 @@ export const Auth = (props) => {
 				navigate("/profile");
 			})
 			.catch((error) => {
+				// устанавливаем isError когда ошибка
+				setIsError(true);
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
 	}
+
 	const handleRegistrationButtonClick = () => {
 		navigate("/registration");
 	};
+
 	const onLogin = (e) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, email, password)
@@ -66,14 +74,44 @@ export const Auth = (props) => {
 				navigate("/login");
 			})
 			.catch((error) => {
+				// устанавливаем isError когда ошибка
+				setIsError(true);
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
 	};
+	// отслеживаем true ли error
+	const observeToError = () => {
+		if (isError) {
+			setIsError(false);
+		}
+	};
+
+	// ссылки на элементы инпута
+	const targetPopup = useRef();
+	const targetPassword = useRef();
+	const targetRepeat = useRef();
+
+	// отслеживаем на каком источнике в зависимости от ошибки onchange
+	const observeToSource = (targetError) => {
+		switch (targetError) {
+			case targetPopup:
+				console.log("ето логин");
+				observeToError();
+				break;
+			case targetPassword:
+				console.log("ето пароль");
+				observeToError();
+				break;
+			case targetRepeat:
+				console.log("ето повтор пароля");
+				observeToError();
+				break;
+		}
+	};
 
 	// логика для установки позиционирования popup относительно элемента
-	const targetPopup = useRef();
 	const [popupPosition, setPopupPosition] = useState({
 		top: "-15%",
 		left: "10%",
@@ -81,8 +119,9 @@ export const Auth = (props) => {
 
 	useEffect(() => {
 		const targetElement = targetPopup.current;
+		console.log(isError);
 
-		if (targetElement) {
+		if (targetElement && isError) {
 			const targetRect = targetElement.getBoundingClientRect();
 			const popupElement = targetElement.parentElement.querySelector(`.${s.popup}`);
 			const popupRect = popupElement.getBoundingClientRect();
@@ -94,7 +133,7 @@ export const Auth = (props) => {
 			// Устанавливаем позицию попапа
 			setPopupPosition({ top, left });
 		}
-	}, []);
+	}, [isError]);
 
 	const showContent = () => {
 		if (props.loginPage) {
@@ -109,7 +148,10 @@ export const Auth = (props) => {
 									id="email-address"
 									name="email"
 									type="email"
-									onChange={(e) => setEmail(e.target.value)}
+									onChange={(e) => {
+										setEmail(e.target.value);
+										observeToSource(targetPopup);
+									}}
 									ref={targetPopup}
 								/>
 								<Input
@@ -117,7 +159,11 @@ export const Auth = (props) => {
 									id="password"
 									name="password"
 									type="password"
-									onChange={(e) => setPassword(e.target.value)}
+									onChange={(e) => {
+										setPassword(e.target.value);
+										observeToSource(targetPassword);
+									}}
+									ref={targetPassword}
 								/>
 							</div>
 
@@ -131,7 +177,13 @@ export const Auth = (props) => {
 							>
 								Зарегистрироваться
 							</button>
-							<AuthPopup style={{ top: popupPosition.top, left: popupPosition.left }} />
+							<AuthPopup
+								style={{
+									top: popupPosition.top,
+									left: popupPosition.left,
+									opacity: isError ? 1 : 0,
+								}}
+							/>
 						</div>
 					</div>
 				</div>
@@ -148,7 +200,10 @@ export const Auth = (props) => {
 									id="email-address"
 									name="email"
 									type="email"
-									onChange={(e) => setEmail(e.target.value)}
+									onChange={(e) => {
+										setEmail(e.target.value);
+										observeToSource(targetPopup);
+									}}
 									ref={targetPopup}
 								/>
 								<Input
@@ -156,9 +211,18 @@ export const Auth = (props) => {
 									id="password"
 									name="password"
 									type="password"
-									onChange={(e) => setPassword(e.target.value)}
+									onChange={(e) => {
+										setPassword(e.target.value);
+										observeToSource(targetPassword);
+									}}
+									ref={targetPassword}
 								/>
-								<Input placeholderText="Повторите пароль" type="password" />
+								<Input
+									placeholderText="Повторите пароль"
+									type="password"
+									onChange={() => observeToSource(targetRepeat)}
+									ref={targetRepeat}
+								/>
 							</div>
 
 							<div className={s.login__margin}>
