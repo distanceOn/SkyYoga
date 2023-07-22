@@ -37,6 +37,9 @@ export const Auth = (props) => {
 	// отслеживание состояния ошибки для попап
 	const [isError, setIsError] = useState(false);
 
+	// отслеживание, какого типа ошибка
+	const [errorState, setErrorState] = useState(null);
+
 	async function onSubmit(event) {
 		event.preventDefault();
 		await signInWithEmailAndPassword(auth, email, password)
@@ -55,6 +58,8 @@ export const Auth = (props) => {
 				// устанавливаем isError когда ошибка
 				setIsError(true);
 				const errorCode = error.code;
+				// устанавливаем состояние ошибки
+				setErrorState(errorCode);
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
@@ -62,6 +67,10 @@ export const Auth = (props) => {
 
 	const handleRegistrationButtonClick = () => {
 		navigate("/registration");
+		// сбрасываем ошибку при переходе на регистрацию
+		if (isError === true) {
+			setIsError(false);
+		}
 	};
 
 	const onLogin = (e) => {
@@ -77,11 +86,13 @@ export const Auth = (props) => {
 				// устанавливаем isError когда ошибка
 				setIsError(true);
 				const errorCode = error.code;
+				// устанавливаем состояние ошибки
+				setErrorState(errorCode);
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
 	};
-	// отслеживаем true ли error
+	// скрываем попап
 	const observeToError = () => {
 		if (isError) {
 			setIsError(false);
@@ -93,23 +104,26 @@ export const Auth = (props) => {
 	const targetPassword = useRef();
 	const targetRepeat = useRef();
 
-	// отслеживаем на каком источнике в зависимости от ошибки onchange
-	const observeToSource = (targetError) => {
-		switch (targetError) {
-			case targetPopup:
-				console.log("ето логин");
-				observeToError();
-				break;
-			case targetPassword:
-				console.log("ето пароль");
-				observeToError();
-				break;
-			case targetRepeat:
-				console.log("ето повтор пароля");
-				observeToError();
-				break;
+	// отслеживаем источник ошибки
+	const [errorSource, setErrorSource] = useState(null);
+
+	useEffect(() => {
+		if (errorState !== null) {
+			switch (errorState) {
+				case "auth/user-not-found":
+					setErrorSource(targetPopup);
+					console.log("ЛОШИН ОШИБКА");
+					break;
+				case "auth/wrong-password":
+					setErrorSource(targetPassword);
+					console.log("ПАРОЛЬ ОШИБКА");
+					break;
+
+				default:
+					break;
+			}
 		}
-	};
+	}, [errorState]);
 
 	// логика для установки позиционирования popup относительно элемента
 	const [popupPosition, setPopupPosition] = useState({
@@ -150,7 +164,9 @@ export const Auth = (props) => {
 									type="email"
 									onChange={(e) => {
 										setEmail(e.target.value);
-										observeToSource(targetPopup);
+										if (errorSource === targetPopup) {
+											observeToError();
+										}
 									}}
 									ref={targetPopup}
 								/>
@@ -161,7 +177,9 @@ export const Auth = (props) => {
 									type="password"
 									onChange={(e) => {
 										setPassword(e.target.value);
-										observeToSource(targetPassword);
+										if (errorSource === targetPassword) {
+											observeToError();
+										}
 									}}
 									ref={targetPassword}
 								/>
@@ -202,7 +220,9 @@ export const Auth = (props) => {
 									type="email"
 									onChange={(e) => {
 										setEmail(e.target.value);
-										observeToSource(targetPopup);
+										if (errorSource === targetPopup) {
+											observeToError();
+										}
 									}}
 									ref={targetPopup}
 								/>
@@ -213,14 +233,20 @@ export const Auth = (props) => {
 									type="password"
 									onChange={(e) => {
 										setPassword(e.target.value);
-										observeToSource(targetPassword);
+										if (errorSource === targetPassword) {
+											observeToError();
+										}
 									}}
 									ref={targetPassword}
 								/>
 								<Input
 									placeholderText="Повторите пароль"
 									type="password"
-									onChange={() => observeToSource(targetRepeat)}
+									onChange={() => {
+										if (errorSource === targetRepeat) {
+											observeToError();
+										}
+									}}
 									ref={targetRepeat}
 								/>
 							</div>
@@ -228,7 +254,13 @@ export const Auth = (props) => {
 							<div className={s.login__margin}>
 								<Button buttonText="Зарегистрироваться" onClick={onLogin} />
 							</div>
-							<AuthPopup style={{ top: popupPosition.top, left: popupPosition.left }} />
+							<AuthPopup
+								style={{
+									top: popupPosition.top,
+									left: popupPosition.left,
+									opacity: isError ? 1 : 0,
+								}}
+							/>
 						</div>
 					</div>
 				</div>
