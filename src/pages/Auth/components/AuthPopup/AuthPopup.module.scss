@@ -1,3 +1,33 @@
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeOutDown {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+}
+
+.show {
+	animation: fadeInUp 0.3s ease-in-out;
+}
+
+.hide {
+	animation: fadeOutDown 1s ease-in-out;
+}
+
 .popup {
 	position: absolute;
 	display: inline-block;
@@ -11,7 +41,6 @@
 
 .popup__content {
 	width: 279px;
-
 	box-sizing: border-box;
 	position: absolute;
 	text-align: center;

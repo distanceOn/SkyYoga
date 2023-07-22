@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import s from "./Auth.module.scss";
 import Logo from "../../components/Logo/Logo";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
@@ -20,6 +20,7 @@ export const Auth = (props) => {
 
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
+	const [repeatPassword, setRepeatPassword] = useState(null);
 
 	const [addNewUser] = useAddNewUserMutation();
 
@@ -57,6 +58,7 @@ export const Auth = (props) => {
 			.catch((error) => {
 				// устанавливаем isError когда ошибка
 				setIsError(true);
+				setIsVisiblePopup(true);
 				const errorCode = error.code;
 				// устанавливаем состояние ошибки
 				setErrorState(errorCode);
@@ -67,14 +69,17 @@ export const Auth = (props) => {
 
 	const handleRegistrationButtonClick = () => {
 		navigate("/registration");
-		// сбрасываем ошибку при переходе на регистрацию
-		if (isError === true) {
-			setIsError(false);
-		}
 	};
 
 	const onLogin = (e) => {
 		e.preventDefault();
+
+		if (password !== repeatPassword) {
+			setIsError(true);
+			setErrorState("passwords-mismatch");
+			return;
+		}
+
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userData) => {
 				const user = userData.user;
@@ -85,6 +90,7 @@ export const Auth = (props) => {
 			.catch((error) => {
 				// устанавливаем isError когда ошибка
 				setIsError(true);
+				setIsVisiblePopup(true);
 				const errorCode = error.code;
 				// устанавливаем состояние ошибки
 				setErrorState(errorCode);
@@ -92,9 +98,17 @@ export const Auth = (props) => {
 				console.log(errorCode, errorMessage);
 			});
 	};
+
+	// состояние видимости попап для анимации
+	const [isVisiblePopup, setIsVisiblePopup] = useState(null);
+
+	useEffect(() => {
+		console.log(isVisiblePopup);
+	}, [isVisiblePopup]);
 	// скрываем попап
 	const observeToError = () => {
 		if (isError) {
+			setIsVisiblePopup(false);
 			setIsError(false);
 		}
 	};
@@ -112,18 +126,38 @@ export const Auth = (props) => {
 			switch (errorState) {
 				case "auth/user-not-found":
 					setErrorSource(targetPopup);
-					console.log("ЛОШИН ОШИБКА");
+					setErrorText("Такого пользователя не существует!");
+
 					break;
 				case "auth/wrong-password":
 					setErrorSource(targetPassword);
-					console.log("ПАРОЛЬ ОШИБКА");
-					break;
+					setErrorText("Неверный пароль!");
 
+					break;
+				case "passwords-mismatch":
+					setErrorSource(targetRepeat);
+					setErrorText("Пароли не совпадают!");
+					break;
+				case "auth/too-many-requests":
+					setErrorSource(targetPopup);
+					setErrorText("Слишком много запросов!");
+					break;
+				case "auth/invalid-email":
+					setErrorSource(targetPopup);
+					setErrorText("Некорректный e-mail!");
+					break;
+				case "auth/weak-password":
+					setErrorSource(targetPopup);
+					setErrorText("Cлишком легкий пароль!");
+					break;
 				default:
 					break;
 			}
 		}
 	}, [errorState]);
+
+	// устанавливаем текст ошибки
+	const [errorText, setErrorText] = useState(null);
 
 	// логика для установки позиционирования popup относительно элемента
 	const [popupPosition, setPopupPosition] = useState({
@@ -149,10 +183,17 @@ export const Auth = (props) => {
 		}
 	}, [isError]);
 
+	// сбрасываем ошибку при переходе на другую страницу
+	const location = useLocation();
+	useEffect(() => {
+		if (isError === true) {
+			setIsError(false);
+		}
+	}, [location]);
+
 	// Функция обратного вызова, которая получает информацию о компоненте
 	const handleInputRef = (componentInfo) => {
 		console.log("Значение инпута:", componentInfo.value);
-		// Вы можете сделать что-то еще с этой информацией
 	};
 
 	const showContent = () => {
@@ -209,6 +250,8 @@ export const Auth = (props) => {
 									left: popupPosition.left,
 									opacity: isError ? 1 : 0,
 								}}
+								errorText={errorText}
+								isVisiblePopup={isVisiblePopup}
 							/>
 						</div>
 					</div>
@@ -252,7 +295,8 @@ export const Auth = (props) => {
 								<Input
 									placeholderText="Повторите пароль"
 									type="password"
-									onChange={() => {
+									onChange={(e) => {
+										setRepeatPassword(e.target.value);
 										if (errorSource === targetRepeat) {
 											observeToError();
 										}
@@ -271,6 +315,8 @@ export const Auth = (props) => {
 									left: popupPosition.left,
 									opacity: isError ? 1 : 0,
 								}}
+								errorText={errorText}
+								isVisiblePopup={isVisiblePopup}
 							/>
 						</div>
 					</div>
