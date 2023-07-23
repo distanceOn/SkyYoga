@@ -1,0 +1,32 @@
+.description {
+	display: flex;
+	flex-direction: column;
+	gap: 3vw;
+}
+
+.text {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+}
+
+.heading {
+	margin-bottom: 22px;
+
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 32px;
+}
+
+.li {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+
+	margin-left: 20px;
+	padding-left: 10px;
+
+	&::marker {
+		font-size: 18px;
+	}
+}

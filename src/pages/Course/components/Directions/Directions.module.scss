@@ -1,0 +1,26 @@
+.heading {
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 48px;
+
+	margin-bottom: 22px;
+}
+.ul {
+	padding-left: 20px;
+
+	display: grid;
+	grid-template-columns: repeat(2, 30vw);
+	row-gap: 4px;
+}
+
+.li {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+
+	padding-left: 10px;
+
+	&::marker {
+		font-size: 18px;
+	}
+}

@@ -1,0 +1,18 @@
+.title {
+	background-image: url('/assets/imgs/yoga_background.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 21.5vw;
+	max-width: 100%;
+
+	&__text {
+		font-size: 64px;
+		font-weight: 400;
+		line-height: 72px;
+		letter-spacing: -0.8px;
+
+		margin: 30px;
+		width: 50%;
+	}
+}
