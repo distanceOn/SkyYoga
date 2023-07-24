@@ -13,7 +13,7 @@ const ProfileIcon = ({ isOpen, setIsOpen, color }) => {
 				<p className={`${s.info__name} ${s[color]}`}>Сергей</p>
 				<div className={s.info__arrow}>
 					<svg
-						className={isOpen && `${s.arrow__rotate_svg}`}
+						className={isOpen ? `${s.arrow__rotate_svg}`: ""}
 						xmlns="http://www.w3.org/2000/svg"
 						width="9"
 						height="14"

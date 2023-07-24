@@ -14,7 +14,7 @@ export const Menu = () => {
 	const location = useLocation();
 
 	const dispatch = useDispatch();
-	const [isOpen, setIsOpen] = useState(null);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const onLogout = () => {
 		signOut(auth)
