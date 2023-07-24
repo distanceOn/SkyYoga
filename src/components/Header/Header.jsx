@@ -9,12 +9,17 @@ import { auth } from "../../firebase/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuthenticated } from "../../redux/selectors";
 import { setLogout } from "../../redux/slices/user";
+import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 const Header = () => {
 	const location = useLocation();
+	const path = location.pathname;
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const [isOpen, setIsOpen] = useState(null);
 
 	const onLogout = () => {
 		signOut(auth)
@@ -31,22 +36,58 @@ const Header = () => {
 			});
 	};
 
-	const handleEntry = () => {
-		navigate("/login");
-	};
+	const handleEntry = () => navigate("/login");
+
+	const handleProfile = () => navigate("/profile");
 
 	const isAuthenticated = useSelector(selectIsAuthenticated);
 
 	return (
 		<div className={s.header}>
-			<Logo fill={location.pathname === "/" ? "white" : "black"} />
+			<Logo fill={path === "/" ? "white" : "black"} />
 			{isAuthenticated ? (
 				<div className={s.profile}>
-					<ProfileIcon />
-					<Button buttonText="Выйти" uniqueClass={s.entry} onClick={onLogout} />
+					<ProfileIcon
+						color={path === "/" ? "white" : "black"}
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+					/>
+
+					<CSSTransition
+						in={isOpen}
+						timeout={500}
+						classNames={{
+							enter: s["btns-enter"],
+							enterActive: s["btns-enter-active"],
+							exit: s["btns-exit"],
+							exitActive: s["btns-exit-active"],
+						}}
+						unmountOnExit
+					>
+						{
+							<div
+								className={`${s.container__btn} ${s.appearance}`}
+							>
+								<Button
+									uniqueClass={`${s.entry}`}
+									buttonText="Профиль"
+									onClick={handleProfile}
+								/>
+								<Button
+									uniqueClass={`${s.entry}`}
+									buttonText="Выйти"
+									onClick={onLogout}
+								/>
+							</div>
+						}
+					</CSSTransition>
 				</div>
 			) : (
-				<Button uniqueClass={s.entry} buttonText="Войти" onClick={handleEntry} />
+				<Button
+					uniqueClass={s.entry}
+					buttonText="Войти"
+					onClick={handleEntry}
+				/>
 			)}
 		</div>
 	);
