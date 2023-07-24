@@ -22,7 +22,7 @@ export const usersApi = createApi({
 		}),
 		setUserProgress: build.mutation({
 			query: (body) => ({
-				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
 				method: "PATCH",
 				body: body.progress,
 			}),

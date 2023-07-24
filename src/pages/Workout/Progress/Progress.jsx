@@ -13,7 +13,7 @@ export const Progress = ({ exercises }) => {
 					return (
 						<div key={i} className={s.progress__workouts_name}>
 							<h3 className={s.progress__workouts_title}>
-								{item.name}
+								{item.name.split("(")[0]}
 							</h3>
 							<ProgressBar
 								completed={45}

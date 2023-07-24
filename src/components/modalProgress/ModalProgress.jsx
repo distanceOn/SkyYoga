@@ -3,16 +3,80 @@ import { CSSTransition } from "react-transition-group";
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentWorkout, selectUserId } from "../../redux/selectors";
+import { useSetUserProgressMutation } from "../../redux/services/usersApi";
 
-export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
+export const ModalProgress = ({
+	isOpen,
+	setIsOpen,
+	setIsSubmitted,
+	exercises,
+	courseName,
+}) => {
 	const modalRef = useRef();
+	const progress = {};
+	const info = {};
 
-	const questions = [
-		"Сколько раз вы сделали наклоны вперед?",
-		"Сколько раз вы сделали наклоны вперед?",
-		"Сколько раз вы сделали наклоны вперед?",
-		"Сколько раз вы сделали наклоны вперед?",
-	];
+	console.log(courseName);
+
+	const workoutId = useSelector(selectCurrentWorkout);
+	console.log(workoutId);
+	const userId = useSelector(selectUserId);
+	!userId && console.log("Loading...");
+
+	const setProgress = (key, value, obj) => {
+		obj[key] = value;
+		console.log(obj);
+		return obj;
+	};
+
+	const onChange = (event, exerciseId, maxAmount) => {
+		event.target.value = compareAmounts(+event.target.value, maxAmount);
+
+		setProgress(
+			exerciseId,
+			calcPercent(+event.target.value, maxAmount),
+			progress
+		);
+	};
+
+	const calcPercent = (currentAmount, maxAmount) =>
+		(currentAmount * 100) / maxAmount;
+
+	const compareAmounts = (currentAmount, maxAmount) => {
+		if (currentAmount < 0) {
+			return 1;
+		} else if (currentAmount > maxAmount) {
+			return maxAmount;
+		} else {
+			return currentAmount;
+		}
+	};
+
+	const [setUserProgress] = useSetUserProgressMutation();
+
+	const setAllProgress = () => {
+		setProgress("courseName", courseName, info);
+		setProgress("workoutId", workoutId, info);
+		setProgress("userId", userId, info);
+		setProgress("progress", progress, info);
+
+		submitProgress();
+
+		setIsOpen(false);
+		setIsSubmitted(true);
+	};
+
+	const submitProgress = async () => {
+		await setUserProgress(info)
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	return (
 		<CSSTransition
@@ -36,28 +100,34 @@ export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
 			>
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					<h2 className={s.heading}>Мой прогресс</h2>
-					{questions.map((question, i) => {
-						return (
-							<div key={i} className={s.inputs}>
-								<label className={s.label}>
-									{question}
+					<div className={s.inputs}>
+						{exercises.map((exercise, i) => {
+							return (
+								<label key={i} className={s.label}>
+									{`Сколько раз вы сделали ${exercise.name
+										.split("(")[0]
+										.toLowerCase()}?`}
 
 									<Input
 										type={"number"}
 										uniqueClass={s.input}
 										placeholder="Введите значение"
+										max={exercise.amount}
+										min={0}
+										onChange={(event) => {
+											onChange(
+												event,
+												exercise["_id"],
+												exercise.amount
+											);
+										}}
 									/>
 								</label>
-							</div>
-						);
-					})}
-					<Button
-						onClick={() => {
-							setIsOpen(false);
-							setIsSubmitted(true);
-						}}
-						buttonText="Отправить"
-					/>
+							);
+						})}
+					</div>
+
+					<Button onClick={setAllProgress} buttonText="Отправить" />
 				</div>
 			</div>
 		</CSSTransition>

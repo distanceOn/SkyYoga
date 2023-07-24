@@ -15,16 +15,16 @@ export const Workout = () => {
 	!workoutId && console.log("Загрузка...");
 	const { data, isLoading } = useGetWorkoutByIdQuery(workoutId);
 	if (isLoading) return console.log("Загрузка...");
-	const {src, course, exercises, name, } = data;
+	const {src, courseName, exercises, name, } = data;
 	
 
 	return (
 		<div className={s.main}>
 			<Header />
-			<Video src={src} name={name} course={course}/>
+			<Video src={src} name={name} course={courseName.ru}/>
 			<div className={s.workout}>
-				<Exercises exercises={exercises}/>
-				<Progress exercises={exercises}/>
+				<Exercises exercises={exercises} courseName={courseName.en}/>
+				<Progress exercises={exercises} />
 			</div>
 		</div>
 	);
