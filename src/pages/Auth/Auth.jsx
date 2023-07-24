@@ -43,6 +43,7 @@ export const Auth = (props) => {
 						userId: user.uid,
 					})
 				);
+				console.log(userData);
 				localStorage.setItem("userID", user.uid);
 				navigate("/profile");
 			})

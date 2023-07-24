@@ -19,7 +19,7 @@ const AppRoutes = () => {
 
 			<Route element={<ProtectedRoute />}>
 				<Route path="/profile" element={<Profile />} />
-				<Route path="/workout/:id" element={<Workout />} />
+				<Route path="/workout" element={<Workout />} />
 			</Route>
 		</Routes>
 	);
