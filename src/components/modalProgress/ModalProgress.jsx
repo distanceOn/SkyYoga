@@ -2,8 +2,11 @@ import s from "./ModalProgress.module.scss";
 import { CSSTransition } from "react-transition-group";
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
+import { useRef } from "react";
 
 export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
+	const modalRef = useRef();
+
 	const questions = [
 		"Сколько раз вы сделали наклоны вперед?",
 		"Сколько раз вы сделали наклоны вперед?",
@@ -15,6 +18,7 @@ export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
 		<CSSTransition
 			in={isOpen}
 			timeout={300}
+			nodeRef={modalRef}
 			classNames={{
 				enter: s["alert-enter"],
 				enterActive: s["alert-enter-active"],
@@ -28,6 +32,7 @@ export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
+				ref={modalRef}
 			>
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					<h2 className={s.heading}>Мой прогресс</h2>
@@ -37,7 +42,11 @@ export const ModalProgress = ({ isOpen, setIsOpen, setIsSubmitted }) => {
 								<label className={s.label}>
 									{question}
 
-									<Input type={"number"} uniqueClass={s.input} placeholder="Введите значение" />
+									<Input
+										type={"number"}
+										uniqueClass={s.input}
+										placeholder="Введите значение"
+									/>
 								</label>
 							</div>
 						);
