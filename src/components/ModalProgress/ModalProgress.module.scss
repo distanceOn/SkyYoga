@@ -18,10 +18,12 @@ body:has(.modal) {
 	bottom: 0;
 
 	cursor: pointer;
+  
+	z-index: 10;
 }
 
 .modal {
-	max-height: 100%;
+	max-height: 554px;
 	max-width: 444px;
 	padding: 42px;
 
@@ -46,6 +48,29 @@ body:has(.modal) {
 	flex-direction: column;
 	align-items: center;
 	gap: 30px;
+
+	overflow-y: auto;
+
+	padding-right: 24px;
+	padding-left: 28px;
+
+	//фон скроллбара
+	&::-webkit-scrollbar {
+		width: 5px;
+		padding: 200px;
+	}
+
+	//пустое пространство вокруг бегунка
+	&::-webkit-scrollbar-track {
+		border-radius: 10px;
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	//сам бегунок
+	&::-webkit-scrollbar-thumb {
+		background: rgba(0, 0, 0, 0.15);
+		border-radius: 10px;
+	}
 }
 
 .label {
@@ -58,17 +83,23 @@ body:has(.modal) {
 
 .input {
 	width: 100%;
-	height: 46px;
+	height: 26px;
 	border: none;
 	outline: none;
 	border-bottom: #d0cece 1px solid;
 	margin-top: 6px;
+	text-align: center;
 	&::placeholder {
 		font-size: 18px;
 		font-weight: 400;
 		line-height: 24px;
 		letter-spacing: -0.05px;
 		color: #d0cece;
+	}
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		appearance: none;
 	}
 }
 

@@ -6,6 +6,7 @@ export const usersApi = createApi({
 		baseUrl:
 			"https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/",
 	}),
+	tagTypes: ["Progress"],
 	endpoints: (build) => ({
 		getUsers: build.query({
 			query: () => "users.json",
@@ -22,17 +23,23 @@ export const usersApi = createApi({
 		}),
 		setUserProgress: build.mutation({
 			query: (body) => ({
-				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}/exercises.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
 				method: "PATCH",
 				body: body.progress,
 			}),
+			invalidatesTags: ["Progress"],
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
-				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}.json`,
 				method: "PATCH",
 				body: body.completed,
 			}),
+		}),
+		getUserProgress: build.query({
+			query: (body) =>
+				`users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
+			providesTags: ["Progress"],
 		}),
 	}),
 });
@@ -43,4 +50,5 @@ export const {
 	useAddNewUserMutation,
 	useSetUserProgressMutation,
 	useSetUserWorkoutCompletedMutation,
+	useGetUserProgressQuery,
 } = usersApi;

@@ -1,7 +1,7 @@
 import { CSSTransition } from "react-transition-group";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import s from "./Menu.module.scss";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { setLogout } from "../../redux/slices/user";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
@@ -12,9 +12,10 @@ import Button from "../Button/Button";
 export const Menu = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const btnsRef = useRef();
 
 	const dispatch = useDispatch();
-	const [isOpen, setIsOpen] = useState(null);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const onLogout = () => {
 		signOut(auth)
@@ -43,6 +44,7 @@ export const Menu = () => {
 			<CSSTransition
 				in={isOpen}
 				timeout={500}
+				nodeRef={btnsRef}
 				classNames={{
 					enter: s["btns-enter"],
 					enterActive: s["btns-enter-active"],
@@ -52,7 +54,7 @@ export const Menu = () => {
 				unmountOnExit
 			>
 				{
-					<div className={s.btns}>
+					<div className={s.btns} ref={btnsRef}>
 						<Button
 							uniqueClass={s.btn}
 							buttonText="Профиль"

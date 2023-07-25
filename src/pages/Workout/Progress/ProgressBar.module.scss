@@ -1,93 +1,37 @@
 .progress {
-  &__workouts_name {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  &__workouts_title {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
+	&__workouts_name {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	&__workouts_title {
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 32px;
 
-    text-align: start;
-  }
-  &__workouts {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding-top: 40px;
-    padding-left: 44px;
-    padding-right: 55px;
-    padding-bottom: 30px;
-    max-width: 45vw;
-  }
-  &__container {
-    border-radius: 30px;
-    background: #f2f2f2;
-    width: 50vw;
-    text-align: center;
-    margin-top: 75px;
-  }
-  &__heading {
-    padding-top: 36px;
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 40px;
-  }
-}
-
-.wrapper {
-  border-radius: 22px;
-  border: 2px solid #565eef;
-  background: #edecff;
-
-  min-width: 20vw;
-  max-height: 36px;
-}
-.wrapper1 {
-  border: 2px solid #ff6d00;
-  background: #fff2e0;
-}
-.wrapper2 {
-  border: 2px solid #9a48f1;
-  background: #f9ebff;
-}
-.wrapper3 {
-  border: 2px solid aqua;
-  background: #edecff;
-}
-
-.barCompleted {
-  background: #565eef;
-  border-radius: 22px;
-
-  max-width: 45%;
-}
-
-.label {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 32px;
-}
-.container {
-  border-radius: 22px;
-  background: #edecff;
-}
-
-.barCompleted1 {
-  color: #ff6d00;
-  background: #ff6d00;
-}
-.barCompleted2 {
-  color: #9a48f1;
-  background: #9a48f1;
-}
-.barCompleted3 {
-  color: aqua;
-  background: aqua;
-}
-.barCompleted4 {
-  color: aquamarine;
-  background: aquamarine;
+		text-align: start;
+	}
+	&__workouts {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		padding-top: 40px;
+		padding-left: 44px;
+		padding-right: 55px;
+		padding-bottom: 30px;
+		max-width: 45vw;
+	}
+	&__container {
+		border-radius: 30px;
+		background: #f2f2f2;
+		width: 50vw;
+		text-align: center;
+		margin-top: 75px;
+	}
+	&__heading {
+		padding-top: 36px;
+		font-size: 32px;
+		font-weight: 400;
+		line-height: 40px;
+	}
 }
