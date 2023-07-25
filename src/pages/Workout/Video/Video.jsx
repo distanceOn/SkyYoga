@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 import s from "./Video.module.scss";
-import image from "../../../assets/imgs/playBtn.svg";
 
 export const Video = ({ src, name, courseName }) => {
   return (
@@ -12,9 +11,16 @@ export const Video = ({ src, name, courseName }) => {
         <h2 className={s.li}>{name} </h2>
       </div>
       <div className={s.video__container}>
-        <video className={s.video} src={src}></video>
-
-        <img className={s.play__button} width="156" src={image} alt="play" />
+        <iframe
+          className={s.video}
+          id="ytplayer"
+          type="text/html"
+          src={`http://www.youtube.com/embed/${src}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Embedded youtube"
+          frameBorder="0"
+        />
       </div>
     </div>
   );
