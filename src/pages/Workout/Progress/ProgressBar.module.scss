@@ -44,6 +44,19 @@
   min-width: 20vw;
   max-height: 36px;
 }
+.wrapper1 {
+  border: 2px solid #ff6d00;
+  background: #fff2e0;
+}
+.wrapper2 {
+  border: 2px solid #9a48f1;
+  background: #f9ebff;
+}
+.wrapper3 {
+  border: 2px solid aqua;
+  background: #edecff;
+}
+
 .barCompleted {
   background: #565eef;
   border-radius: 22px;
@@ -63,6 +76,18 @@
 }
 
 .barCompleted1 {
+  color: #ff6d00;
+  background: #ff6d00;
+}
+.barCompleted2 {
+  color: #9a48f1;
+  background: #9a48f1;
+}
+.barCompleted3 {
   color: aqua;
   background: aqua;
+}
+.barCompleted4 {
+  color: aquamarine;
+  background: aquamarine;
 }
