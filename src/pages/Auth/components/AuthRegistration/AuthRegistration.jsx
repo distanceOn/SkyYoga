@@ -47,7 +47,7 @@ export const AuthRegistration = ({
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userData) => {
 				const user = userData.user;
-				console.log(user);
+
 				createUser(user.uid, email);
 				navigate("/login");
 			})
@@ -58,8 +58,6 @@ export const AuthRegistration = ({
 				const errorCode = error.code;
 				// устанавливаем состояние ошибки
 				setErrorState(errorCode);
-				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
 			});
 	};
 	return (

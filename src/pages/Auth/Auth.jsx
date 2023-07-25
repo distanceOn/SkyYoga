@@ -32,9 +32,6 @@ export const Auth = (props) => {
 	// состояние видимости попап для анимации
 	const [isVisiblePopup, setIsVisiblePopup] = useState(null);
 
-	useEffect(() => {
-		console.log(isVisiblePopup);
-	}, [isVisiblePopup]);
 	// скрываем попап
 	const observeToError = () => {
 		if (isError) {
@@ -101,7 +98,6 @@ export const Auth = (props) => {
 
 	useEffect(() => {
 		const targetElement = targetPopup.current;
-		console.log(isError);
 
 		if (targetElement && isError) {
 			const targetRect = targetElement.getBoundingClientRect();

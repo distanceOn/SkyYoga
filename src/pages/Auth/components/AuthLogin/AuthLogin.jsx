@@ -35,7 +35,7 @@ export const AuthLogin = ({
 		await signInWithEmailAndPassword(auth, email, password)
 			.then((userData) => {
 				const user = userData.user;
-				// console.log(user);
+
 				dispatch(
 					setLogin({
 						userId: user.uid,
@@ -51,8 +51,6 @@ export const AuthLogin = ({
 				const errorCode = error.code;
 				// устанавливаем состояние ошибки
 				setErrorState(errorCode);
-				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
 			});
 	}
 	return (
