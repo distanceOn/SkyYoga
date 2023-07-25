@@ -150,6 +150,10 @@ export const Auth = (props) => {
 					setErrorSource(targetPopup);
 					setErrorText("Cлишком легкий пароль!");
 					break;
+				case "auth/missing-password":
+					setErrorSource(targetPassword);
+					setErrorText("Введите пароль!");
+					break;
 				default:
 					break;
 			}
