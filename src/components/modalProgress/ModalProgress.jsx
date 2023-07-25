@@ -1,4 +1,3 @@
-/* eslint-disable */
 import s from "./ModalProgress.module.scss";
 import { CSSTransition } from "react-transition-group";
 import Button from "../Button/Button";
