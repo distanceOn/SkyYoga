@@ -51,7 +51,7 @@ export const ModalProgress = ({
 			workoutId,
 			completed,
 		})
-			.then(() => {
+			.then((result) => {
 				console.log(result);
 			})
 			.catch((err) => {
