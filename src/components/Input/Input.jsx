@@ -1,21 +1,8 @@
 import s from "./Input.module.scss";
 
-export const Input = ({
-	type,
-	placeholderText,
-	onChange,
-	uniqueClass,
-	onComponentRef,
-}) => {
-	// Колбэк, который вызывается при изменении значения инпута
+export const Input = ({ type, placeholderText, onChange, uniqueClass }) => {
 	const handleChange = (e) => {
 		onChange(e);
-		if (e.target.value) {
-			const value = e.target.value;
-
-			// Вызываем колбэк, чтобы передать информацию о компоненте родительскому компоненту
-			onComponentRef({ value });
-		}
 	};
 	return (
 		<div className={s.input__form}>

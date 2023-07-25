@@ -1,18 +1,12 @@
 /* eslint-disable indent */
-import Button from "../../components/Button/Button";
-import { Input } from "../../components/Input/Input";
 import s from "./Auth.module.scss";
-import Logo from "../../components/Logo/Logo";
 import { useLocation, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
 import { useState, useEffect, useRef } from "react";
-import { useAddNewUserMutation } from "../../redux/services/usersApi";
-import { userData } from "./userData/userData";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/slices/user";
-import { AuthPopup } from "./components/AuthPopup/AuthPopup";
+import { AuthLogin } from "./components/AuthLogin/AuthLogin";
+import { AuthRegistration } from "./components/AuthRegistration/AuthRegistration";
+import { auth } from "../../firebase/firebase";
 
 export const Auth = (props) => {
 	const navigate = useNavigate();
@@ -21,12 +15,6 @@ export const Auth = (props) => {
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [repeatPassword, setRepeatPassword] = useState(null);
-
-	const [addNewUser] = useAddNewUserMutation();
-
-	const createUser = async (uid, email) => {
-		await addNewUser(userData(uid, email));
-	};
 
 	useEffect(() => {
 		const storageId = localStorage.getItem("userID");
@@ -40,64 +28,6 @@ export const Auth = (props) => {
 
 	// отслеживание, какого типа ошибка
 	const [errorState, setErrorState] = useState(null);
-
-	async function onSubmit(event) {
-		event.preventDefault();
-		await signInWithEmailAndPassword(auth, email, password)
-			.then((userData) => {
-				const user = userData.user;
-				// console.log(user);
-				dispatch(
-					setLogin({
-						userId: user.uid,
-					})
-				);
-				localStorage.setItem("userID", user.uid);
-				navigate("/profile");
-			})
-			.catch((error) => {
-				// устанавливаем isError когда ошибка
-				setIsError(true);
-				setIsVisiblePopup(true);
-				const errorCode = error.code;
-				// устанавливаем состояние ошибки
-				setErrorState(errorCode);
-				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
-			});
-	}
-
-	const handleRegistrationButtonClick = () => {
-		navigate("/registration");
-	};
-
-	const onLogin = (e) => {
-		e.preventDefault();
-
-		if (password !== repeatPassword) {
-			setIsError(true);
-			setErrorState("passwords-mismatch");
-			return;
-		}
-
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userData) => {
-				const user = userData.user;
-				console.log(user);
-				createUser(user.uid, email);
-				navigate("/login");
-			})
-			.catch((error) => {
-				// устанавливаем isError когда ошибка
-				setIsError(true);
-				setIsVisiblePopup(true);
-				const errorCode = error.code;
-				// устанавливаем состояние ошибки
-				setErrorState(errorCode);
-				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
-			});
-	};
 
 	// состояние видимости попап для анимации
 	const [isVisiblePopup, setIsVisiblePopup] = useState(null);
@@ -195,139 +125,53 @@ export const Auth = (props) => {
 		}
 	}, [location]);
 
-	// Функция обратного вызова, которая получает информацию о компоненте
-	const handleInputRef = (componentInfo) => {
-		console.log("Значение инпута:", componentInfo.value);
-	};
-
-	const showContent = () => {
-		if (props.loginPage) {
-			return (
-				<div className={s.container}>
-					<div className={s.modal}>
-						<div className={s.login}>
-							<Logo />
-							<div className={s.login__margin_top}>
-								<Input
-									placeholderText="Логин"
-									id="email-address"
-									name="email"
-									type="email"
-									onChange={(e) => {
-										setEmail(e.target.value);
-										if (errorSource === targetPopup) {
-											observeToError();
-										}
-									}}
-									ref={targetPopup}
-									onComponentRef={handleInputRef}
-								/>
-								<Input
-									placeholderText="Пароль"
-									id="password"
-									name="password"
-									type="password"
-									onChange={(e) => {
-										setPassword(e.target.value);
-										if (errorSource === targetPassword) {
-											observeToError();
-										}
-									}}
-									ref={targetPassword}
-									onComponentRef={handleInputRef}
-								/>
-							</div>
-
-							<div className={s.login__margin}>
-								<Button buttonText="Войти" type="submit" onClick={onSubmit} />
-							</div>
-							<button
-								className={s.btn__register}
-								type="submit"
-								onClick={handleRegistrationButtonClick}
-							>
-								Зарегистрироваться
-							</button>
-							<AuthPopup
-								style={{
-									top: popupPosition.top,
-									left: popupPosition.left,
-									opacity: isError ? 1 : 0,
-								}}
-								errorText={errorText}
-								isVisiblePopup={isVisiblePopup}
-							/>
-						</div>
-					</div>
-				</div>
-			);
-		} else {
-			return (
-				<div className={s.container}>
-					<div className={s.modal}>
-						<div className={s.login}>
-							<Logo />
-							<div className={s.login__margin_top}>
-								<Input
-									placeholderText="Логин"
-									id="email-address"
-									name="email"
-									type="email"
-									onChange={(e) => {
-										setEmail(e.target.value);
-										if (errorSource === targetPopup) {
-											observeToError();
-										}
-									}}
-									ref={targetPopup}
-									onComponentRef={handleInputRef}
-								/>
-								<Input
-									placeholderText="Пароль"
-									id="password"
-									name="password"
-									type="password"
-									onChange={(e) => {
-										setPassword(e.target.value);
-										if (errorSource === targetPassword) {
-											observeToError();
-										}
-									}}
-									ref={targetPassword}
-									onComponentRef={handleInputRef}
-								/>
-								<Input
-									placeholderText="Повторите пароль"
-									type="password"
-									onChange={(e) => {
-										setRepeatPassword(e.target.value);
-										if (errorSource === targetRepeat) {
-											observeToError();
-										}
-									}}
-									ref={targetRepeat}
-									onComponentRef={handleInputRef}
-								/>
-							</div>
-
-							<div className={s.login__margin}>
-								<Button buttonText="Зарегистрироваться" onClick={onLogin} />
-							</div>
-							<AuthPopup
-								style={{
-									top: popupPosition.top,
-									left: popupPosition.left,
-									opacity: isError ? 1 : 0,
-								}}
-								errorText={errorText}
-								isVisiblePopup={isVisiblePopup}
-							/>
-						</div>
-					</div>
-				</div>
-			);
-		}
-	};
-
-	return <div className="wrapper">{showContent()} </div>;
+	return (
+		<div className="wrapper">
+			{props.loginPage ? (
+				<AuthLogin
+					navigate={navigate}
+					dispatch={dispatch}
+					setLogin={setLogin}
+					setIsError={setIsError}
+					setIsVisiblePopup={setIsVisiblePopup}
+					setErrorState={setErrorState}
+					setEmail={setEmail}
+					errorSource={errorSource}
+					targetPopup={targetPopup}
+					setPassword={setPassword}
+					targetPassword={targetPassword}
+					observeToError={observeToError}
+					popupPosition={popupPosition}
+					errorText={errorText}
+					isError={isError}
+					isVisiblePopup={isVisiblePopup}
+					email={email}
+					password={password}
+				/>
+			) : (
+				<AuthRegistration
+					password={password}
+					repeatPassword={repeatPassword}
+					setIsError={setIsError}
+					setErrorState={setErrorState}
+					auth={auth}
+					email={email}
+					navigate={navigate}
+					setIsVisiblePopup={setIsVisiblePopup}
+					setEmail={setEmail}
+					errorSource={errorSource}
+					observeToError={observeToError}
+					targetPopup={targetPopup}
+					targetPassword={targetPassword}
+					setPassword={setPassword}
+					setRepeatPassword={setRepeatPassword}
+					targetRepeat={targetRepeat}
+					popupPosition={popupPosition}
+					isError={isError}
+					errorText={errorText}
+					isVisiblePopup={isVisiblePopup}
+				/>
+			)}
+		</div>
+	);
 };
