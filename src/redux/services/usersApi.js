@@ -8,9 +8,6 @@ export const usersApi = createApi({
 	}),
 	tagTypes: ["Progress"],
 	endpoints: (build) => ({
-		getUsers: build.query({
-			query: () => "users.json",
-		}),
 		getUserById: build.query({
 			query: (userId) => `users/${userId}.json`,
 		}),
@@ -45,7 +42,6 @@ export const usersApi = createApi({
 });
 
 export const {
-	useGetUsersQuery,
 	useGetUserByIdQuery,
 	useAddNewUserMutation,
 	useSetUserProgressMutation,

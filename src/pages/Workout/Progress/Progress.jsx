@@ -1,5 +1,5 @@
-import s from "./ProgressBar.module.scss";
-import { ProgressBar } from "../ProgressBar/ProgressBar";
+import s from "./Progress.module.scss";
+import { ProgressBar } from "../../../components/ProgressBar/ProgressBar";
 import { useSelector } from "react-redux";
 import { selectCurrentWorkout, selectUserId } from "../../../redux/selectors";
 import { useGetUserProgressQuery } from "../../../redux/services/usersApi";

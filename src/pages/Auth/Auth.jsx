@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import s from "./Auth.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
@@ -52,38 +51,38 @@ export const Auth = (props) => {
 	useEffect(() => {
 		if (errorState !== null) {
 			switch (errorState) {
-				case "auth/user-not-found":
-					setErrorSource(targetPopup);
-					setErrorText("Такого пользователя не существует!");
+			case "auth/user-not-found":
+				setErrorSource(targetPopup);
+				setErrorText("Такого пользователя не существует!");
 
-					break;
-				case "auth/wrong-password":
-					setErrorSource(targetPassword);
-					setErrorText("Неверный пароль!");
+				break;
+			case "auth/wrong-password":
+				setErrorSource(targetPassword);
+				setErrorText("Неверный пароль!");
 
-					break;
-				case "passwords-mismatch":
-					setErrorSource(targetRepeat);
-					setErrorText("Пароли не совпадают!");
-					break;
-				case "auth/too-many-requests":
-					setErrorSource(targetPopup);
-					setErrorText("Слишком много запросов!");
-					break;
-				case "auth/invalid-email":
-					setErrorSource(targetPopup);
-					setErrorText("Некорректный e-mail!");
-					break;
-				case "auth/weak-password":
-					setErrorSource(targetPopup);
-					setErrorText("Cлишком легкий пароль!");
-					break;
-				case "auth/missing-password":
-					setErrorSource(targetPassword);
-					setErrorText("Введите пароль!");
-					break;
-				default:
-					break;
+				break;
+			case "passwords-mismatch":
+				setErrorSource(targetRepeat);
+				setErrorText("Пароли не совпадают!");
+				break;
+			case "auth/too-many-requests":
+				setErrorSource(targetPopup);
+				setErrorText("Слишком много запросов!");
+				break;
+			case "auth/invalid-email":
+				setErrorSource(targetPopup);
+				setErrorText("Некорректный e-mail!");
+				break;
+			case "auth/weak-password":
+				setErrorSource(targetPopup);
+				setErrorText("Cлишком легкий пароль!");
+				break;
+			case "auth/missing-password":
+				setErrorSource(targetPassword);
+				setErrorText("Введите пароль!");
+				break;
+			default:
+				break;
 			}
 		}
 	}, [errorState]);
