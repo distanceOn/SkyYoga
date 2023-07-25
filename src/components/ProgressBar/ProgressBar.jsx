@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect, useState } from "react";
 import s from "./ProgressBar.module.scss";
 
@@ -25,7 +24,7 @@ export const ProgressBar = ({ completed, color, wrapperClass }) => {
 					borderRadius: "22px",
 				}}
 			></div>
-			<span className={s.label}>{completed}%</span>
+			<span className={s.label}>{Math.round(completed)}%</span>
 		</div>
 	);
 };

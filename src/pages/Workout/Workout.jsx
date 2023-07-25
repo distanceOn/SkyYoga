@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { Exercises } from "./Exercises/Exercises";
 import { Progress } from "./Progress/Progress";
 

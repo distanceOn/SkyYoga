@@ -12,6 +12,7 @@ import Header from "../../components/Header/Header";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/slices/user";
+import Footer from "../../components/Footer/Footer";
 
 const Course = () => {
 	const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const Course = () => {
 			<Directions content={directions} />
 			<Description content={description} />
 			<Enrolling />
+			<Footer />
 		</div>
 	);
 };
