@@ -4,29 +4,32 @@ import { Progress } from "./Progress/Progress";
 import { Video } from "./Video/Video";
 
 import s from "./Workout.module.scss";
-import { useParams } from "react-router-dom";
+
 import Header from "../../components/Header/Header";
+import { useSelector } from "react-redux";
+
+import { useGetWorkoutByIdQuery } from "../../redux/services/workoutsApi";
 
 export const Workout = () => {
-	//все данные будут с бэка
-	const params = useParams();
-	const id = +params.id;
+  const workoutId = useSelector((state) => state.user.currentWorkout);
 
-	//тут будет запрос за данными на бэк по name или id (нужно решить)
-	//потом эти данные пойдут во все компоненты
+  !workoutId && console.log("loading");
+  const { data, isLoading } = useGetWorkoutByIdQuery(workoutId);
 
-	if (id !== 2) {
-		return <h1>Здесь будет что-то кроме йоги</h1>;
-	}
+  isLoading && console.log("loading");
 
-	return (
-		<div className={s.main}>
-			<Header />
-			<Video />
-			<div className={s.workout}>
-				<Exercises />
-				<Progress />
-			</div>
-		</div>
-	);
+  if (isLoading) return <h1>Loading...</h1>;
+
+  const { src, course, name, exercises } = data;
+
+  return (
+    <div className={s.main}>
+      <Header />
+      <Video src={src} name={name} course={course} />
+      <div className={s.workout}>
+        <Exercises exercises={exercises} />
+        <Progress exercises={exercises} />
+      </div>
+    </div>
+  );
 };

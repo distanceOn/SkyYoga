@@ -6,22 +6,24 @@ import { useGetUserByIdQuery } from "../../redux/services/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfo } from "../../redux/slices/user";
 import { selectUserId } from "../../redux/selectors";
+import { ModalNewAuth } from "../../components/ModalNewAuth/ModalNewAuth";
 
 const Profile = () => {
-	const userId = useSelector(selectUserId);
+  const userId = useSelector(selectUserId);
 
-	const dispatch = useDispatch();
-	const { isSuccess, data } = useGetUserByIdQuery(userId);
+  const dispatch = useDispatch();
+  const { isSuccess, data } = useGetUserByIdQuery(userId);
 
-	isSuccess && dispatch(setUserInfo(data));
+  isSuccess && dispatch(setUserInfo(data));
 
-	return (
-		<div className={s.profile}>
-			<Header />
-			<Info />
-			<MyCourses />
-		</div>
-	);
+  return (
+    <div className={s.profile}>
+      <Header />
+      <Info />
+      <MyCourses />
+      <ModalNewAuth />
+    </div>
+  );
 };
 
 export default Profile;
