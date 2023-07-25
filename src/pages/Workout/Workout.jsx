@@ -24,7 +24,7 @@ export const Workout = () => {
 			<Video src={src} name={name} course={courseName.ru}/>
 			<div className={s.workout}>
 				<Exercises exercises={exercises} courseName={courseName.en}/>
-				<Progress exercises={exercises} />
+				<Progress exercises={exercises} courseName={courseName.en}/>
 			</div>
 		</div>
 	);

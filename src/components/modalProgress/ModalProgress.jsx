@@ -18,22 +18,17 @@ export const ModalProgress = ({
 	const progress = {};
 	const info = {};
 
-	console.log(courseName);
-
 	const workoutId = useSelector(selectCurrentWorkout);
-	console.log(workoutId);
 	const userId = useSelector(selectUserId);
 	!userId && console.log("Loading...");
 
 	const setProgress = (key, value, obj) => {
 		obj[key] = value;
-		console.log(obj);
 		return obj;
 	};
 
 	const onChange = (event, exerciseId, maxAmount) => {
 		event.target.value = compareAmounts(+event.target.value, maxAmount);
-
 		setProgress(
 			exerciseId,
 			calcPercent(+event.target.value, maxAmount),
@@ -57,6 +52,8 @@ export const ModalProgress = ({
 	const [setUserProgress] = useSetUserProgressMutation();
 
 	const setAllProgress = () => {
+		if (!Object.keys(progress).length) return console.log("Прогресс не заполнен");
+		
 		setProgress("courseName", courseName, info);
 		setProgress("workoutId", workoutId, info);
 		setProgress("userId", userId, info);
@@ -65,13 +62,13 @@ export const ModalProgress = ({
 		submitProgress();
 
 		setIsOpen(false);
-		setIsSubmitted(true);
 	};
 
 	const submitProgress = async () => {
 		await setUserProgress(info)
 			.then((result) => {
 				console.log(result);
+				setIsSubmitted(true);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -102,6 +99,7 @@ export const ModalProgress = ({
 					<h2 className={s.heading}>Мой прогресс</h2>
 					<div className={s.inputs}>
 						{exercises.map((exercise, i) => {
+							const maxAmount = exercise.amount;
 							return (
 								<label key={i} className={s.label}>
 									{`Сколько раз вы сделали ${exercise.name
@@ -112,13 +110,14 @@ export const ModalProgress = ({
 										type={"number"}
 										uniqueClass={s.input}
 										placeholder="Введите значение"
-										max={exercise.amount}
+										max={maxAmount}
 										min={0}
+										placeholderText={maxAmount}
 										onChange={(event) => {
 											onChange(
 												event,
 												exercise["_id"],
-												exercise.amount
+												maxAmount
 											);
 										}}
 									/>

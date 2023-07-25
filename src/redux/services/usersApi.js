@@ -34,6 +34,9 @@ export const usersApi = createApi({
 				body: body.completed,
 			}),
 		}),
+		getUserProgress: build.query({
+			query: (body) => `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
+		}),
 	}),
 });
 
@@ -43,4 +46,5 @@ export const {
 	useAddNewUserMutation,
 	useSetUserProgressMutation,
 	useSetUserWorkoutCompletedMutation,
+	useGetUserProgressQuery
 } = usersApi;
