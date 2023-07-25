@@ -1,4 +1,3 @@
-/* eslint-disable */
 import s from "./ProgressBar.module.scss";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { useSelector } from "react-redux";
