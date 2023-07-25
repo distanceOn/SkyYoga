@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Main from "../pages/Main/Main";
 import Profile from "../pages/Profile/Profile";
 import Course from "../pages/Course/Course";
-import { Workouts } from "../pages/Workouts/Workouts";
+import { Workout } from "../pages/Workout/Workout";
 import ProtectedRoute from "./ProtectedRoute";
 import { Auth } from "../pages/Auth/Auth";
 
@@ -19,7 +19,7 @@ const AppRoutes = () => {
 
 			<Route element={<ProtectedRoute />}>
 				<Route path="/profile" element={<Profile />} />
-				<Route path="/workout" element={<Workouts />} />
+				<Route path="/workout" element={<Workout />} />
 			</Route>
 		</Routes>
 	);
