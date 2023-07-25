@@ -6,6 +6,7 @@ export const usersApi = createApi({
 		baseUrl:
 			"https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/",
 	}),
+	tagTypes: ["Progress"],
 	endpoints: (build) => ({
 		getUsers: build.query({
 			query: () => "users.json",
@@ -26,6 +27,7 @@ export const usersApi = createApi({
 				method: "PATCH",
 				body: body.progress,
 			}),
+			invalidatesTags: ["Progress"],
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
@@ -35,7 +37,9 @@ export const usersApi = createApi({
 			}),
 		}),
 		getUserProgress: build.query({
-			query: (body) => `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
+			query: (body) =>
+				`users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}/exercises.json`,
+			providesTags: ["Progress"],
 		}),
 	}),
 });
@@ -46,5 +50,5 @@ export const {
 	useAddNewUserMutation,
 	useSetUserProgressMutation,
 	useSetUserWorkoutCompletedMutation,
-	useGetUserProgressQuery
+	useGetUserProgressQuery,
 } = usersApi;
