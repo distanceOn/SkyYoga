@@ -1,6 +1,6 @@
 import s from "./Exercises.module.scss";
 import { useState } from "react";
-import { ModalProgress } from "../../../components/Prgsss/ModalProgress";
+import { ModalProgress } from "../../../components/ModalProgress/ModalProgress";
 import { ModalSubmittedProgress } from "../../../components/ModalSubmittedProgress/ModalSubmittedProgress";
 import Button from "../../../components/Button/Button";
 
