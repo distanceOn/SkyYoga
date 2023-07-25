@@ -2,7 +2,7 @@ import s from "./Input.module.scss";
 
 
 export const Input = ({ type, placeholderText, onChange, uniqueClass, max, min }) => {
-const handleChange = (e) => {
+	const handleChange = (e) => {
 		onChange(e);
 	};
 	return (
