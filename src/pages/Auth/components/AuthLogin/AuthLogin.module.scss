@@ -1,0 +1,67 @@
+.btn__register {
+	width: 275px;
+	height: 52px;
+
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: -0.05px;
+	color: black;
+
+	background-color: #fff;
+
+	border: 1px solid #d0cece;
+	border-radius: 46px;
+
+	cursor: pointer;
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: #d0cece;
+	}
+
+	&:active {
+		background-color: #d9d9d9;
+	}
+}
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+}
+.container {
+	max-width: 100%;
+	height: 100vh;
+	margin: 0 auto;
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.85);
+}
+.modal {
+	position: absolute;
+	z-index: 2;
+	left: calc(50% - (366px / 2));
+	top: calc(50% - (439px / 2));
+	opacity: 1;
+}
+.login {
+	max-width: 366px;
+
+	background-color: #ffffff;
+	border-radius: 12px;
+
+	display: flex;
+
+	flex-direction: column;
+
+	align-items: center;
+	padding: 43px 47px 47px 40px;
+	justify-content: space-between;
+	&__margin {
+		margin-top: 60px;
+		margin-bottom: 20px;
+		&_top {
+			margin-top: 20px;
+		}
+	}
+}
