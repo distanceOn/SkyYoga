@@ -65,6 +65,8 @@ export const ModalProgress = ({
 				if (Object.values(data.progress).every((e) => e === 100)) {
 					console.log("Completed");
 					submitWorkoutStatus({ completed: true });
+				} else {
+					submitWorkoutStatus({ completed: false });
 				}
 				setIsSubmitted(true);
 			})
