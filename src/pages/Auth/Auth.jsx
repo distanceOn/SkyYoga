@@ -23,6 +23,7 @@ export const Auth = (props) => {
 		navigate("/profile");
 	}, [dispatch, navigate]);
 
+
 	// отслеживание состояния ошибки для попап
 	const [isError, setIsError] = useState(false);
 

@@ -1,0 +1,82 @@
+.menu {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	&:has(.btns-enter-active) {
+		animation: slidein__right 0.7s;
+	}
+	&:has(.btns-exit-active) {
+		animation: slidein__left 0.7s;
+	}
+}
+
+.btn {
+	width: 100px;
+	cursor: pointer;
+	padding: 5px 16px 7px 16px;
+	border-color: transparent;
+	border-radius: 46px;
+	background: #140d40;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	transition: all 0.2s;
+	&:hover {
+		background: #2d1f79;
+	}
+	&:active {
+		background: #3b29a1;
+	}
+}
+
+.btns {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+
+	&-enter {
+		opacity: 0;
+		transform: translateX(50%);
+
+		&-active {
+			transition: all 300ms;
+
+			opacity: 1;
+
+			transform: translateX(0);
+		}
+	}
+
+	&-exit {
+		opacity: 1;
+
+		&-active {
+			transition: all 300ms;
+
+			opacity: 0;
+
+			transform: translateX(50%);
+		}
+	}
+}
+
+@keyframes slidein__right {
+	0% {
+		transform: translateX(50%);
+	}
+	100% {
+		transform: translateX(-2%);
+	}
+}
+
+@keyframes slidein__left {
+	0% {
+		transform: translateX(0%);
+	}
+
+	100% {
+		transform: translateX(61%);
+	}
+}

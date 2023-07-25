@@ -8,6 +8,7 @@ const initialState = {
 	refresh: null,
 	courses: null,
 	exercises: null,
+	currentWorkout: null,
 };
 
 const userSlice = createSlice({
@@ -47,6 +48,10 @@ const userSlice = createSlice({
 			courses: payload.courses,
 			login: payload.login,
 		}),
+		setCurrentWorkout: (state, { payload }) => ({
+			...state,
+			currentWorkout: payload.currentWorkout,
+		}),
 	},
 });
 export const {
@@ -58,6 +63,7 @@ export const {
 	setExercises,
 	setCourses,
 	setUserInfo,
+	setCurrentWorkout
 } = userSlice.actions;
 
 export default userSlice.reducer;

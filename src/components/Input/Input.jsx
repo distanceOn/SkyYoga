@@ -1,7 +1,8 @@
 import s from "./Input.module.scss";
 
-export const Input = ({ type, placeholderText, onChange, uniqueClass }) => {
-	const handleChange = (e) => {
+
+export const Input = ({ type, placeholderText, onChange, uniqueClass, max, min }) => {
+const handleChange = (e) => {
 		onChange(e);
 	};
 	return (
@@ -11,6 +12,8 @@ export const Input = ({ type, placeholderText, onChange, uniqueClass }) => {
 				placeholder={placeholderText}
 				onChange={handleChange}
 				className={uniqueClass ? uniqueClass : s.input}
+				max={max}
+				min={min}
 			/>
 		</div>
 	);

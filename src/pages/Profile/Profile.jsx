@@ -6,6 +6,7 @@ import { useGetUserByIdQuery } from "../../redux/services/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfo } from "../../redux/slices/user";
 import { selectUserId } from "../../redux/selectors";
+import { useEffect } from "react";
 
 const Profile = () => {
 	const userId = useSelector(selectUserId);
@@ -13,7 +14,9 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
-	isSuccess && dispatch(setUserInfo(data));
+	useEffect(() => {
+		isSuccess && dispatch(setUserInfo(data));
+	}, [isSuccess]);
 
 	return (
 		<div className={s.profile}>
