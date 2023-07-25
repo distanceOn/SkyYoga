@@ -31,7 +31,7 @@ export const usersApi = createApi({
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
-				url: `users/${body.userId}/courses/${body.courseName}/${body.workoutId}.json`,
+				url: `users/${body.userId}/courses/${body.courseName}/workouts/${body.workoutId}.json`,
 				method: "PATCH",
 				body: body.completed,
 			}),

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import s from "./ModalProgress.module.scss";
 import { CSSTransition } from "react-transition-group";
 import Button from "../Button/Button";
@@ -5,7 +6,12 @@ import { Input } from "../Input/Input";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentWorkout, selectUserId } from "../../redux/selectors";
-import { useSetUserProgressMutation } from "../../redux/services/usersApi";
+import {
+	useSetUserProgressMutation,
+	useSetUserWorkoutCompletedMutation,
+} from "../../redux/services/usersApi";
+import { onChange } from "./onChange";
+import { setProgressToObj } from "./setProgressToObj";
 
 export const ModalProgress = ({
 	isOpen,
@@ -22,52 +28,45 @@ export const ModalProgress = ({
 	const userId = useSelector(selectUserId);
 	!userId && console.log("Loading...");
 
-	const setProgress = (key, value, obj) => {
-		obj[key] = value;
-		return obj;
-	};
-
-	const onChange = (event, exerciseId, maxAmount) => {
-		event.target.value = compareAmounts(+event.target.value, maxAmount);
-		setProgress(
-			exerciseId,
-			calcPercent(+event.target.value, maxAmount),
-			progress
-		);
-	};
-
-	const calcPercent = (currentAmount, maxAmount) =>
-		(currentAmount * 100) / maxAmount;
-
-	const compareAmounts = (currentAmount, maxAmount) => {
-		if (currentAmount < 0) {
-			return 1;
-		} else if (currentAmount > maxAmount) {
-			return maxAmount;
-		} else {
-			return currentAmount;
-		}
-	};
-
 	const [setUserProgress] = useSetUserProgressMutation();
+	const [setUserWorkoutCompleted] = useSetUserWorkoutCompletedMutation();
 
 	const setAllProgress = () => {
-		if (!Object.keys(progress).length) return console.log("Прогресс не заполнен");
-		
-		setProgress("courseName", courseName, info);
-		setProgress("workoutId", workoutId, info);
-		setProgress("userId", userId, info);
-		setProgress("progress", progress, info);
+		if (!Object.keys(progress).length)
+			return console.log("Прогресс не заполнен");
 
-		submitProgress();
+		setProgressToObj("courseName", courseName, info);
+		setProgressToObj("workoutId", workoutId, info);
+		setProgressToObj("userId", userId, info);
+		setProgressToObj("progress", progress, info);
+
+		submitProgress(info);
 
 		setIsOpen(false);
 	};
 
-	const submitProgress = async () => {
-		await setUserProgress(info)
-			.then((result) => {
+	const submitWorkoutStatus = async (completed) => {
+		await setUserWorkoutCompleted({
+			userId,
+			courseName,
+			workoutId,
+			completed,
+		})
+			.then(() => {
 				console.log(result);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const submitProgress = async (data) => {
+		await setUserProgress(data)
+			.then(() => {
+				if (Object.values(data.progress).every((e) => e === 100)) {
+					console.log("Completed");
+					submitWorkoutStatus({ completed: true });
+				}
 				setIsSubmitted(true);
 			})
 			.catch((err) => {
@@ -117,7 +116,8 @@ export const ModalProgress = ({
 											onChange(
 												event,
 												exercise["_id"],
-												maxAmount
+												maxAmount,
+												progress
 											);
 										}}
 									/>
