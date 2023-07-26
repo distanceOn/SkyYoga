@@ -6,10 +6,11 @@ export const usersApi = createApi({
 		baseUrl:
 			"https://skyfitness-9edcd-default-rtdb.europe-west1.firebasedatabase.app/",
 	}),
-	tagTypes: ["Progress"],
+	tagTypes: ["Progress", "Completed"],
 	endpoints: (build) => ({
 		getUserById: build.query({
 			query: (userId) => `users/${userId}.json`,
+			providesTags: ["Completed"],
 		}),
 		addNewUser: build.mutation({
 			query: (body) => ({
@@ -24,7 +25,7 @@ export const usersApi = createApi({
 				method: "PATCH",
 				body: body.progress,
 			}),
-			invalidatesTags: ["Progress"],
+			invalidatesTags: ["Completed"],
 		}),
 		setUserWorkoutCompleted: build.mutation({
 			query: (body) => ({
@@ -32,6 +33,7 @@ export const usersApi = createApi({
 				method: "PATCH",
 				body: body.completed,
 			}),
+			invalidatesTags: ["Progress"],
 		}),
 		getUserProgress: build.query({
 			query: (body) =>
