@@ -39,9 +39,11 @@ export const AuthLogin = ({
 				dispatch(
 					setLogin({
 						userId: user.uid,
+						email: user.email,
 					})
 				);
 				localStorage.setItem("userID", user.uid);
+				localStorage.setItem("userEmail", user.email);
 				navigate("/profile");
 			})
 			.catch((error) => {
@@ -88,7 +90,11 @@ export const AuthLogin = ({
 					</div>
 
 					<div className={s.login__margin}>
-						<Button buttonText="Войти" type="submit" onClick={onSubmit} />
+						<Button
+							buttonText="Войти"
+							type="submit"
+							onClick={onSubmit}
+						/>
 					</div>
 					<button
 						className={s.btn__register}

@@ -1,18 +1,52 @@
 import s from "./Info.module.scss";
 import Button from "../../../components/Button/Button";
+import { useSelector } from "react-redux";
+import { selectUserEmail } from "../../../redux/selectors";
+import { ModalNewAuth } from "../../../components/ModalNewAuth/ModalNewAuth";
+import { useState } from "react";
+import { ModalSubmitted } from "../../../components/ModalSubmitted/ModalSubmitted";
 
 const Info = () => {
+	const [isModalNewAuth, setIsModalNewAuth] = useState(false);
+	const [modalNewAuthType, setModalNewAuthType] = useState(null);
+	const [isSuccess, setIsSuccess] = useState(null);
+
+	const email = useSelector(selectUserEmail);
+	if (!email) return;
+
+	const openModalNewAuth = (typeModal) => {
+		setIsModalNewAuth(true);
+		setModalNewAuthType(typeModal);
+	};
+
 	return (
 		<div className={s.info}>
 			<h2 className={s.info__h2}>Мой профиль</h2>
 			<div className={s.info__dataContainer}>
-				<p className={s.info__data}>Логин: sergey.petrov96</p>
-				<p className={s.info__data}>Пароль: 4fkhdj880d</p>
+				<p className={s.info__data}>Логин: {email}</p>
+				<p className={s.info__data}>Пароль: ********* </p>
 			</div>
 			<div className={s.info__btns}>
-				<Button buttonText="Редактировать логин" />
-				<Button buttonText="Редактировать пароль" />
+				<Button
+					onClick={() => openModalNewAuth("login")}
+					buttonText="Редактировать логин"
+				/>
+				<Button
+					onClick={() => openModalNewAuth("password")}
+					buttonText="Редактировать пароль"
+				/>
 			</div>
+			<ModalNewAuth
+				type={modalNewAuthType}
+				isOpen={isModalNewAuth}
+				setIsOpen={setIsModalNewAuth}
+				setIsSuccess={setIsSuccess}
+			/>
+			<ModalSubmitted
+				isOpen={isSuccess}
+				setIsOpen={setIsSuccess}
+				title={"Данные успешно изменены!"}
+			/>
 		</div>
 	);
 };
