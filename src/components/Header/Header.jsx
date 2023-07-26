@@ -1,14 +1,13 @@
-/* eslint-disable no-unused-vars */
 import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import s from "./Header.module.scss";
 import Button from "../Button/Button";
 import { getAuth, signOut } from "firebase/auth";
 
 import { useSelector, useDispatch } from "react-redux";
+
 import { selectIsAuthenticated } from "../../redux/selectors";
-import { setLogout } from "../../redux/slices/user";
+import { Menu } from "../Menu/Menu";
 
 const Header = () => {
   const location = useLocation();

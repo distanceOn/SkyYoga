@@ -14,10 +14,9 @@
 .info {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: baseline;
   cursor: pointer;
   &__name {
-    color: #000;
     text-align: right;
     font-size: 24px;
     font-style: normal;
@@ -25,4 +24,16 @@
     line-height: 32px;
     letter-spacing: -0.1px;
   }
+}
+
+.white {
+  color: #ffffff;
+}
+
+.black {
+  color: #000;
+}
+
+.arrow__rotate_svg {
+  transform: rotate(180deg);
 }

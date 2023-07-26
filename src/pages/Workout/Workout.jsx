@@ -7,29 +7,24 @@ import s from "./Workout.module.scss";
 
 import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
-
 import { useGetWorkoutByIdQuery } from "../../redux/services/workoutsApi";
+import { selectCurrentWorkout } from "../../redux/selectors";
 
 export const Workout = () => {
-  const workoutId = useSelector((state) => state.user.currentWorkout);
+	const workoutId = useSelector(selectCurrentWorkout);
+	!workoutId && console.log("Загрузка...");
+	const { data, isLoading } = useGetWorkoutByIdQuery(workoutId);
+	if (isLoading) return console.log("Загрузка...");
+	const { src, courseName, exercises, name } = data;
 
-  !workoutId && console.log("loading");
-  const { data, isLoading } = useGetWorkoutByIdQuery(workoutId);
-
-  isLoading && console.log("loading");
-
-  if (isLoading) return <h1>Loading...</h1>;
-
-  const { src, course, name, exercises } = data;
-
-  return (
-    <div className={s.main}>
-      <Header />
-      <Video src={src} name={name} course={course} />
-      <div className={s.workout}>
-        <Exercises exercises={exercises} />
-        <Progress exercises={exercises} />
-      </div>
-    </div>
-  );
+	return (
+		<div className={s.main}>
+			<Header />
+			<Video src={src} name={name} course={courseName.ru} />
+			<div className={s.workout}>
+				<Exercises exercises={exercises} courseName={courseName.en} />
+				<Progress exercises={exercises} courseName={courseName.en} />
+			</div>
+		</div>
+	);
 };
