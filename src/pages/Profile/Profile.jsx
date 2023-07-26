@@ -13,7 +13,6 @@ const Profile = () => {
 
 	const userId = useSelector(selectUserId);
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
-
 	useEffect(() => {
 		isSuccess && dispatch(setUserInfo(data));
 	}, [isSuccess]);

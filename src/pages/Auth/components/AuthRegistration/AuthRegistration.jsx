@@ -31,8 +31,8 @@ export const AuthRegistration = ({
 }) => {
 	const [addNewUser] = useAddNewUserMutation();
 
-	const createUser = async (uid, email) => {
-		await addNewUser(userData(uid, email));
+	const createUser = async (uid) => {
+		await addNewUser(userData(uid));
 	};
 
 	const onLogin = (e) => {
@@ -48,7 +48,7 @@ export const AuthRegistration = ({
 			.then((userData) => {
 				const user = userData.user;
 
-				createUser(user.uid, email);
+				createUser(user.uid);
 				navigate("/login");
 			})
 			.catch((error) => {

@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 import { selectUserEmail } from "../../../redux/selectors";
 import { ModalNewAuth } from "../../../components/ModalNewAuth/ModalNewAuth";
 import { useState } from "react";
+import { ModalSubmitted } from "../../../components/ModalSubmitted/ModalSubmitted";
 
 const Info = () => {
 	const [isModalNewAuth, setIsModalNewAuth] = useState(false);
 	const [modalNewAuthType, setModalNewAuthType] = useState(null);
+	const [isSuccess, setIsSuccess] = useState(null);
 
 	const email = useSelector(selectUserEmail);
 	if (!email) return;
@@ -38,6 +40,12 @@ const Info = () => {
 				type={modalNewAuthType}
 				isOpen={isModalNewAuth}
 				setIsOpen={setIsModalNewAuth}
+				setIsSuccess={setIsSuccess}
+			/>
+			<ModalSubmitted
+				isOpen={isSuccess}
+				setIsOpen={setIsSuccess}
+				title={"Данные успешно изменены!"}
 			/>
 		</div>
 	);

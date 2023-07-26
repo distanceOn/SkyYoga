@@ -1,27 +1,34 @@
+/* eslint-disable */
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
 import s from "./ModalNewAuth.module.scss";
 import { getAuth, updateEmail, updatePassword } from "firebase/auth";
 import Logo from "../Logo/Logo";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../redux/slices/user";
 
-export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
+export const ModalNewAuth = ({ title, type, isOpen, setIsOpen, setIsSuccess }) => {
 	const auth = getAuth();
-	const emailRef = useRef();
+	const modalRef = useRef();
+	const dispatch = useDispatch();
 
-	const newPasswordRef = useRef();
-	const newPasswordConfirmRef = useRef();
+	const [newLogin, setNewLogin] = useState(null);
+	const [newPassword, setNewPassword] = useState(null);
+	const [newPasswordRepeat, setNewPasswordRepeat] = useState(null);
 
 	const handlePasswordChange = () => {
 		const user = auth.currentUser;
-		if (newPasswordRef.current !== newPasswordConfirmRef.current) {
+		if (newPassword !== newPasswordRepeat) {
 			console.log("password doesnot match");
 			return;
 		} else {
-			updatePassword(user, newPasswordRef.current)
+			updatePassword(user, newPassword)
 				.then(() => {
 					console.log("password is changed");
+					setIsOpen(false);
+					setIsSuccess(true);
 				})
 				.catch((error) => {
 					const errorCode = error.code;
@@ -33,9 +40,15 @@ export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
 
 	const handleEmailChange = () => {
 		const user = auth.currentUser;
-
-		updateEmail(user, emailRef.current)
+		console.log(user);
+		if (!newLogin) return console.log("Напишите логин");
+		updateEmail(user, newLogin)
 			.then(() => {
+				localStorage.setItem("userEmail", newLogin);
+				dispatch(setEmail({ email: newLogin }));
+				setIsOpen(false);
+				setIsSuccess(true);
+
 				console.log("email is changed");
 			})
 			.catch((error) => {
@@ -44,16 +57,22 @@ export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
 				console.log(errorCode, errorMessage);
 			});
 	};
-	function select(e) {
-		const input = e.target;
-		input.focus();
-		input.select();
-	}
+
+	const setDataOnChange = (event, setData) => {
+		setData(event.target.value);
+	};
+
+	const resetData = () => {
+		setNewLogin(null);
+		setNewPassword(null);
+		setNewPasswordRepeat(null);
+	};
 
 	return (
 		<CSSTransition
 			in={isOpen}
 			timeout={300}
+			nodeRef={modalRef}
 			classNames={{
 				enter: s["alert-enter"],
 				enterActive: s["alert-enter-active"],
@@ -66,7 +85,9 @@ export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
 				className={s.wrapper}
 				onClick={() => {
 					setIsOpen(!isOpen);
+					resetData();
 				}}
+				ref={modalRef}
 			>
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					{type === "login" ? (
@@ -77,9 +98,10 @@ export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
 							<Input
 								placeholderText="Логин"
 								name="email"
-								ref={emailRef}
 								type="email"
-								onChange={(e) => select(e)}
+								onChange={(event) =>
+									setDataOnChange(event, setNewLogin)
+								}
 							/>
 
 							<div className={s.container__margin}>
@@ -95,16 +117,18 @@ export const ModalNewAuth = ({ title, type, isOpen, setIsOpen }) => {
 							<h1 className={s.title}>{title}</h1>
 
 							<Input
-								ref={newPasswordRef}
 								placeholderText=" Пароль"
 								type="password"
-								onClick={(e) => select(e)}
+								onChange={(event) =>
+									setDataOnChange(event, setNewPassword)
+								}
 							/>
 							<Input
-								ref={newPasswordConfirmRef}
 								placeholderText="Повторите пароль"
 								type="password"
-								onClick={(e) => select(e)}
+								onChange={(event) =>
+									setDataOnChange(event, setNewPasswordRepeat)
+								}
 							/>
 							<div className={s.container__margin}>
 								<Button
