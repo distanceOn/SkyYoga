@@ -13,8 +13,9 @@ const Main = () => {
 
 	useEffect(() => {
 		const storageId = localStorage.getItem("userID");
-		if (!storageId) return;
-		dispatch(setLogin({ userId: storageId }));
+		const storageEmail = localStorage.getItem("userEmail");
+		if (!storageId || !storageEmail) return;
+		dispatch(setLogin({ userId: storageId, email: storageEmail }));
 	}, [dispatch]);
 
 	const { data, isLoading } = useGetCoursesQuery();

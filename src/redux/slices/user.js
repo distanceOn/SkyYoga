@@ -5,6 +5,7 @@ const initialState = {
 	userId: null, //после регистрации и авторизации
 	courses: null,
 	currentWorkout: null,
+	email: null,
 };
 
 const userSlice = createSlice({
@@ -17,6 +18,7 @@ const userSlice = createSlice({
 				...state,
 				userId: payload.userId,
 				isAuthenticated: true,
+				email: payload.email,
 			};
 		},
 		setUserInfo: (state, { payload }) => ({

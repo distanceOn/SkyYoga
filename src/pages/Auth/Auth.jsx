@@ -8,19 +8,20 @@ import { AuthRegistration } from "./components/AuthRegistration/AuthRegistration
 import { auth } from "../../firebase/firebase";
 
 export const Auth = (props) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [repeatPassword, setRepeatPassword] = useState(null);
 
-  useEffect(() => {
-    const storageId = localStorage.getItem("userID");
-    if (!storageId) return;
-    dispatch(setLogin({ userId: storageId }));
-    navigate("/profile");
-  }, [dispatch, navigate]);
+	useEffect(() => {
+		const storageId = localStorage.getItem("userID");
+		const storageEmail = localStorage.getItem("userEmail");
+		if (!storageId || !storageEmail) return;
+		dispatch(setLogin({ userId: storageId, email: storageEmail }));
+		navigate("/profile");
+	}, [dispatch, navigate]);
 
 	// отслеживание состояния ошибки для попап
 	const [isError, setIsError] = useState(false);
@@ -100,7 +101,9 @@ export const Auth = (props) => {
 
 		if (targetElement && isError) {
 			const targetRect = targetElement.getBoundingClientRect();
-			const popupElement = targetElement.parentElement.querySelector(`.${s.popup}`);
+			const popupElement = targetElement.parentElement.querySelector(
+				`.${s.popup}`
+			);
 			const popupRect = popupElement.getBoundingClientRect();
 
 			// Рассчитываем позицию попапа относительно элемента

@@ -9,22 +9,22 @@ import { selectUserId } from "../../redux/selectors";
 import { useEffect } from "react";
 
 const Profile = () => {
-  const userId = useSelector(selectUserId);
+	const userId = useSelector(selectUserId);
 
-  const dispatch = useDispatch();
-  const { isSuccess, data } = useGetUserByIdQuery(userId);
+	const dispatch = useDispatch();
+	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
 	useEffect(() => {
 		isSuccess && dispatch(setUserInfo(data));
 	}, [isSuccess]);
 
-  return (
-    <div className={s.profile}>
-      <Header />
-      <Info />
-      <MyCourses />
-    </div>
-  );
+	return (
+		<div className={s.profile}>
+			<Header />
+			<Info />
+			<MyCourses />
+		</div>
+	);
 };
 
 export default Profile;

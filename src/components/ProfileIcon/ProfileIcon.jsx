@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux";
+import { selectUserEmail } from "../../redux/selectors";
 import s from "./ProfileIcon.module.scss";
 
 const ProfileIcon = ({ isOpen, setIsOpen, color }) => {
+	const email = useSelector(selectUserEmail);
+	if (!email) return;
+	const userLogin = email.split("@")[0];
+
 	const handleSetIsOpen = (e) => {
 		e.stopPropagation();
 		setIsOpen(!isOpen);
@@ -10,10 +16,10 @@ const ProfileIcon = ({ isOpen, setIsOpen, color }) => {
 		<div className={s.profileIcon} onClick={handleSetIsOpen}>
 			<div className={s.icon}></div>
 			<div className={s.info}>
-				<p className={`${s.info__name} ${s[color]}`}>Сергей</p>
+				<p className={`${s.info__name} ${s[color]}`}>{userLogin}</p>
 				<div className={s.info__arrow}>
 					<svg
-						className={isOpen ? `${s.arrow__rotate_svg}`: ""}
+						className={isOpen ? `${s.arrow__rotate_svg}` : ""}
 						xmlns="http://www.w3.org/2000/svg"
 						width="9"
 						height="14"
