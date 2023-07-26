@@ -15,7 +15,7 @@ const Profile = () => {
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
 	useEffect(() => {
-		isSuccess && dispatch(setUserInfo(data));
+		isSuccess && data && dispatch(setUserInfo(data));
 	}, [isSuccess]);
 
 	return (
