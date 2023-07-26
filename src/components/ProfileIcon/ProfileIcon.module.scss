@@ -1,39 +1,61 @@
 .profileIcon {
-  height: 50px;
-  display: flex;
-  gap: 15px;
-  align-items: center;
+	height: 50px;
+	display: flex;
+	gap: 15px;
+	align-items: center;
 }
 .icon {
-  width: 50px;
-  height: 50px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
+	width: 42px;
+	height: 42px;
+	box-sizing: border-box;
+	border: #000 solid 2px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&_white {
+		border: #fff solid 2px;
+	}
+
+	&_svg {
+		width: 60%;
+		height: 60%;
+		margin: 4px;
+		fill: #000;
+	}
 }
 
 .info {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-  cursor: pointer;
-  &__name {
-    text-align: right;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-    letter-spacing: -0.1px;
-  }
+	display: flex;
+	gap: 12px;
+	align-items: baseline;
+	cursor: pointer;
+	&__name {
+		text-align: right;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 32px;
+		letter-spacing: -0.1px;
+	}
 }
 
 .white {
-  color: #ffffff;
+	color: #ffffff;
+  fill: #fff;
+}
+
+.whiteBorder {
+	color: #ffffff;
+  fill: #fff;
 }
 
 .black {
-  color: #000;
+	color: #000;
 }
 
 .arrow__rotate_svg {
-  transform: rotate(180deg);
+	transform: rotate(180deg);
 }

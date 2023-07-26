@@ -26,35 +26,8 @@ export const ModalNewAuth = ({
 	const [newPasswordRepeat, setNewPasswordRepeat] = useState(null);
 	const [error, setError] = useState(null);
 
-	const handlePasswordChange = () => {
-		const user = auth.currentUser;
-		if (!newPassword) return setError("Введите пароль");
-		if (!newPasswordRepeat) return setError("Повторите пароль");
-
-		if (newPassword !== newPasswordRepeat) {
-			console.log("password doesnot match");
-			setError("Пароли не совпадают")
-			return;
-		} else {
-			updatePassword(user, newPassword)
-				.then(() => {
-					console.log("password is changed");
-					setIsOpen(false);
-					setIsSuccess(true);
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					const errorMessage = error.message;
-					setError(errorMessage);
-					console.log(errorCode, errorMessage);
-					setError("Некорректный пароль");
-				});
-		}
-	};
-
 	const handleEmailChange = () => {
 		const user = auth.currentUser;
-		console.log(user);
 		if (!newLogin) return setError("Введите логин");
 		updateEmail(user, newLogin)
 			.then(() => {
@@ -62,15 +35,26 @@ export const ModalNewAuth = ({
 				dispatch(setEmail({ email: newLogin }));
 				setIsOpen(false);
 				setIsSuccess(true);
-
-				console.log("email is changed");
 			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
+			.catch(() => {
 				setError("Некорректный логин");
+			});
+	};
 
-				console.log(errorCode, errorMessage);
+	const handlePasswordChange = () => {
+		const user = auth.currentUser;
+		if (!newPassword) return setError("Введите пароль");
+		if (!newPasswordRepeat) return setError("Повторите пароль");
+		if (newPassword !== newPasswordRepeat)
+			return setError("Пароли не совпадают");
+
+		updatePassword(user, newPassword)
+			.then(() => {
+				setIsOpen(false);
+				setIsSuccess(true);
+			})
+			.catch(() => {
+				setError("Некорректный пароль");
 			});
 	};
 

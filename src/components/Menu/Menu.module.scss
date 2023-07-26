@@ -11,7 +11,7 @@
 }
 
 .btn {
-	width: 100px;
+	width: 110px;
 	cursor: pointer;
 	padding: 5px 16px 7px 16px;
 	border-color: transparent;
@@ -64,10 +64,10 @@
 
 @keyframes slidein__right {
 	0% {
-		transform: translateX(50%);
+		transform: translateX(58%);
 	}
 	100% {
-		transform: translateX(-2%);
+		transform: translateX(-4%);
 	}
 }
 
@@ -77,6 +77,6 @@
 	}
 
 	100% {
-		transform: translateX(61%);
+		transform: translateX(72%);
 	}
 }
