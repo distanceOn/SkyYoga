@@ -35,7 +35,7 @@ const Course = () => {
 	return (
 		<div className={s.container}>
 			<Header />
-			<Title content={title} />
+			<Title content={title} uniqueClass={courseName}/>
 			<Advantages content={advantages} />
 			<Directions content={directions} />
 			<Description content={description} />
