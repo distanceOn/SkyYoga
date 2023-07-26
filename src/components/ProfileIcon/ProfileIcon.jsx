@@ -1,19 +1,14 @@
-import { getAuth } from "firebase/auth";
 import s from "./ProfileIcon.module.scss";
 import { useNavigate } from "react-router-dom";
 
 const ProfileIcon = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  const userName = user.email;
   const navigate = useNavigate();
   const handleProfile = () => navigate("/profile");
   return (
     <div className={s.profileIcon} onClick={handleProfile}>
       <div className={s.icon}></div>
       <div className={s.info}>
-        <p className={s.info__name}>{userName}</p>
+        <p className={s.info__name}></p>
         <div className={s.info__arrow} onClick={(e) => e.stopPropagation()}>
           <svg
             width="14"

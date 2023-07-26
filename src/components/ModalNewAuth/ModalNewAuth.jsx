@@ -50,25 +50,59 @@ export const ModalNewAuth = (props) => {
     input.focus();
     input.select();
   }
-  return (
-    <div className={s.wrapper}>
-      <div className={s.container}>
-        <div className={s.modal}>
-          <div className={s.login}>
-            <Logo />
-            <h1 className={s.title}>{props.title}</h1>
-            <Input
-              ref={emailRef}
-              onChange={(e) => {
-                select(e);
-              }}
-              placeholderText={
-                props.title === "Новый пароль:" ? "Пароль" : "Логин"
-              }
-            />
-            {props.title === "Новый пароль:" && (
-              <Input placeholderText="Повторите пароль" />
-            )}
+  if (props.login) {
+    return (
+      <div className={s.wrapper}>
+        <div className={s.container}>
+          <div className={s.modal}>
+            <div className={s.login}>
+              <Logo />
+              <h1 className={s.title}>{props.title}</h1>
+
+              <Input
+                placeholderText="Логин"
+                name="email"
+                ref={emailRef}
+                type="email"
+                onChange={(e) => select(e)}
+              />
+
+              <div className={s.login__margin}>
+                <Button buttonText="Сохранить" onClick={handleSubmit} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className={s.wrapper}>
+        <div className={s.container}>
+          <div className={s.modal}>
+            <div className={s.login}>
+              <Logo />
+              <h1 className={s.title}>{props.title}</h1>
+
+              <Input
+                placeholderText="Пароль"
+                ref={currentPasswordRef}
+                type="password"
+                onClick={(e) => select(e)}
+              />
+              <Input
+                ref={newPasswordRef}
+                placeholderText="Повторите пароль"
+                type="password"
+                onClick={(e) => select(e)}
+              />
+              <Input
+                ref={newPasswordConfirmRef}
+                placeholderText="Повторите пароль"
+                type="password"
+                onClick={(e) => select(e)}
+              />
+            </div>
 
             <div className={s.login__margin}>
               <Button buttonText="Сохранить" onClick={handleSubmit} />
@@ -76,6 +110,6 @@ export const ModalNewAuth = (props) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
