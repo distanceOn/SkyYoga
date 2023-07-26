@@ -9,9 +9,9 @@ import { selectUserId } from "../../redux/selectors";
 import { useEffect } from "react";
 
 const Profile = () => {
-	const userId = useSelector(selectUserId);
-
 	const dispatch = useDispatch();
+
+	const userId = useSelector(selectUserId);
 	const { isSuccess, data } = useGetUserByIdQuery(userId);
 
 	useEffect(() => {

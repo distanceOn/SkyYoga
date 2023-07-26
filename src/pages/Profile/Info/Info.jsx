@@ -2,10 +2,20 @@ import s from "./Info.module.scss";
 import Button from "../../../components/Button/Button";
 import { useSelector } from "react-redux";
 import { selectUserEmail } from "../../../redux/selectors";
+import { ModalNewAuth } from "../../../components/ModalNewAuth/ModalNewAuth";
+import { useState } from "react";
 
 const Info = () => {
+	const [isModalNewAuth, setIsModalNewAuth] = useState(false);
+	const [modalNewAuthType, setModalNewAuthType] = useState(null);
+
 	const email = useSelector(selectUserEmail);
 	if (!email) return;
+
+	const openModalNewAuth = (typeModal) => {
+		setIsModalNewAuth(true);
+		setModalNewAuthType(typeModal);
+	};
 
 	return (
 		<div className={s.info}>
@@ -15,9 +25,20 @@ const Info = () => {
 				<p className={s.info__data}>Пароль: ********* </p>
 			</div>
 			<div className={s.info__btns}>
-				<Button buttonText="Редактировать логин" />
-				<Button buttonText="Редактировать пароль" />
+				<Button
+					onClick={() => openModalNewAuth("login")}
+					buttonText="Редактировать логин"
+				/>
+				<Button
+					onClick={() => openModalNewAuth("password")}
+					buttonText="Редактировать пароль"
+				/>
 			</div>
+			<ModalNewAuth
+				type={modalNewAuthType}
+				isOpen={isModalNewAuth}
+				setIsOpen={setIsModalNewAuth}
+			/>
 		</div>
 	);
 };

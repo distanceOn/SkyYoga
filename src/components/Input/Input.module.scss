@@ -9,7 +9,8 @@
   padding-bottom: 5px;
   outline: none;
 
-  ::placeholder {
+  &::placeholder {
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
