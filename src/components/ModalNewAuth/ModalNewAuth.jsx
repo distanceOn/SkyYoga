@@ -1,43 +1,41 @@
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
 import s from "./ModalNewAuth.module.scss";
-import {
-  getAuth,
-  updateEmail,
-  EmailAuthProvider,
-  updatePassword,
-  reauthenticateWithCredential,
-} from "firebase/auth";
+import { getAuth, updateEmail, updatePassword } from "firebase/auth";
 import Logo from "../Logo/Logo";
 import { useRef } from "react";
 
 export const ModalNewAuth = (props) => {
   const auth = getAuth();
   const emailRef = useRef();
-  const currentPasswordRef = useRef();
+
   const newPasswordRef = useRef();
   const newPasswordConfirmRef = useRef();
 
-  const user = auth.currentUser;
-
-  const reauthenticate = (currentPassword) => {
-    console.log(currentPassword);
-    let credential = EmailAuthProvider.credential(user.email, currentPassword);
-    reauthenticateWithCredential(user, credential);
+  const handlePasswordChange = () => {
+    const user = auth.currentUser;
+    if (newPasswordRef.current !== newPasswordConfirmRef.current) {
+      console.log("password doesnot match");
+      return;
+    } else {
+      updatePassword(user, newPasswordRef.current)
+        .then(() => {
+          console.log("password is changed");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+    }
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    reauthenticate(currentPasswordRef.current)
+
+  const handleEmailChange = () => {
+    const user = auth.currentUser;
+
+    updateEmail(user, emailRef.current)
       .then(() => {
-        if (newPasswordRef !== newPasswordConfirmRef) {
-          return console.log("password does not match");
-        }
-        if (emailRef.current !== user.email) {
-          updateEmail(emailRef.current);
-        }
-        if (newPasswordRef.current.value) {
-          updatePassword(newPasswordRef.current);
-        }
+        console.log("email is changed");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -68,7 +66,7 @@ export const ModalNewAuth = (props) => {
               />
 
               <div className={s.login__margin}>
-                <Button buttonText="Сохранить" onClick={handleSubmit} />
+                <Button buttonText="Сохранить" onClick={handleEmailChange} />
               </div>
             </div>
           </div>
@@ -85,14 +83,8 @@ export const ModalNewAuth = (props) => {
               <h1 className={s.title}>{props.title}</h1>
 
               <Input
-                placeholderText="Пароль"
-                ref={currentPasswordRef}
-                type="password"
-                onClick={(e) => select(e)}
-              />
-              <Input
                 ref={newPasswordRef}
-                placeholderText="Повторите пароль"
+                placeholderText=" Пароль"
                 type="password"
                 onClick={(e) => select(e)}
               />
@@ -102,10 +94,9 @@ export const ModalNewAuth = (props) => {
                 type="password"
                 onClick={(e) => select(e)}
               />
-            </div>
-
-            <div className={s.login__margin}>
-              <Button buttonText="Сохранить" onClick={handleSubmit} />
+              <div className={s.login__margin}>
+                <Button buttonText="Сохранить" onClick={handlePasswordChange} />
+              </div>
             </div>
           </div>
         </div>

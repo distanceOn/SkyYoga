@@ -6,7 +6,6 @@ import { useGetUserByIdQuery } from "../../redux/services/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfo } from "../../redux/slices/user";
 import { selectUserId } from "../../redux/selectors";
-import { ModalNewAuth } from "../../components/ModalNewAuth/ModalNewAuth";
 
 const Profile = () => {
   const userId = useSelector(selectUserId);
@@ -21,7 +20,6 @@ const Profile = () => {
       <Header />
       <Info />
       <MyCourses />
-      <ModalNewAuth />
     </div>
   );
 };

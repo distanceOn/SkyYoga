@@ -4,14 +4,16 @@ import Logo from "../Logo/Logo";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import s from "./Header.module.scss";
 import Button from "../Button/Button";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import { getAuth, signOut } from "firebase/auth";
+
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuthenticated } from "../../redux/selectors";
 import { setLogout } from "../../redux/slices/user";
 
 const Header = () => {
   const location = useLocation();
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

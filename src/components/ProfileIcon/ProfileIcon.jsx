@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ProfileIcon = () => {
   const navigate = useNavigate();
   const handleProfile = () => navigate("/profile");
+
   return (
     <div className={s.profileIcon} onClick={handleProfile}>
       <div className={s.icon}></div>
