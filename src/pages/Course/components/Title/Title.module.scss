@@ -1,5 +1,5 @@
 .title {
-	background-image: url('/assets/imgs/yoga_background.jpeg');
+	// background-image: url("/assets/imgs/yoga_background.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -15,4 +15,23 @@
 		margin: 30px;
 		width: 50%;
 	}
+}
+.yoga {
+	background-image: url("/assets/imgs/yoga_background.jpeg");
+}
+
+.stretching {
+	background-image: url("/assets/imgs/stretching_bg.png");
+}
+
+.step_aerobics {
+	background-image: url("/assets/imgs/sa_bg.png");
+}
+
+.bodyflex {
+	background-image: url("/assets/imgs/bodyflex_bg.png");
+}
+
+.dance_fitness {
+	background-image: url("/assets/imgs/df_bg.png");
 }
