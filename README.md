@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# SkyFitnessPro - Онлайн-платформа для фитнеса и тренировок
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[SkyFitnessPro](https://main--sky-yoga.netlify.app)
 
-## Available Scripts
+Добро пожаловать в SkyYoga! Это онлайн-платформа, созданная с помощью React, которая предоставляет удобный доступ к йоге, помогая пользователям находить внутренний покой и гармонию.
 
-In the project directory, you can run:
+## Описание
+SkyYoga предоставляет следующий функционал для пользователей:
 
-### `npm start`
+### Неавторизованные пользователи:
+- **Главная страница:** Неавторизованные пользователи могут ознакомиться с предложениями платформы, списком курсов.
+- **Курсы:** Пользователи могут ознакоиться с подробностями каждого курса по нажатию на блок курса.
+- **Логин и Регистрация:** Пользователи могут создать аккаунт, чтобы получить полный доступ к курсам и прогрессу, также на странице аутентификации происходит отслеживание и обработка ошибок при неверно введенных данных.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Авторизованные пользователи:
+- **Профиль пользователя:** Авторизованные пользователи имеют доступ к своему профилю, где они могут просматривать и редактировать свои данные, а также просматривать свои курсы и прогресс.
+- **Курсы:** Пользователи могут просматривать различные курсы, представленные на платформе, и выбирать те, которые соответствуют их интересам и уровню подготовки.
+- **Видеоуроки:** Каждый курс содержит видеоуроки, которые пользователи могут просматривать для освоения практик.
+- **Прогресс в курсах:** В профиле пользователей доступен прогресс в каждом курсе. Они могут отмечать завершенные уроки и видео, и их прогресс будет сохраняться.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Запуск проекта
+Для развертывания SkyYoga на локальной машине выполните следующие шаги:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Склонируйте репозиторий проекта:
+  git clone https://github.com/distanceOn/SkyYoga.git
+2. Установите зависимости:
+  npm install
+3. Запустите проект:
+  npm start
+4. Откройте веб-браузер и перейдите по адресу [http://localhost:3000/](http://localhost:3000/) для доступа к платформе SkyYoga.
