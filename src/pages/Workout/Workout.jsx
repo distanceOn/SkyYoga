@@ -20,7 +20,7 @@ export const Workout = () => {
 	return (
 		<div className={s.main}>
 			<Header />
-			<Video src={src} name={name} course={courseName.ru} />
+			<Video src={src} name={name} courseName={courseName.ru} />
 			<div className={s.workout}>
 				<Exercises exercises={exercises} courseName={courseName.en} />
 				<Progress exercises={exercises} courseName={courseName.en} />
