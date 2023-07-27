@@ -28,8 +28,7 @@ const Course = () => {
 	const courseName = params.name;
 
 	const { data, isLoading } = useGetCourseByNameQuery(courseName);
-	//пока некрасиво
-	if (isLoading) return <h1>Loading...</h1>;
+	if (isLoading) return console.log("Загрузка");
 
 	const { name: title, advantages, directions, description } = data;
 	return (
