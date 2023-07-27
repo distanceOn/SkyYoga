@@ -2,16 +2,20 @@ import s from "./ModalSelectWorkout.module.scss";
 import { CSSTransition } from "react-transition-group";
 import { Workout } from "./Workout/Workout";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 	const userCourse = useSelector((state) => state.user.courses[course]);
 	if (!userCourse) return console.log("Загрузка");
 	const { workouts, courseNameRu } = userCourse;
 
+	const modalRef = useRef();
+
 	return (
 		<CSSTransition
 			in={isOpen}
 			timeout={300}
+			nodeRef={modalRef}
 			classNames={{
 				enter: s["alert-enter"],
 				enterActive: s["alert-enter-active"],
@@ -25,6 +29,7 @@ export const ModalSelectWorkout = ({ isOpen, setIsOpen, course }) => {
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
+				ref={modalRef}
 			>
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
 					<h2 className={s.heading}>Выберите тренировку</h2>

@@ -1,26 +1,23 @@
 import s from "./Exercises.module.scss";
 import { useState } from "react";
-import { ModalProgress } from "../../../components/modalProgress/ModalProgress";
-import { ModalSubmittedProgress } from "../../../components/ModalSubmittedProgress/ModalSubmittedProgress";
+import { ModalProgress } from "../../../components/ModalProgress/ModalProgress";
+import { ModalSubmitted } from "../../../components/ModalSubmitted/ModalSubmitted";
 import Button from "../../../components/Button/Button";
 
-export const Exercises = () => {
+export const Exercises = ({ exercises, courseName }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
-	const exercisesTypes = [
-		"Наклон вперед (10 повторений)",
-		"Наклон назад (10 повторений)",
-		"Поднятие ног, согнутых в коленях (5 повторений)",
-	];
+	const exerciseNames = exercises.map((ex) => ex.name);
+
 	return (
 		<section className={s.container}>
 			<h2 className={s.heading}>Упражнения</h2>
 			<ul className={s.ul}>
-				{exercisesTypes.map((item, i) => {
+				{exerciseNames.map((name, i) => {
 					return (
 						<li key={i} className={s.li}>
-							{item}
+							{name}
 						</li>
 					);
 				})}
@@ -33,10 +30,15 @@ export const Exercises = () => {
 			<ModalProgress
 				isOpen={isModalOpen}
 				setIsOpen={setIsModalOpen}
-				// isSubmitted={isSubmitted}
 				setIsSubmitted={setIsSubmitted}
+				exercises={exercises}
+				courseName={courseName}
 			/>
-			<ModalSubmittedProgress isOpen={isSubmitted} setIsOpen={setIsSubmitted} />
+			<ModalSubmitted
+				isOpen={isSubmitted}
+				setIsOpen={setIsSubmitted}
+				title="Ваш прогресс засчитан!"
+			/>
 		</section>
 	);
 };

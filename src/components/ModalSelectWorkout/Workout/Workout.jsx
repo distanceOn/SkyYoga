@@ -15,7 +15,7 @@ export const Workout = ({
 
 	const handleChooseWorkout = () => {
 		dispatch(setCurrentWorkout({ currentWorkout: workoutId }));
-		navigate(`/workout/${number}`);
+		navigate("/workout");
 	};
 
 	const itemClass = item.completed

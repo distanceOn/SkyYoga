@@ -1,8 +1,7 @@
-export const userData = (uid, email) => {
+export const userData = (uid) => {
 	return {
 		userId: uid,
 		data: {
-			login: email,
 			courses: {
 				bodyflex: {
 					courseNameRu: "Бодифлекс", //нужно bf1 bf2 и тд добавить в поле workouts
@@ -42,6 +41,7 @@ export const userData = (uid, email) => {
 								str1e1: 100,
 								str1e2: 70,
 								str1e3: 0,
+								str1e4: 0,
 							},
 						},
 						str2: {

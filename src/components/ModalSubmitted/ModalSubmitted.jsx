@@ -1,11 +1,14 @@
-import s from "./ModalSubmittedProgress.module.scss";
+import s from "./ModalSubmitted.module.scss";
 import { CSSTransition } from "react-transition-group";
+import { useRef } from "react";
 
-export const ModalSubmittedProgress = ({ isOpen, setIsOpen }) => {
+export const ModalSubmitted = ({ isOpen, setIsOpen, title }) => {
+	const modalRef = useRef();
 	return (
 		<CSSTransition
 			in={isOpen}
 			timeout={500}
+			nodeRef={modalRef}
 			classNames={{
 				enter: s["alert-enter"],
 				enterActive: s["alert-enter-active"],
@@ -19,9 +22,10 @@ export const ModalSubmittedProgress = ({ isOpen, setIsOpen }) => {
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
+				ref={modalRef}
 			>
 				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
-					<h2 className={s.heading}>Ваш прогресс засчитан!</h2>
+					<h2 className={s.heading}>{title}</h2>
 				</div>
 			</div>
 		</CSSTransition>

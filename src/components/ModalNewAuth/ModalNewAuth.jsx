@@ -1,28 +1,165 @@
+/* eslint-disable */
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
 import s from "./ModalNewAuth.module.scss";
-
+import { getAuth, updateEmail, updatePassword } from "firebase/auth";
 import Logo from "../Logo/Logo";
+import { useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../redux/slices/user";
+import { AuthPopup } from "../../pages/Auth/components/AuthPopup/AuthPopup";
 
-export const ModalNewAuth = (props) => {
+export const ModalNewAuth = ({
+	title,
+	type,
+	isOpen,
+	setIsOpen,
+	setIsSuccess,
+}) => {
+	const auth = getAuth();
+	const modalRef = useRef();
+	const dispatch = useDispatch();
+
+	const [newLogin, setNewLogin] = useState(null);
+	const [newPassword, setNewPassword] = useState(null);
+	const [newPasswordRepeat, setNewPasswordRepeat] = useState(null);
+	const [error, setError] = useState(null);
+
+	const handleEmailChange = () => {
+		const user = auth.currentUser;
+		if (!newLogin) return setError("Введите логин");
+		updateEmail(user, newLogin)
+			.then(() => {
+				localStorage.setItem("userEmail", newLogin);
+				dispatch(setEmail({ email: newLogin }));
+				setIsOpen(false);
+				setIsSuccess(true);
+			})
+			.catch(() => {
+				setError("Некорректный логин");
+			});
+	};
+
+	const handlePasswordChange = () => {
+		const user = auth.currentUser;
+		if (!newPassword) return setError("Введите пароль");
+		if (!newPasswordRepeat) return setError("Повторите пароль");
+		if (newPassword !== newPasswordRepeat)
+			return setError("Пароли не совпадают");
+
+		updatePassword(user, newPassword)
+			.then(() => {
+				setIsOpen(false);
+				setIsSuccess(true);
+			})
+			.catch(() => {
+				setError("Некорректный пароль");
+			});
+	};
+
+	const setDataOnChange = (event, setData) => {
+		setData(event.target.value);
+		if (error) setError(null);
+	};
+
+	const resetData = () => {
+		setNewLogin(null);
+		setNewPassword(null);
+		setNewPasswordRepeat(null);
+		setError(null);
+	};
+
 	return (
-		<div className={s.wrapper}>
-			<div className={s.container}>
-				<div className={s.modal}>
-					<div className={s.login}>
-						<Logo />
-						<h1 className={s.title}>{props.title}</h1>
-						<Input placeholderText={props.title === "Новый пароль:" ? "Пароль" : "Логин"} />
-						{props.title === "Новый пароль:" && (
-							<Input placeholderText="Повторите пароль" />
-						)}
+		<CSSTransition
+			in={isOpen}
+			timeout={300}
+			nodeRef={modalRef}
+			classNames={{
+				enter: s["alert-enter"],
+				enterActive: s["alert-enter-active"],
+				exit: s["alert-exit"],
+				exitActive: s["alert-exit-active"],
+			}}
+			unmountOnExit
+		>
+			<div
+				className={s.wrapper}
+				onClick={() => {
+					setIsOpen(!isOpen);
+					resetData();
+				}}
+				ref={modalRef}
+			>
+				<div className={s.modal} onClick={(e) => e.stopPropagation()}>
+					{type === "login" ? (
+						<div className={s.container}>
+							<AuthPopup
+								style={{
+									top: "-20%",
+									left: "12%",
+									opacity: error ? 1 : 0,
+								}}
+								errorText={error}
+								isVisiblePopup={error ? true : false}
+							/>
+							<Logo />
+							<h1 className={s.title}>{title}</h1>
 
-						<div className={s.login__margin}>
-							<Button buttonText="Сохранить" />
+							<Input
+								placeholderText="Логин"
+								name="email"
+								type="email"
+								onChange={(event) =>
+									setDataOnChange(event, setNewLogin)
+								}
+							/>
+
+							<div className={s.container__margin}>
+								<Button
+									buttonText="Сохранить"
+									onClick={handleEmailChange}
+								/>
+							</div>
 						</div>
-					</div>
+					) : (
+						<div className={s.container}>
+							<AuthPopup
+								style={{
+									top: "-15%",
+									left: "12%",
+									opacity: error ? 1 : 0,
+								}}
+								errorText={error}
+								isVisiblePopup={error ? true : false}
+							/>
+							<Logo />
+							<h1 className={s.title}>{title}</h1>
+
+							<Input
+								placeholderText=" Пароль"
+								type="password"
+								onChange={(event) =>
+									setDataOnChange(event, setNewPassword)
+								}
+							/>
+							<Input
+								placeholderText="Повторите пароль"
+								type="password"
+								onChange={(event) =>
+									setDataOnChange(event, setNewPasswordRepeat)
+								}
+							/>
+							<div className={s.container__margin}>
+								<Button
+									buttonText="Сохранить"
+									onClick={handlePasswordChange}
+								/>
+							</div>
+						</div>
+					)}
 				</div>
 			</div>
-		</div>
+		</CSSTransition>
 	);
 };

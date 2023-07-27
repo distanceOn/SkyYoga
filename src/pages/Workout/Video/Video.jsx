@@ -1,26 +1,25 @@
 import s from "./Video.module.scss";
-import image from "../../../assets/imgs/playBtn.svg";
 
-export const Video = ({ content }) => {
-	const selections = [" Красота и здоровье", "Йога на каждый день", " 2 день"];
+export const Video = ({ src, name, courseName }) => {
 	return (
 		<div className={s.wrapper}>
 			<div className={s.title}>
-				<h1 className={s.title__text}>{content}</h1>
+				<h2 className={s.title__text}>{courseName}</h2>
 			</div>
-			<ul className={s.selections}>
-				{selections.map((item, i) => {
-					return (
-						<li key={i} className={s.li}>
-							<span>{item}</span>
-						</li>
-					);
-				})}
-			</ul>
+			<div className={s.selections}>
+				<h2 className={s.li}>{name} </h2>
+			</div>
 			<div className={s.video__container}>
-				<video className={s.video} src="#"></video>
-
-				<img className={s.play__button} width="156" src={image} alt="play" />
+				<iframe
+					className={s.video}
+					id="ytplayer"
+					type="text/html"
+					src={`http://www.youtube.com/embed/${src}`}
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowFullScreen
+					title="Embedded youtube"
+					frameBorder="0"
+				/>
 			</div>
 		</div>
 	);
