@@ -28,9 +28,10 @@ const Course = () => {
 	const courseName = params.name;
 
 	const { data, isLoading } = useGetCourseByNameQuery(courseName);
-	if (isLoading) return console.log("Загрузка");
 
-	const { name: title, advantages, directions, description } = data;
+	if (isLoading) return console.log("Loading...");
+
+	const { name: title, advantages, directions, description, workout } = data;
 	return (
 		<div className={s.container}>
 			<Header />
@@ -38,7 +39,7 @@ const Course = () => {
 			<Advantages content={advantages} />
 			<Directions content={directions} />
 			<Description content={description} />
-			<Enrolling />
+			<Enrolling courseName={courseName} courseNameRu={title} workout={workout}/>
 			<Footer />
 		</div>
 	);
