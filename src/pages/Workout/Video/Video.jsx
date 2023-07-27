@@ -14,7 +14,7 @@ export const Video = ({ src, name, courseName }) => {
 					className={s.video}
 					id="ytplayer"
 					type="text/html"
-					src={`http://www.youtube.com/embed/${src}`}
+					src={`https://www.youtube.com/embed/${src}`}
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowFullScreen
 					title="Embedded youtube"
