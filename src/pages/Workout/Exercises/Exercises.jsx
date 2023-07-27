@@ -1,7 +1,7 @@
 import s from "./Exercises.module.scss";
 import { useState } from "react";
 import { ModalProgress } from "../../../components/ModalProgress/ModalProgress";
-import { ModalSubmittedProgress } from "../../../components/ModalSubmittedProgress/ModalSubmittedProgress";
+import { ModalSubmitted } from "../../../components/ModalSubmitted/ModalSubmitted";
 import Button from "../../../components/Button/Button";
 
 export const Exercises = ({ exercises, courseName }) => {
@@ -34,9 +34,10 @@ export const Exercises = ({ exercises, courseName }) => {
 				exercises={exercises}
 				courseName={courseName}
 			/>
-			<ModalSubmittedProgress
+			<ModalSubmitted
 				isOpen={isSubmitted}
 				setIsOpen={setIsSubmitted}
+				title="Ваш прогресс засчитан!"
 			/>
 		</section>
 	);

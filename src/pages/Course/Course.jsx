@@ -19,8 +19,9 @@ const Course = () => {
 
 	useEffect(() => {
 		const storageId = localStorage.getItem("userID");
-		if (!storageId) return;
-		dispatch(setLogin({ userId: storageId }));
+		const storageEmail = localStorage.getItem("userEmail");
+		if (!storageId || !storageEmail) return;
+		dispatch(setLogin({ userId: storageId, email: storageEmail }));
 	}, [dispatch]);
 
 	const params = useParams();
@@ -34,7 +35,7 @@ const Course = () => {
 	return (
 		<div className={s.container}>
 			<Header />
-			<Title content={title} />
+			<Title content={title} uniqueClass={courseName}/>
 			<Advantages content={advantages} />
 			<Directions content={directions} />
 			<Description content={description} />
